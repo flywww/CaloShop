@@ -12,8 +12,21 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    
+    [Parse setApplicationId:@"xNmff21KxiohnSWMcf8VUNiQnUGFQ7PZFJ2znBCN" clientKey:@"8Dd15ONeWxspNnb5weqE3ATW8oGIK02JLzxoClSO"];
+    [PFFacebookUtils initializeFacebook];
+    
+    [MagicalRecord setupAutoMigratingCoreDataStack];
+
     return YES;
+}
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    return [FBAppCall handleOpenURL:url
+                  sourceApplication:sourceApplication
+                        withSession:[PFFacebookUtils session]];
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
