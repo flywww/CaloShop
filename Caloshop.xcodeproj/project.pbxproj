@@ -1,0 +1,471 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		42D0D4811981240E00462C63 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42D0D4801981240E00462C63 /* Foundation.framework */; };
+		42D0D4831981240E00462C63 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42D0D4821981240E00462C63 /* CoreGraphics.framework */; };
+		42D0D4851981240E00462C63 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42D0D4841981240E00462C63 /* UIKit.framework */; };
+		42D0D48B1981240E00462C63 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 42D0D4891981240E00462C63 /* InfoPlist.strings */; };
+		42D0D48D1981240E00462C63 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D0D48C1981240E00462C63 /* main.m */; };
+		42D0D4911981240E00462C63 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D0D4901981240E00462C63 /* AppDelegate.m */; };
+		42D0D4941981240E00462C63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42D0D4921981240E00462C63 /* Main.storyboard */; };
+		42D0D4971981240E00462C63 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D0D4961981240E00462C63 /* ViewController.m */; };
+		42D0D4991981240E00462C63 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42D0D4981981240E00462C63 /* Images.xcassets */; };
+		42D0D4A01981240E00462C63 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42D0D49F1981240E00462C63 /* XCTest.framework */; };
+		42D0D4A11981240E00462C63 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42D0D4801981240E00462C63 /* Foundation.framework */; };
+		42D0D4A21981240E00462C63 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42D0D4841981240E00462C63 /* UIKit.framework */; };
+		42D0D4AA1981240E00462C63 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 42D0D4A81981240E00462C63 /* InfoPlist.strings */; };
+		42D0D4AC1981240E00462C63 /* CaloshopTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D0D4AB1981240E00462C63 /* CaloshopTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		42D0D4A31981240E00462C63 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 42D0D4751981240E00462C63 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 42D0D47C1981240E00462C63;
+			remoteInfo = Caloshop;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		42D0D47D1981240E00462C63 /* Caloshop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Caloshop.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		42D0D4801981240E00462C63 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		42D0D4821981240E00462C63 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		42D0D4841981240E00462C63 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		42D0D4881981240E00462C63 /* Caloshop-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Caloshop-Info.plist"; sourceTree = "<group>"; };
+		42D0D48A1981240E00462C63 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		42D0D48C1981240E00462C63 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		42D0D48E1981240E00462C63 /* Caloshop-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Caloshop-Prefix.pch"; sourceTree = "<group>"; };
+		42D0D48F1981240E00462C63 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		42D0D4901981240E00462C63 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		42D0D4931981240E00462C63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		42D0D4951981240E00462C63 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		42D0D4961981240E00462C63 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		42D0D4981981240E00462C63 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		42D0D49E1981240E00462C63 /* CaloshopTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CaloshopTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		42D0D49F1981240E00462C63 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		42D0D4A71981240E00462C63 /* CaloshopTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CaloshopTests-Info.plist"; sourceTree = "<group>"; };
+		42D0D4A91981240E00462C63 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		42D0D4AB1981240E00462C63 /* CaloshopTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CaloshopTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		42D0D47A1981240E00462C63 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42D0D4831981240E00462C63 /* CoreGraphics.framework in Frameworks */,
+				42D0D4851981240E00462C63 /* UIKit.framework in Frameworks */,
+				42D0D4811981240E00462C63 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42D0D49B1981240E00462C63 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42D0D4A01981240E00462C63 /* XCTest.framework in Frameworks */,
+				42D0D4A21981240E00462C63 /* UIKit.framework in Frameworks */,
+				42D0D4A11981240E00462C63 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		42D0D4741981240E00462C63 = {
+			isa = PBXGroup;
+			children = (
+				42D0D4861981240E00462C63 /* Caloshop */,
+				42D0D4A51981240E00462C63 /* CaloshopTests */,
+				42D0D47F1981240E00462C63 /* Frameworks */,
+				42D0D47E1981240E00462C63 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		42D0D47E1981240E00462C63 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				42D0D47D1981240E00462C63 /* Caloshop.app */,
+				42D0D49E1981240E00462C63 /* CaloshopTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		42D0D47F1981240E00462C63 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				42D0D4801981240E00462C63 /* Foundation.framework */,
+				42D0D4821981240E00462C63 /* CoreGraphics.framework */,
+				42D0D4841981240E00462C63 /* UIKit.framework */,
+				42D0D49F1981240E00462C63 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		42D0D4861981240E00462C63 /* Caloshop */ = {
+			isa = PBXGroup;
+			children = (
+				42D0D48F1981240E00462C63 /* AppDelegate.h */,
+				42D0D4901981240E00462C63 /* AppDelegate.m */,
+				42D0D4921981240E00462C63 /* Main.storyboard */,
+				42D0D4951981240E00462C63 /* ViewController.h */,
+				42D0D4961981240E00462C63 /* ViewController.m */,
+				42D0D4981981240E00462C63 /* Images.xcassets */,
+				42D0D4871981240E00462C63 /* Supporting Files */,
+			);
+			path = Caloshop;
+			sourceTree = "<group>";
+		};
+		42D0D4871981240E00462C63 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				42D0D4881981240E00462C63 /* Caloshop-Info.plist */,
+				42D0D4891981240E00462C63 /* InfoPlist.strings */,
+				42D0D48C1981240E00462C63 /* main.m */,
+				42D0D48E1981240E00462C63 /* Caloshop-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		42D0D4A51981240E00462C63 /* CaloshopTests */ = {
+			isa = PBXGroup;
+			children = (
+				42D0D4AB1981240E00462C63 /* CaloshopTests.m */,
+				42D0D4A61981240E00462C63 /* Supporting Files */,
+			);
+			path = CaloshopTests;
+			sourceTree = "<group>";
+		};
+		42D0D4A61981240E00462C63 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				42D0D4A71981240E00462C63 /* CaloshopTests-Info.plist */,
+				42D0D4A81981240E00462C63 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		42D0D47C1981240E00462C63 /* Caloshop */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 42D0D4AF1981240E00462C63 /* Build configuration list for PBXNativeTarget "Caloshop" */;
+			buildPhases = (
+				42D0D4791981240E00462C63 /* Sources */,
+				42D0D47A1981240E00462C63 /* Frameworks */,
+				42D0D47B1981240E00462C63 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Caloshop;
+			productName = Caloshop;
+			productReference = 42D0D47D1981240E00462C63 /* Caloshop.app */;
+			productType = "com.apple.product-type.application";
+		};
+		42D0D49D1981240E00462C63 /* CaloshopTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 42D0D4B21981240E00462C63 /* Build configuration list for PBXNativeTarget "CaloshopTests" */;
+			buildPhases = (
+				42D0D49A1981240E00462C63 /* Sources */,
+				42D0D49B1981240E00462C63 /* Frameworks */,
+				42D0D49C1981240E00462C63 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				42D0D4A41981240E00462C63 /* PBXTargetDependency */,
+			);
+			name = CaloshopTests;
+			productName = CaloshopTests;
+			productReference = 42D0D49E1981240E00462C63 /* CaloshopTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		42D0D4751981240E00462C63 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "林盈志";
+				TargetAttributes = {
+					42D0D49D1981240E00462C63 = {
+						TestTargetID = 42D0D47C1981240E00462C63;
+					};
+				};
+			};
+			buildConfigurationList = 42D0D4781981240E00462C63 /* Build configuration list for PBXProject "Caloshop" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 42D0D4741981240E00462C63;
+			productRefGroup = 42D0D47E1981240E00462C63 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				42D0D47C1981240E00462C63 /* Caloshop */,
+				42D0D49D1981240E00462C63 /* CaloshopTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		42D0D47B1981240E00462C63 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42D0D4991981240E00462C63 /* Images.xcassets in Resources */,
+				42D0D48B1981240E00462C63 /* InfoPlist.strings in Resources */,
+				42D0D4941981240E00462C63 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42D0D49C1981240E00462C63 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42D0D4AA1981240E00462C63 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		42D0D4791981240E00462C63 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42D0D4971981240E00462C63 /* ViewController.m in Sources */,
+				42D0D4911981240E00462C63 /* AppDelegate.m in Sources */,
+				42D0D48D1981240E00462C63 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42D0D49A1981240E00462C63 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42D0D4AC1981240E00462C63 /* CaloshopTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		42D0D4A41981240E00462C63 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 42D0D47C1981240E00462C63 /* Caloshop */;
+			targetProxy = 42D0D4A31981240E00462C63 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		42D0D4891981240E00462C63 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				42D0D48A1981240E00462C63 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		42D0D4921981240E00462C63 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				42D0D4931981240E00462C63 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		42D0D4A81981240E00462C63 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				42D0D4A91981240E00462C63 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		42D0D4AD1981240E00462C63 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		42D0D4AE1981240E00462C63 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		42D0D4B01981240E00462C63 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Caloshop/Caloshop-Prefix.pch";
+				INFOPLIST_FILE = "Caloshop/Caloshop-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		42D0D4B11981240E00462C63 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Caloshop/Caloshop-Prefix.pch";
+				INFOPLIST_FILE = "Caloshop/Caloshop-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		42D0D4B31981240E00462C63 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Caloshop.app/Caloshop";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Caloshop/Caloshop-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "CaloshopTests/CaloshopTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		42D0D4B41981240E00462C63 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Caloshop.app/Caloshop";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Caloshop/Caloshop-Prefix.pch";
+				INFOPLIST_FILE = "CaloshopTests/CaloshopTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		42D0D4781981240E00462C63 /* Build configuration list for PBXProject "Caloshop" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				42D0D4AD1981240E00462C63 /* Debug */,
+				42D0D4AE1981240E00462C63 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		42D0D4AF1981240E00462C63 /* Build configuration list for PBXNativeTarget "Caloshop" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				42D0D4B01981240E00462C63 /* Debug */,
+				42D0D4B11981240E00462C63 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		42D0D4B21981240E00462C63 /* Build configuration list for PBXNativeTarget "CaloshopTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				42D0D4B31981240E00462C63 /* Debug */,
+				42D0D4B41981240E00462C63 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 42D0D4751981240E00462C63 /* Project object */;
+}
