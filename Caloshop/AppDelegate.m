@@ -13,8 +13,11 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
-    [Parse setApplicationId:@"xNmff21KxiohnSWMcf8VUNiQnUGFQ7PZFJ2znBCN" clientKey:@"8Dd15ONeWxspNnb5weqE3ATW8oGIK02JLzxoClSO"];
+    [Parse setApplicationId:@"dJyY9ZuZ40E6dFYymTcsKOp0j4XCfJgalEXH8xmG" clientKey:@"NrN2KErDUPBhcK7p3CAdoRhhrq7IM0TB730L0Hza"];
     [PFFacebookUtils initializeFacebook];
+    
+    //is user login with facebook? if true then go to main, or go to login page.
+    NSLog(@"Face book log in? %d",[PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]);
     
     [MagicalRecord setupAutoMigratingCoreDataStack];
 

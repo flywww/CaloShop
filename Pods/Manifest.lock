@@ -5,6 +5,7 @@ PODS:
   - MagicalRecord (2.2):
     - MagicalRecord/Core
   - MagicalRecord/Core (2.2)
+  - MBProgressHUD (0.8)
   - MSDynamicsDrawerViewController (1.5.1)
   - Parse-iOS-SDK (1.2.19):
     - Facebook-iOS-SDK (~> 3.7)
@@ -14,6 +15,7 @@ PODS:
 
 DEPENDENCIES:
   - MagicalRecord
+  - MBProgressHUD
   - MSDynamicsDrawerViewController
   - Parse-iOS-SDK
   - Reachability
@@ -24,10 +26,11 @@ SPEC CHECKSUMS:
   Bolts: 91c2af8eae1d44e1dd75946a5b0ae04a43ea43e4
   Facebook-iOS-SDK: 34eef640c2cc4c8618ba0f574ad2b290e07f1b4e
   MagicalRecord: 2b471584fc9e3137f3d0a56967917baa4979e224
+  MBProgressHUD: c356980b0cd097f19acec959b49dca5eb8ec31be
   MSDynamicsDrawerViewController: 0002059480a4b5ddde7eafbafb958a79a9b0ffaf
   Parse-iOS-SDK: 5e1f7e649a02f1cc19e73cc95bd43d7778848314
   Reachability: 8e9635e3cb4f98e7f825e51147f677ecc694d0e7
   SIAlertView: d00609a1faa9d82f17b9f0b4eede64e84a577b10
   UIView+AutoLayout: d876c583c3dec28b5c3916175ea4b6ad70a8be34
 
-COCOAPODS: 0.32.1
+COCOAPODS: 0.33.1
