@@ -31,6 +31,7 @@
 @property (nonatomic) NSString* username;
 @property (nonatomic) NSArray* intersts;
 @property (nonatomic) NSArray* groups;
+@property (nonatomic) NSArray* likes;
 
 @property (nonatomic) NSString* name;
 @property (nonatomic) NSString* height;

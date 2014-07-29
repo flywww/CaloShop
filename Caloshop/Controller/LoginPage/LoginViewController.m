@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "FBLoginModel.h"
+#import "MainViewController.h"
 
 @interface LoginViewController ()<FBLoginModelDelegate>
 - (IBAction)loginButton:(id)sender;
@@ -15,7 +16,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *testLabel;
 
 @property (nonatomic) FBLoginModel* fbLoginModel;
-
 @property (nonatomic) MBProgressHUD* fbLoginHUD;
 
 @end
@@ -51,8 +51,6 @@
 
 }
 
-
-
 #pragma mark- property initialization
 -(FBLoginModel *)fbLoginModel
 {
@@ -75,18 +73,23 @@
 -(void)failToLoginFB:(NSError *)error
 {
     NSLog(@"errorerrorerror%@",error);
+    [self alertViewWithError:[NSString stringWithFormat:@"Fail to login to fb: %@",error]];
+    [self.fbLoginHUD hide:YES];
 }
 
 -(void)didFetchProfile:(id)FBprofile
 {
-    NSLog(@"did Fetch profile : %@",FBprofile);
     [self.fbLoginHUD hide:YES];
+    NSLog(@"did Fetch profile : %@",FBprofile);
+    NSLog(@"show coredata %@",[Profile MR_findAll]);
     //send data to main view controller and go to the main viewController
+    [self performSegueWithIdentifier:@"toMainSeque" sender:nil];
 }
 
 -(void)failToFetchProfile:(NSError *)error
 {
     NSLog(@"Fail to fetch profile");
+    [self alertViewWithError:[NSString stringWithFormat:@"Fail to fetch profile: %@",error]];
 }
 
 -(MBProgressHUD *)fbLoginHUD
@@ -100,6 +103,15 @@
     return _fbLoginHUD;
 }
 
+-(void)alertViewWithError:(NSString*)error
+{
+    SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"Opps!!" andMessage:error];
+    
+    [alertView addButtonWithTitle:@"OK"
+                             type:SIAlertViewButtonTypeDefault
+                          handler:^(SIAlertView *alert) {}];
+    [alertView show];
+}
 
 
 @end

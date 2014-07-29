@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Profile.h"
 
 typedef void (^NextBlock)();
 typedef void (^FailBlock)();
@@ -20,9 +21,14 @@ typedef void (^FailBlock)();
 
 
 @interface BasicModel : NSObject
-
+@property (nonatomic) Profile* profile;
 @property (nonatomic,weak) id<BasicModelDelegate> delegate;
 -(void)checkNetworkAndDoNext:(NextBlock)next;
 -(void)checkNetworkAndDoNext:(NextBlock)next andFail:(FailBlock)fail;
+-(void)profileSetWithData:(NSDictionary*)userData;
+
+/*
+ (NSString*)FBID andfbname:(NSString*)FBName andUerName:(NSString*)username andBirthday:(NSString*)Birthday andGender:(NSString*)gender andEmail:(NSString*)email andName:(NSString*)name andHeight:(NSString*)height amdWeight:(NSString*)weight andAddress:(NSString*)address andAvatar:(NSData*)avatar;
+ */
 
 @end

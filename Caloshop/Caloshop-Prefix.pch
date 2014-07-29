@@ -15,8 +15,9 @@
     #import <Foundation/Foundation.h>
     #import <Parse/Parse.h>
     #import <CoreData+MagicalRecord.h>
-    #import <UIView+AutoLayout.h>
+    #import <PureLayout.h>
     #import <Reachability.h>
     #import <SIAlertView.h>
     #import <MBProgressHUD.h>
+    #import "Profile.h"
 #endif

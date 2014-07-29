@@ -48,21 +48,33 @@
 #define COCOAPODS_VERSION_MINOR_Parse_iOS_SDK 2
 #define COCOAPODS_VERSION_PATCH_Parse_iOS_SDK 19
 
+// PureLayout
+#define COCOAPODS_POD_AVAILABLE_PureLayout
+#define COCOAPODS_VERSION_MAJOR_PureLayout 1
+#define COCOAPODS_VERSION_MINOR_PureLayout 0
+#define COCOAPODS_VERSION_PATCH_PureLayout 1
+
 // Reachability
 #define COCOAPODS_POD_AVAILABLE_Reachability
 #define COCOAPODS_VERSION_MAJOR_Reachability 3
 #define COCOAPODS_VERSION_MINOR_Reachability 1
 #define COCOAPODS_VERSION_PATCH_Reachability 1
 
+// SDWebImage
+#define COCOAPODS_POD_AVAILABLE_SDWebImage
+#define COCOAPODS_VERSION_MAJOR_SDWebImage 3
+#define COCOAPODS_VERSION_MINOR_SDWebImage 7
+#define COCOAPODS_VERSION_PATCH_SDWebImage 1
+
+// SDWebImage/Core
+#define COCOAPODS_POD_AVAILABLE_SDWebImage_Core
+#define COCOAPODS_VERSION_MAJOR_SDWebImage_Core 3
+#define COCOAPODS_VERSION_MINOR_SDWebImage_Core 7
+#define COCOAPODS_VERSION_PATCH_SDWebImage_Core 1
+
 // SIAlertView
 #define COCOAPODS_POD_AVAILABLE_SIAlertView
 #define COCOAPODS_VERSION_MAJOR_SIAlertView 1
 #define COCOAPODS_VERSION_MINOR_SIAlertView 3
 #define COCOAPODS_VERSION_PATCH_SIAlertView 0
-
-// UIView+AutoLayout
-#define COCOAPODS_POD_AVAILABLE_UIView_AutoLayout
-#define COCOAPODS_VERSION_MAJOR_UIView_AutoLayout 2
-#define COCOAPODS_VERSION_MINOR_UIView_AutoLayout 0
-#define COCOAPODS_VERSION_PATCH_UIView_AutoLayout 1
 

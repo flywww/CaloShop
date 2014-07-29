@@ -514,6 +514,7 @@
 				GCC_PREFIX_HEADER = "Caloshop/Caloshop-Prefix.pch";
 				INFOPLIST_FILE = "Caloshop/Caloshop-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "C4BD5070-7CC8-4C2F-9EDF-CD8E40DD8205";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -528,6 +529,7 @@
 				GCC_PREFIX_HEADER = "Caloshop/Caloshop-Prefix.pch";
 				INFOPLIST_FILE = "Caloshop/Caloshop-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "C4BD5070-7CC8-4C2F-9EDF-CD8E40DD8205";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

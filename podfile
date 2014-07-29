@@ -1,8 +1,9 @@
 inhibit_all_warnings!
 pod 'Parse-iOS-SDK'
-pod 'UIView+AutoLayout'
+pod 'PureLayout'
 pod 'MagicalRecord'
 pod 'SIAlertView'
 pod 'Reachability'
 pod 'MSDynamicsDrawerViewController'
 pod 'MBProgressHUD'
+pod 'SDWebImage'

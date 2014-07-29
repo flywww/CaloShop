@@ -7,8 +7,14 @@
 //
 
 #import "MainViewController.h"
+#import <UIImageView+WebCache.h>
 
 @interface MainViewController ()
+@property (weak, nonatomic) IBOutlet UIImageView *avataImage;
+@property (weak, nonatomic) IBOutlet UILabel *name;
+@property (weak, nonatomic) IBOutlet UILabel *birthday;
+@property (weak, nonatomic) IBOutlet UILabel *gender;
+@property (weak, nonatomic) IBOutlet UILabel *update_time;
 
 @end
 
@@ -28,6 +34,21 @@
     //下載當日商品
     //顯示到View
     //上傳訂單
+    
+    [self profileDataShow];
+}
+
+-(void)profileDataShow
+{
+    Profile* profile =[Profile MR_findFirst];
+    [self.avataImage setImageWithURL:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1",profile.fbID]
+                    placeholderImage:[UIImage imageNamed:@"EmptyImage"]
+                             options:SDWebImageRefreshCached];
+    self.name.text=profile.fbname;
+    self.birthday.text=profile.birthday;
+    self.gender.text=profile.gender;
+    self.update_time.text=profile.updated_time;
+
 }
 
 - (void)didReceiveMemoryWarning

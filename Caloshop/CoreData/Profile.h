@@ -22,6 +22,7 @@
 @property (nonatomic, retain) NSString * height;
 @property (nonatomic, retain) NSString * weight;
 @property (nonatomic, retain) NSString * address;
+@property (nonatomic, retain) NSString * updated_time;
 @property (nonatomic, retain) NSData * avatar;
 
 @end

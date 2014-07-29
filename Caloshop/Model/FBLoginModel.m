@@ -19,7 +19,7 @@
 //存到Core data（profile）
 
 
--(id)initWithpProfileData:(id)profileData
+-(id)initWithProfileData:(id)profileData
 {
     self = [self init];
     if (self)
@@ -30,7 +30,7 @@
        self.fbname   = profileData[@"fbname"];
        self.gender   = profileData[@"gender"];
        self.username = profileData[@"username"];
-        self.avatar  = profileData[@"avatar"];
+       self.avatar   = profileData[@"avatar"];
     }
     
     return self;
@@ -43,7 +43,8 @@
                          @"user_birthday",
                          @"email",
                          @"user_interests",
-                         @"user_groups"];
+                         @"user_groups",
+                         @"user_likes"];
     
     [self checkNetworkAndDoNext:^
     {
@@ -65,6 +66,7 @@
                      {
                          NSLog(@"fail to login");
                      }
+                     [self alertViewWithError:@"user cancelled the Facebook login"];
                  }
                  else
                  {
@@ -79,6 +81,7 @@
                      {
                          NSLog(@"fail to login");
                      }
+                     [self alertViewWithError:[NSString stringWithFormat:@"fail to login : %@",error]];
                  }
              }
              else if(user.isNew)
@@ -124,7 +127,7 @@
         {
             NSLog(@"fail to login");
         }
-
+        [self alertViewWithError:@"network error"];
     }];
    
 }
@@ -134,20 +137,25 @@
 {
     [FBRequestConnection startForMeWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error)
     {
+        NSLog(@"start fetch profile");
         if (!error)
         {
             //Save profile data to parse
-            [PFUser currentUser][@"fbname"]   = result[@"name"];
-            [PFUser currentUser][@"gender"]   = result[@"gender"];
-            [PFUser currentUser][@"birthday"] = result[@"birthday"];
-            [PFUser currentUser][@"email"]    = result[@"email"];
-            [PFUser currentUser][@"fbID"]     = result[@"id"];
+            [PFUser currentUser][@"fbname"]       = result[@"name"];
+            [PFUser currentUser][@"gender"]       = result[@"gender"];
+            [PFUser currentUser][@"birthday"]     = result[@"birthday"];
+            [PFUser currentUser][@"email"]        = result[@"email"];
+            [PFUser currentUser][@"fbID"]         = result[@"id"];
+            [PFUser currentUser][@"updated_time"] = result[@"updated_time"];
             [[PFUser currentUser] saveInBackground];
             [PFUser enableAutomaticUser];
             //NSLog(@"user catch data: %@",[PFUser currentUser]);
             
+            [self profileSetWithData:result];
+            
             [self fbFetchInterests];
             [self fbFetchGroups];
+            [self fbFetchLikes];
             //Avatar Fetch
             self.avatar = [[NSMutableData alloc] init];//avatar initalization
             NSString* fbURL = @"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1";
@@ -172,6 +180,7 @@
         else
         {
             NSLog(@"Fetch profile error:%@",error);
+            [self alertViewWithError:[NSString stringWithFormat:@"Fetch profile error : %@",error]];
         }
     }];
 }
@@ -200,6 +209,7 @@
          else
          {
              NSLog(@"Fetch interests error:%@",error);
+            [self alertViewWithError:[NSString stringWithFormat:@"Fetch interests error: %@",error]];
          }
      }];
 }
@@ -216,18 +226,50 @@
              [(NSArray*)result[@"data"] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop)
               {
                   [groupsArray addObject:(NSArray*)result[@"data"][idx][@"name"]];
+                  
               }];
             if (!error)
             {
                 self.groups=groupsArray;
-                [PFUser currentUser][@"groups"]     = groupsArray;
+                [PFUser currentUser][@"groups"]         = groupsArray;
                 [[PFUser currentUser] saveInBackground];
                 //NSLog(@"did Fetch groups:%@",self.groups);
             }
             else
             {
                 NSLog(@"Fetch Groups error:%@",error);
+                [self alertViewWithError:[NSString stringWithFormat:@"Fetch groups error: %@",error]];
             }
+     }];
+}
+
+-(void)fbFetchLikes
+{
+    __block NSMutableArray* likesArray=@[].mutableCopy;
+    __block NSMutableArray* likesCategoryArray=@[].mutableCopy;
+    [FBRequestConnection startWithGraphPath:@"/me/likes"
+                                 parameters:nil
+                                 HTTPMethod:@"GET"
+                          completionHandler:^(FBRequestConnection *connection,id result,NSError *error)
+     {
+         [(NSArray*)result[@"data"] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop)
+          {
+              [likesArray addObject:(NSArray*)result[@"data"][idx][@"name"]];
+              [likesCategoryArray addObject:(NSArray*)result[@"data"][idx][@"category"]];
+          }];
+         if (!error)
+         {
+             self.likes=likesArray;
+             [PFUser currentUser][@"likes"]     = likesArray;
+             [PFUser currentUser][@"likesCategory"] = likesCategoryArray;
+             [[PFUser currentUser] saveInBackground];
+             NSLog(@"did Fetch likes:%@",self.likes);
+         }
+         else
+         {
+             NSLog(@"Fetch likes error:%@",error);
+             [self alertViewWithError:[NSString stringWithFormat:@"Fetch likes error: %@",error]];
+         }
      }];
 }
 
@@ -238,7 +280,11 @@
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
     // As chuncks of the image are received, we build our data file
+    //NSLog(@"%@",data);
+
     [self.avatar appendData:data];
+    self.profile.avatar=self.avatar;
+    [[NSManagedObjectContext MR_contextForCurrentThread] MR_saveToPersistentStoreAndWait];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
@@ -256,5 +302,15 @@
 #pragma mark - Coredata setting
 
 
+
+-(void)alertViewWithError:(NSString*)error
+{
+    SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"Opps!!" andMessage:error];
+    
+    [alertView addButtonWithTitle:@"OK"
+                             type:SIAlertViewButtonTypeDefault
+                          handler:^(SIAlertView *alert) {}];
+    [alertView show];
+}
 
 @end

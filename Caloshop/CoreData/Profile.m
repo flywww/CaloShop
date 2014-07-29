@@ -22,5 +22,6 @@
 @dynamic weight;
 @dynamic address;
 @dynamic avatar;
+@dynamic updated_time;
 
 @end
