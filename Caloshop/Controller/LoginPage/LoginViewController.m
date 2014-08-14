@@ -39,7 +39,8 @@
 {
     [super viewDidLoad];
     
-    
+    MSDynamicsDrawerViewController *dynamicsDrawerViewController = (MSDynamicsDrawerViewController *)self.navigationController.parentViewController;
+    [dynamicsDrawerViewController setPaneDragRevealEnabled:NO forDirection:MSDynamicsDrawerDirectionLeft];
 
     //[rewardModel saveNewRewardWithData:@{@"rewardDate":[NSDate date]}];
     //[rewardModel saveNewRewardWithData:@{@"rewardDate":[[NSDate alloc]initWithTimeIntervalSinceNow:-24*60*60]}];
