@@ -10,12 +10,14 @@
 
 #import "SidePageViewController.h"
 #import "MainViewController.h"
+#import "LoginViewController.h"
 
 #import "MSDynamicsDrawerViewController.h"
 #import "MSDynamicsDrawerStyler.h"
 
 @interface AppDelegate ()<MSDynamicsDrawerViewControllerDelegate>
 
+@property (nonatomic, strong) UIImageView *windowBackground;
 
 @end
 
@@ -41,20 +43,33 @@
     
     SidePageViewController* SidePageViewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"Side"];
     
-    MainViewController* MainViewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"Main"];
+    MainViewController* MainViewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"MainNav"];
+    
+    LoginViewController* LoginViewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"LoginNav"];
     
     SidePageViewController.dynamicsDrawerViewController = self.dynamicsDrawerViewController;
     
     [self.dynamicsDrawerViewController setDrawerViewController:SidePageViewController forDirection:MSDynamicsDrawerDirectionLeft];
     
-    [self.dynamicsDrawerViewController setPaneViewController:MainViewController animated:self.dynamicsDrawerViewController.paneViewController!=nil completion:nil];
+    //If user already Login go to MainViewController, otherwise goto LoginViewController
+    if ([PFFacebookUtils isLinkedWithUser:[PFUser currentUser]])
+    {
+        [self.dynamicsDrawerViewController setPaneViewController:MainViewController animated:self.dynamicsDrawerViewController.paneViewController!=nil completion:nil];
+    }
+    else
+    {
+        [self.dynamicsDrawerViewController setPaneViewController:LoginViewController animated:self.dynamicsDrawerViewController.paneViewController!=nil completion:nil];
+    }
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController=self.dynamicsDrawerViewController;
     [self.window makeKeyAndVisible];
+    //[self.window addSubview:self.windowBackground];
+    [self.window sendSubviewToBack:self.windowBackground];
     
     return YES;
 }
+
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
@@ -62,6 +77,15 @@
     return [FBAppCall handleOpenURL:url
                   sourceApplication:sourceApplication
                         withSession:[PFFacebookUtils session]];
+}
+
+- (UIImageView *)windowBackground
+{
+    if (!_windowBackground) {
+        //_windowBackground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Window Background"]];
+        
+    }
+    return _windowBackground;
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application

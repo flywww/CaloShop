@@ -8,7 +8,11 @@
 
 #import "SidePageViewController.h"
 
+#import "LoginViewController.h"
+
+
 @interface SidePageViewController ()
+- (IBAction)test:(id)sender;
 
 @end
 
@@ -46,4 +50,10 @@
 }
 */
 
+- (IBAction)test:(id)sender
+{
+    LoginViewController* loginViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginNav"];
+    [self.dynamicsDrawerViewController setPaneViewController:loginViewController animated:YES completion:nil];
+    
+}
 @end
