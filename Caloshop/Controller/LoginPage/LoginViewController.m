@@ -10,13 +10,17 @@
 #import "FBLoginModel.h"
 #import "MainViewController.h"
 
-@interface LoginViewController ()<FBLoginModelDelegate>
+#import "RewardModel.h"
+
+@interface LoginViewController ()<FBLoginModelDelegate,RewardModelDelegate>
 - (IBAction)loginButton:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UILabel *testLabel;
 
 @property (nonatomic) FBLoginModel* fbLoginModel;
+
 @property (nonatomic) MBProgressHUD* fbLoginHUD;
+
 
 @end
 
@@ -34,8 +38,26 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    
+
+    //[rewardModel saveNewRewardWithData:@{@"rewardDate":[NSDate date]}];
+    //[rewardModel saveNewRewardWithData:@{@"rewardDate":[[NSDate alloc]initWithTimeIntervalSinceNow:-24*60*60]}];
+    //[rewardModel saveNewRewardWithData:@{@"rewardDate":[[NSDate alloc]initWithTimeIntervalSinceNow:-48*60*60]}];
+    
+    //NSLog(@"Reward Entity %@ ,Entities count: %lu",[Reward MR_findAll],[Reward MR_countOfEntities]);
+    
+
 }
+
+-(void)didSavedRewardData
+{
+    
+    
+}
+
+
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -80,8 +102,8 @@
 -(void)didFetchProfile:(id)FBprofile
 {
     [self.fbLoginHUD hide:YES];
-    NSLog(@"did Fetch profile : %@",FBprofile);
-    NSLog(@"show coredata %@",[Profile MR_findAll]);
+    //NSLog(@"did Fetch profile : %@",FBprofile);
+    
     //send data to main view controller and go to the main viewController
     [self performSegueWithIdentifier:@"toMainSeque" sender:nil];
 }

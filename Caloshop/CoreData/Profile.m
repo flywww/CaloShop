@@ -21,6 +21,7 @@
 @dynamic height;
 @dynamic weight;
 @dynamic address;
+@dynamic phone;
 @dynamic avatar;
 @dynamic updated_time;
 

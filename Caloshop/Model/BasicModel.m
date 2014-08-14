@@ -10,7 +10,6 @@
 
 @implementation BasicModel
 
-
 -(void)checkNetworkAndDoNext:(NextBlock)next
 {
     [self checkNetworkAndDoNext:next andFail:nil];
@@ -35,60 +34,33 @@
             {
                 NSLog(@"fail to fetch book list");
             }
-            
         }
-        
     }
     else
     {
         next();
     }
-
-    
-    
 }
 
--(void)profileSetWithData:(NSDictionary*)userData
-{
-    
-    if(userData[@"id"])          {self.profile.fbID         = userData[@"id"];          }
-    if(userData[@"name"])        {self.profile.fbname       = userData[@"name"];        }
-    if(userData[@"username"])    {self.profile.username     = userData[@"username"];    }
-    if(userData[@"birthday"])    {self.profile.birthday     = userData[@"birthday"];    }
-    if(userData[@"gender"])      {self.profile.gender       = userData[@"gender"];      }
-    if(userData[@"email"])       {self.profile.email        = userData[@"email"];       }
-    if(userData[@"name"])        {self.profile.name         = userData[@"name"];        }
-    if(userData[@"height"])      {self.profile.height       = userData[@"height"];      }
-    if(userData[@"weight"])      {self.profile.weight       = userData[@"weight"];      }
-    if(userData[@"address"])     {self.profile.address      = userData[@"address"];     }
-    if(userData[@"avatar"])      {self.profile.avatar       = userData[@"avatar"];      }
-    if(userData[@"updated_time"]){self.profile.updated_time = userData[@"updated_time"];}
-    
-    //Save to persistant storage
-    [[NSManagedObjectContext MR_contextForCurrentThread] MR_saveToPersistentStoreAndWait];
-    NSLog(@"entities count - %lu",(unsigned long)[Profile MR_countOfEntities]);
-    
-    NSArray* profileShow = [Profile MR_findAll];
-    NSLog(@"profile in coredata %@",profileShow);
-    NSLog(@"profile - fbID %@",self.profile.fbID);
-    NSLog(@"profile - height %@",self.profile.height);
-}
 
--(Profile *)profile
+
+
+
+-(UserLog *)userLog
 {
-    if (!_profile)
+    if (!_userLog)
     {
-        if (![Profile MR_findFirst])
+        if (![UserLog MR_findFirst])
         {
-            _profile=[Profile MR_createEntity];
+            _userLog=[UserLog MR_createEntity];
         }
         else
         {
-            _profile=[Profile MR_findFirst];
+            //這行可能要改
+            _userLog=[UserLog MR_findFirst];
         }
     }
-    return _profile;
+    return _userLog;
 }
-
 
 @end

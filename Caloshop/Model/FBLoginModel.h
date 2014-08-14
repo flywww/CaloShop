@@ -17,6 +17,11 @@
 -(void)fbFetchProfile;
 -(void)failToFetchProfile:(NSError*)error;
 -(void)didFetchProfile:(id)FBprofile;
+
+-(BOOL)didSavedProfileData;
+-(void)failToSaveProfileData:(NSError*)error;
+
+
 @end
 
 @interface FBLoginModel : BasicModel
@@ -42,7 +47,10 @@
 
 @property (nonatomic) NSArray* FBPermissions;
 
+@property (nonatomic) Profile* profile;
+
 -(id)initWithProfileData:(id)profileData;
 -(void)FBLogin;
 
+-(void)profileSetWithData:(NSDictionary*)userData;
 @end

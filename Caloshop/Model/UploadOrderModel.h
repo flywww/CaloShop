@@ -7,7 +7,24 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BasicModel.h"
 
-@interface UploadOrderModel : NSObject
+@protocol UploadOrderModelDelegate <BasicModelDelegate>
+
+@optional
+-(void)didUploadOrder;
+-(void)failToUploadOrderWithError:(NSError*)error;
+
+@end
+
+
+@interface UploadOrderModel : BasicModel
+
+@property (nonatomic,weak) id<UploadOrderModelDelegate> delegate;
+
+
+-(void)uploadOlderWithName:(NSString *)name andPhone:(NSString *)phone andAddress:(NSString *)address andReward:(NSDictionary*)reward;
+-(NSString*)checkInfoWithName:(NSString*)name andPhone:(NSString*)phone andAddress:(NSString*)address;
+-(void)autoFillProfile;
 
 @end

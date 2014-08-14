@@ -10,4 +10,15 @@
 
 @interface HelpTool : NSObject
 
+//String
++(NSString*)trimeEndandHeadWhiteSpace:(NSString*)string;
+
+//Date
++(NSInteger)transformNSDateToNumber:(NSDate*)date;
++(NSDate*)getLocalDate;
++(NSString*)getStringLocalDateWithoutTime;
++(NSDate *)getLocalDateWithOutTime:(NSDate*)date;
++(NSDate *)getLocalDateWithOutTime;
++(NSString*)transDateToStringWithDate:(NSDate*)date andFormate:(NSString*)formate;
+
 @end

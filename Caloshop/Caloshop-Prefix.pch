@@ -11,6 +11,8 @@
 #endif
 
 #ifdef __OBJC__
+
+
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
     #import <Parse/Parse.h>
@@ -20,4 +22,10 @@
     #import <SIAlertView.h>
     #import <MBProgressHUD.h>
     #import "Profile.h"
+    #import "Reward.h"
+    #import "UserLog.h"
+    #import "HelpTool.h"
+    #import <MSDynamicsDrawerViewController/MSDynamicsDrawerViewController.h>
+
+
 #endif

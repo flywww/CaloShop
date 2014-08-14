@@ -14,7 +14,37 @@
         <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="weight" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="Reward" representedClassName="Reward" syncable="YES">
+        <attribute name="describe1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="describe2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="describe3" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="describe4" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="describe5" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="image1" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="image2" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="image3" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="image4" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="image5" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="mainDescribe" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mainImage" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="price" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="productName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pureImage" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="rewardDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="rewardGoal" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="rewardID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rewardPrice" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="rewardTitle" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="UserLog" representedClassName="UserLog" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="reachGoal" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="rewardID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="steps" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
     <elements>
-        <element name="Profile" positionX="-63" positionY="-18" width="128" height="223"/>
+        <element name="Profile" positionX="-12024" positionY="-1089" width="128" height="223"/>
+        <element name="UserLog" positionX="-12195" positionY="-1017" width="117" height="103"/>
+        <element name="Reward" positionX="-12195" positionY="-891" width="128" height="343"/>
     </elements>
 </model>

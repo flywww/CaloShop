@@ -8,19 +8,51 @@
 
 #import "AppDelegate.h"
 
+#import "SidePageViewController.h"
+#import "MainViewController.h"
+
+#import "MSDynamicsDrawerViewController.h"
+#import "MSDynamicsDrawerStyler.h"
+
+@interface AppDelegate ()<MSDynamicsDrawerViewControllerDelegate>
+
+
+@end
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
+    //Parse Setting
     [Parse setApplicationId:@"dJyY9ZuZ40E6dFYymTcsKOp0j4XCfJgalEXH8xmG" clientKey:@"NrN2KErDUPBhcK7p3CAdoRhhrq7IM0TB730L0Hza"];
     [PFFacebookUtils initializeFacebook];
     
     //is user login with facebook? if true then go to main, or go to login page.
     NSLog(@"Face book log in? %d",[PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]);
     
+    //MagicalRecord Setting
     [MagicalRecord setupAutoMigratingCoreDataStack];
-
+    
+    //SideView Setting
+    self.dynamicsDrawerViewController = (MSDynamicsDrawerViewController*) self.window.rootViewController;
+    self.dynamicsDrawerViewController.view.backgroundColor = [UIColor redColor];
+    //Add style
+    [self.dynamicsDrawerViewController addStylersFromArray:@[[MSDynamicsDrawerScaleStyler styler], [MSDynamicsDrawerFadeStyler styler]] forDirection:MSDynamicsDrawerDirectionLeft];
+    
+    SidePageViewController* SidePageViewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"Side"];
+    
+    MainViewController* MainViewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"Main"];
+    
+    SidePageViewController.dynamicsDrawerViewController = self.dynamicsDrawerViewController;
+    
+    [self.dynamicsDrawerViewController setDrawerViewController:SidePageViewController forDirection:MSDynamicsDrawerDirectionLeft];
+    
+    [self.dynamicsDrawerViewController setPaneViewController:MainViewController animated:self.dynamicsDrawerViewController.paneViewController!=nil completion:nil];
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController=self.dynamicsDrawerViewController;
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 - (BOOL)application:(UIApplication *)application

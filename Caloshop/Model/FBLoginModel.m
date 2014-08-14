@@ -15,10 +15,6 @@
 @end
 @implementation FBLoginModel
 
-//部署CoreData
-//存到Core data（profile）
-
-
 -(id)initWithProfileData:(id)profileData
 {
     self = [self init];
@@ -147,7 +143,7 @@
             [PFUser currentUser][@"email"]        = result[@"email"];
             [PFUser currentUser][@"fbID"]         = result[@"id"];
             [PFUser currentUser][@"updated_time"] = result[@"updated_time"];
-            [[PFUser currentUser] saveInBackground];
+            [[PFUser currentUser] saveEventually];
             [PFUser enableAutomaticUser];
             //NSLog(@"user catch data: %@",[PFUser currentUser]);
             
@@ -165,7 +161,6 @@
                                                                   timeoutInterval:2.0f];
             // Run network request asynchronously
             NSURLConnection *urlConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self];
-            
             
             
             if ([self.delegate respondsToSelector:@selector(didFetchProfile:)])
@@ -203,7 +198,7 @@
          {
              self.intersts=interestsArray;
              [PFUser currentUser][@"Interests"]     = interestsArray;
-             [[PFUser currentUser] saveInBackground];
+             [[PFUser currentUser] saveEventually];
              //NSLog(@"did Fetch interests:%@",self.intersts);
          }
          else
@@ -232,7 +227,7 @@
             {
                 self.groups=groupsArray;
                 [PFUser currentUser][@"groups"]         = groupsArray;
-                [[PFUser currentUser] saveInBackground];
+                [[PFUser currentUser] saveEventually];
                 //NSLog(@"did Fetch groups:%@",self.groups);
             }
             else
@@ -262,8 +257,8 @@
              self.likes=likesArray;
              [PFUser currentUser][@"likes"]     = likesArray;
              [PFUser currentUser][@"likesCategory"] = likesCategoryArray;
-             [[PFUser currentUser] saveInBackground];
-             NSLog(@"did Fetch likes:%@",self.likes);
+             [[PFUser currentUser] saveEventually];
+             //NSLog(@"did Fetch likes:%@",self.likes);
          }
          else
          {
@@ -289,17 +284,80 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    
     // All data has been downloaded, now we can set the image in the header image view
     //self.headerImageView.image = [UIImage imageWithData:self.imageData];
-
-    PFFile* avatarFile=[PFFile fileWithName:@"avatar.jpg" data:self.avatar];
-    [PFUser currentUser][@"avatar"]=avatarFile;
-    [[PFUser currentUser] saveInBackground];
 }
 
 
 #pragma mark - Coredata setting
+
+-(void)profileSetWithData:(NSDictionary*)userData
+{
+    
+    if(userData[@"id"])          {self.profile.fbID         = userData[@"id"];          }
+    if(userData[@"name"])        {self.profile.fbname       = userData[@"name"];        }
+    if(userData[@"username"])    {self.profile.username     = userData[@"username"];    }
+    if(userData[@"birthday"])    {self.profile.birthday     = userData[@"birthday"];    }
+    if(userData[@"gender"])      {self.profile.gender       = userData[@"gender"];      }
+    if(userData[@"email"])       {self.profile.email        = userData[@"email"];       }
+    if(userData[@"name"])        {self.profile.name         = userData[@"name"];        }
+    if(userData[@"height"])      {self.profile.height       = userData[@"height"];      }
+    if(userData[@"weight"])      {self.profile.weight       = userData[@"weight"];      }
+    if(userData[@"address"])     {self.profile.address      = userData[@"address"];     }
+    if(userData[@"avatar"])      {self.profile.avatar       = userData[@"avatar"];      }
+    if(userData[@"updated_time"]){self.profile.updated_time = userData[@"updated_time"];}
+    
+    //Save to persistant storage
+    [[NSManagedObjectContext MR_contextForCurrentThread] MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
+        if (!error)
+        {
+            if ([self.delegate respondsToSelector:@selector(didSavedProfileData)])
+            {
+                [self.delegate didSavedProfileData];
+                //NSLog(@"coredata Profile data show: %@",userData);
+                NSLog(@"Profile entities count - %lu",(unsigned long)[Profile MR_countOfEntities]);
+                NSLog(@"Profile in coredata %@",[Profile MR_findAll]);
+            }
+            else
+            {
+                NSLog(@"Profile in coredata %@",[Profile MR_findAll]);
+                NSLog(@"did Saved Prfile Data");
+            }
+        }
+        else
+        {
+            if ([self.delegate respondsToSelector:@selector(failToSaveProfileData:)])
+            {
+                [self.delegate failToSaveProfileData:error];
+            }
+            else
+            {
+                NSLog(@"fail To Save Profile Data");
+            }
+        }
+    }];
+    
+    //NSArray* profileShow = [Profile MR_findAll];
+    //NSLog(@"profile in coredata %@",profileShow);
+    //NSLog(@"profile - fbID %@",self.profile.fbID);
+    //NSLog(@"profile - height %@",self.profile.height);
+}
+
+-(Profile *)profile
+{
+    if (!_profile)
+    {
+        if (![Profile MR_findFirst])
+        {
+            _profile=[Profile MR_createEntity];
+        }
+        else
+        {
+            _profile=[Profile MR_findFirst];
+        }
+    }
+    return _profile;
+}
 
 
 

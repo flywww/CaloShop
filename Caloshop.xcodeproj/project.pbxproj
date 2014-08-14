@@ -7,8 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		421485F01988EBF3009E6E35 /* HelpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 421485EF1988EBF3009E6E35 /* HelpTool.m */; };
+		421485F3198904CD009E6E35 /* Reward.m in Sources */ = {isa = PBXBuildFile; fileRef = 421485F2198904CD009E6E35 /* Reward.m */; };
+		421485F6198904CE009E6E35 /* UserLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 421485F5198904CE009E6E35 /* UserLog.m */; };
 		4286984319852A83005A137C /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4286984119852A83005A137C /* Model.xcdatamodeld */; };
 		4286984619852C47005A137C /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4286984519852C47005A137C /* Profile.m */; };
+		4293AE76199B75C1004C2912 /* SidePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4293AE75199B75C1004C2912 /* SidePageViewController.m */; };
+		4293AE7B199B773C004C2912 /* BuyPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4293AE7A199B773C004C2912 /* BuyPageViewController.m */; };
+		4293AE7E199B774C004C2912 /* ProductPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4293AE7D199B774C004C2912 /* ProductPageViewController.m */; };
+		4293AE83199B7851004C2912 /* ContactUsPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4293AE82199B7851004C2912 /* ContactUsPageViewController.m */; };
+		4293AE86199B7891004C2912 /* ProfilePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4293AE85199B7891004C2912 /* ProfilePageViewController.m */; };
+		42B90BF71987C2F3009147F4 /* RewardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B90BF61987C2F3009147F4 /* RewardModel.m */; };
+		42C4E2211994BAB400D9FA02 /* UploadOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C4E2201994BAB400D9FA02 /* UploadOrderModel.m */; };
 		42D0D4811981240E00462C63 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42D0D4801981240E00462C63 /* Foundation.framework */; };
 		42D0D4831981240E00462C63 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42D0D4821981240E00462C63 /* CoreGraphics.framework */; };
 		42D0D4851981240E00462C63 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42D0D4841981240E00462C63 /* UIKit.framework */; };
@@ -40,9 +50,29 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		421485EE1988EBF3009E6E35 /* HelpTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpTool.h; sourceTree = "<group>"; };
+		421485EF1988EBF3009E6E35 /* HelpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpTool.m; sourceTree = "<group>"; };
+		421485F1198904CD009E6E35 /* Reward.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reward.h; sourceTree = "<group>"; };
+		421485F2198904CD009E6E35 /* Reward.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reward.m; sourceTree = "<group>"; };
+		421485F4198904CE009E6E35 /* UserLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLog.h; sourceTree = "<group>"; };
+		421485F5198904CE009E6E35 /* UserLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLog.m; sourceTree = "<group>"; };
 		4286984219852A83005A137C /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		4286984419852C47005A137C /* Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Profile.h; sourceTree = "<group>"; };
 		4286984519852C47005A137C /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Profile.m; sourceTree = "<group>"; };
+		4293AE74199B75C1004C2912 /* SidePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidePageViewController.h; sourceTree = "<group>"; };
+		4293AE75199B75C1004C2912 /* SidePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidePageViewController.m; sourceTree = "<group>"; };
+		4293AE79199B773C004C2912 /* BuyPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyPageViewController.h; sourceTree = "<group>"; };
+		4293AE7A199B773C004C2912 /* BuyPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyPageViewController.m; sourceTree = "<group>"; };
+		4293AE7C199B774C004C2912 /* ProductPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductPageViewController.h; sourceTree = "<group>"; };
+		4293AE7D199B774C004C2912 /* ProductPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductPageViewController.m; sourceTree = "<group>"; };
+		4293AE81199B7851004C2912 /* ContactUsPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactUsPageViewController.h; sourceTree = "<group>"; };
+		4293AE82199B7851004C2912 /* ContactUsPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactUsPageViewController.m; sourceTree = "<group>"; };
+		4293AE84199B7891004C2912 /* ProfilePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfilePageViewController.h; sourceTree = "<group>"; };
+		4293AE85199B7891004C2912 /* ProfilePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfilePageViewController.m; sourceTree = "<group>"; };
+		42B90BF51987C2F3009147F4 /* RewardModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RewardModel.h; sourceTree = "<group>"; };
+		42B90BF61987C2F3009147F4 /* RewardModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RewardModel.m; sourceTree = "<group>"; };
+		42C4E21F1994BAB400D9FA02 /* UploadOrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadOrderModel.h; sourceTree = "<group>"; };
+		42C4E2201994BAB400D9FA02 /* UploadOrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadOrderModel.m; sourceTree = "<group>"; };
 		42D0D47D1981240E00462C63 /* Caloshop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Caloshop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42D0D4801981240E00462C63 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		42D0D4821981240E00462C63 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -103,8 +133,65 @@
 				4286984119852A83005A137C /* Model.xcdatamodeld */,
 				4286984419852C47005A137C /* Profile.h */,
 				4286984519852C47005A137C /* Profile.m */,
+				421485F4198904CE009E6E35 /* UserLog.h */,
+				421485F5198904CE009E6E35 /* UserLog.m */,
+				421485F1198904CD009E6E35 /* Reward.h */,
+				421485F2198904CD009E6E35 /* Reward.m */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		4293AE72199B73F1004C2912 /* SIdePage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = SIdePage;
+			path = SidePage;
+			sourceTree = "<group>";
+		};
+		4293AE73199B741F004C2912 /* SidePage */ = {
+			isa = PBXGroup;
+			children = (
+				4293AE74199B75C1004C2912 /* SidePageViewController.h */,
+				4293AE75199B75C1004C2912 /* SidePageViewController.m */,
+			);
+			path = SidePage;
+			sourceTree = "<group>";
+		};
+		4293AE77199B76BB004C2912 /* ProductPage */ = {
+			isa = PBXGroup;
+			children = (
+				4293AE7C199B774C004C2912 /* ProductPageViewController.h */,
+				4293AE7D199B774C004C2912 /* ProductPageViewController.m */,
+			);
+			path = ProductPage;
+			sourceTree = "<group>";
+		};
+		4293AE78199B76E1004C2912 /* BuyPage */ = {
+			isa = PBXGroup;
+			children = (
+				4293AE79199B773C004C2912 /* BuyPageViewController.h */,
+				4293AE7A199B773C004C2912 /* BuyPageViewController.m */,
+			);
+			name = BuyPage;
+			sourceTree = "<group>";
+		};
+		4293AE7F199B77E1004C2912 /* ProfilePage */ = {
+			isa = PBXGroup;
+			children = (
+				4293AE84199B7891004C2912 /* ProfilePageViewController.h */,
+				4293AE85199B7891004C2912 /* ProfilePageViewController.m */,
+			);
+			path = ProfilePage;
+			sourceTree = "<group>";
+		};
+		4293AE80199B7811004C2912 /* ContactUsPage */ = {
+			isa = PBXGroup;
+			children = (
+				4293AE81199B7851004C2912 /* ContactUsPageViewController.h */,
+				4293AE82199B7851004C2912 /* ContactUsPageViewController.m */,
+			);
+			path = ContactUsPage;
 			sourceTree = "<group>";
 		};
 		42D0D4741981240E00462C63 = {
@@ -151,6 +238,8 @@
 				42D0D4921981240E00462C63 /* Main.storyboard */,
 				42D0D4981981240E00462C63 /* Images.xcassets */,
 				42D0D4871981240E00462C63 /* Supporting Files */,
+				421485EE1988EBF3009E6E35 /* HelpTool.h */,
+				421485EF1988EBF3009E6E35 /* HelpTool.m */,
 			);
 			path = Caloshop;
 			sourceTree = "<group>";
@@ -189,8 +278,12 @@
 			children = (
 				42D0D4D81982395200462C63 /* FBLoginModel.h */,
 				42D0D4D91982395200462C63 /* FBLoginModel.m */,
+				42B90BF51987C2F3009147F4 /* RewardModel.h */,
+				42B90BF61987C2F3009147F4 /* RewardModel.m */,
 				42D0D4DB198277CC00462C63 /* BasicModel.h */,
 				42D0D4DC198277CC00462C63 /* BasicModel.m */,
+				42C4E21F1994BAB400D9FA02 /* UploadOrderModel.h */,
+				42C4E2201994BAB400D9FA02 /* UploadOrderModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -198,6 +291,7 @@
 		42D0D4B619812F8600462C63 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4293AE72199B73F1004C2912 /* SIdePage */,
 				42D0D4CF19816C2100462C63 /* LoginPage */,
 				42D0D4BC1981326700462C63 /* MainPage */,
 			);
@@ -207,6 +301,11 @@
 		42D0D4B719812F9700462C63 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				4293AE80199B7811004C2912 /* ContactUsPage */,
+				4293AE7F199B77E1004C2912 /* ProfilePage */,
+				4293AE78199B76E1004C2912 /* BuyPage */,
+				4293AE77199B76BB004C2912 /* ProductPage */,
+				4293AE73199B741F004C2912 /* SidePage */,
 				42D0D4D4198237AB00462C63 /* LoginPage */,
 				42D0D4C419816B6E00462C63 /* MainPage */,
 			);
@@ -377,12 +476,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				421485F01988EBF3009E6E35 /* HelpTool.m in Sources */,
+				421485F6198904CE009E6E35 /* UserLog.m in Sources */,
 				42D0D4D7198237DA00462C63 /* LoginViewController.m in Sources */,
+				4293AE7E199B774C004C2912 /* ProductPageViewController.m in Sources */,
+				4293AE83199B7851004C2912 /* ContactUsPageViewController.m in Sources */,
 				42D0D4911981240E00462C63 /* AppDelegate.m in Sources */,
 				42D0D4DD198277CC00462C63 /* BasicModel.m in Sources */,
 				4286984319852A83005A137C /* Model.xcdatamodeld in Sources */,
 				42D0D48D1981240E00462C63 /* main.m in Sources */,
+				42C4E2211994BAB400D9FA02 /* UploadOrderModel.m in Sources */,
+				4293AE7B199B773C004C2912 /* BuyPageViewController.m in Sources */,
+				421485F3198904CD009E6E35 /* Reward.m in Sources */,
+				42B90BF71987C2F3009147F4 /* RewardModel.m in Sources */,
+				4293AE76199B75C1004C2912 /* SidePageViewController.m in Sources */,
 				4286984619852C47005A137C /* Profile.m in Sources */,
+				4293AE86199B7891004C2912 /* ProfilePageViewController.m in Sources */,
 				42D0D4C719816BB500462C63 /* MainViewController.m in Sources */,
 				42D0D4DA1982395200462C63 /* FBLoginModel.m in Sources */,
 			);
