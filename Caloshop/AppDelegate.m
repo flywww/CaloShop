@@ -37,7 +37,7 @@
     
     //SideView Setting
     self.dynamicsDrawerViewController = (MSDynamicsDrawerViewController*) self.window.rootViewController;
-    self.dynamicsDrawerViewController.view.backgroundColor = [UIColor redColor];
+    self.dynamicsDrawerViewController.view.backgroundColor = [UIColor colorWithHexString:@"#c0e2d7"];
     //Add style
     [self.dynamicsDrawerViewController addStylersFromArray:@[[MSDynamicsDrawerScaleStyler styler], [MSDynamicsDrawerFadeStyler styler]] forDirection:MSDynamicsDrawerDirectionLeft];
     
@@ -50,6 +50,7 @@
     SidePageViewController.dynamicsDrawerViewController = self.dynamicsDrawerViewController;
     
     [self.dynamicsDrawerViewController setDrawerViewController:SidePageViewController forDirection:MSDynamicsDrawerDirectionLeft];
+    [self.dynamicsDrawerViewController setRevealWidth:240.0f forDirection:MSDynamicsDrawerDirectionLeft];
     
     //If user already Login go to MainViewController, otherwise goto LoginViewController
     if ([PFFacebookUtils isLinkedWithUser:[PFUser currentUser]])

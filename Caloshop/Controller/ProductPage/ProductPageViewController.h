@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ViewController.h"
 
-@interface ProductPageViewController : UIViewController
-
+@interface ProductPageViewController :ViewController
 @end

@@ -10,15 +10,14 @@
 #import "FBLoginModel.h"
 #import "MainViewController.h"
 
+#import "EAIntroView.h"
+
 #import "RewardModel.h"
 
-@interface LoginViewController ()<FBLoginModelDelegate,RewardModelDelegate>
+@interface LoginViewController ()<FBLoginModelDelegate,RewardModelDelegate,EAIntroDelegate>
 - (IBAction)loginButton:(id)sender;
 
-@property (weak, nonatomic) IBOutlet UILabel *testLabel;
-
 @property (nonatomic) FBLoginModel* fbLoginModel;
-
 @property (nonatomic) MBProgressHUD* fbLoginHUD;
 
 
@@ -48,7 +47,30 @@
     
     //NSLog(@"Reward Entity %@ ,Entities count: %lu",[Reward MR_findAll],[Reward MR_countOfEntities]);
     
-
+    // basic
+    EAIntroPage *page1 = [EAIntroPage page];
+    page1.title = @"Hello world";
+    page1.desc = @"lalalalalalalalal";
+    // custom
+    EAIntroPage *page2 = [EAIntroPage page];
+    page2.title = @"This is page 2";
+    page2.titleFont = [UIFont fontWithName:@"Georgia-BoldItalic" size:20];
+    page2.titlePositionY = 220;
+    page2.desc = @"heheheheheheheheh";
+    page2.descFont = [UIFont fontWithName:@"Georgia-Italic" size:18];
+    page2.descPositionY = 200;
+    page2.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"title2"]];
+    page2.titleIconPositionY = 100;
+    // custom view from nib
+    EAIntroPage *page3 = [EAIntroPage pageWithCustomView:[[UIView alloc]init]];
+//    page3.bgImage = [UIImage imageNamed:@"bg2"];
+    
+    
+    EAIntroView *intro = [[EAIntroView alloc] initWithFrame:self.view.bounds andPages:@[page1,page2,page3]];
+    
+    [intro setDelegate:self];
+    [intro showInView:self.view animateDuration:0.0];
+    
 }
 
 -(void)didSavedRewardData

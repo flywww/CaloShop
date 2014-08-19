@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ViewController.h"
 
-@interface BuyPageViewController : UIViewController
+@interface BuyPageViewController : ViewController
 
 @end

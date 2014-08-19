@@ -26,6 +26,8 @@
     #import "UserLog.h"
     #import "HelpTool.h"
     #import <MSDynamicsDrawerViewController/MSDynamicsDrawerViewController.h>
-
+    #import <UIColor+EDHexColor.h>
+    #import <NSString+EDStringHelper.h>
+    #import <SDWebImage/UIImageView+WebCache.h>
 
 #endif

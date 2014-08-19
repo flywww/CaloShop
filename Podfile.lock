@@ -1,6 +1,8 @@
 PODS:
   - Bolts (1.1.1)
   - EAIntroView (2.6.3)
+  - EDHexColor (0.0.1)
+  - EDStringHelper (0.0.1)
   - Facebook-iOS-SDK (3.17.0):
     - Bolts
   - MagicalRecord (2.2):
@@ -16,9 +18,12 @@ PODS:
     - SDWebImage/Core
   - SDWebImage/Core (3.7.1)
   - SIAlertView (1.3)
+  - UICountingLabel (1.1.0)
 
 DEPENDENCIES:
   - EAIntroView
+  - EDHexColor
+  - EDStringHelper
   - MagicalRecord
   - MBProgressHUD
   - MSDynamicsDrawerViewController
@@ -27,10 +32,13 @@ DEPENDENCIES:
   - Reachability
   - SDWebImage
   - SIAlertView
+  - UICountingLabel
 
 SPEC CHECKSUMS:
   Bolts: 0ca796081c3e7c139bd86d6903c27f1b83036a5d
   EAIntroView: 45924b81c153d1206ee24f4fa654e9d9dae79e93
+  EDHexColor: 1593003ed93fdd7680949fa6206212ce05ad58a5
+  EDStringHelper: 6a4fd770608924a7ea40d150a07a663b92c533db
   Facebook-iOS-SDK: f20274d809f112ba540842e2b6cbe50128d51b7b
   MagicalRecord: 2b471584fc9e3137f3d0a56967917baa4979e224
   MBProgressHUD: c356980b0cd097f19acec959b49dca5eb8ec31be
@@ -40,5 +48,6 @@ SPEC CHECKSUMS:
   Reachability: 8e9635e3cb4f98e7f825e51147f677ecc694d0e7
   SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
   SIAlertView: d00609a1faa9d82f17b9f0b4eede64e84a577b10
+  UICountingLabel: c1fc281e45d2be32e268608c7e6e693d1dfe8e36
 
 COCOAPODS: 0.33.1

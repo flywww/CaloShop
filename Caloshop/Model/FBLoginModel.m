@@ -368,6 +368,8 @@
     [alertView addButtonWithTitle:@"OK"
                              type:SIAlertViewButtonTypeDefault
                           handler:^(SIAlertView *alert) {}];
+    
+    
     [alertView show];
 }
 

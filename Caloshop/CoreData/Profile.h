@@ -24,6 +24,6 @@
 @property (nonatomic, retain) NSString * address;
 @property (nonatomic, retain) NSString * phone;
 @property (nonatomic, retain) NSString * updated_time;
-@property (nonatomic, retain) NSData * avatar;
+@property (nonatomic, retain) NSData   * avatar;
 
 @end
