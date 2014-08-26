@@ -30,6 +30,7 @@
     //Navigation Bar
     self.navigationController.navigationBar.translucent=NO;
     self.navigationController.navigationBar.barTintColor=[UIColor colorWithHexString:@"#c0e2d7"];
+
     [self.navigationController.navigationBar setTitleTextAttributes:@{
                                                                       NSForegroundColorAttributeName : [UIColor whiteColor],
                                                                       NSFontAttributeName: [UIFont fontWithName:@"Arial" size:24.0f] 

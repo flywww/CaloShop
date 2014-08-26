@@ -25,6 +25,8 @@
 		4240619719A236460073279F /* Apple LiGothic Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4240619619A236460073279F /* Apple LiGothic Medium.ttf */; };
 		4240619D19A25AA20073279F /* SidePageTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4240619C19A25AA20073279F /* SidePageTableView.m */; };
 		424061A019A25ABC0073279F /* SidePageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4240619F19A25ABC0073279F /* SidePageTableViewCell.m */; };
+		424061A319A38C400073279F /* PopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 424061A219A38C400073279F /* PopViewController.m */; };
+		424061A619A38C8F0073279F /* TimeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 424061A519A38C8F0073279F /* TimeModel.m */; };
 		4286984319852A83005A137C /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4286984119852A83005A137C /* Model.xcdatamodeld */; };
 		4286984619852C47005A137C /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4286984519852C47005A137C /* Profile.m */; };
 		4293AE76199B75C1004C2912 /* SidePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4293AE75199B75C1004C2912 /* SidePageViewController.m */; };
@@ -92,6 +94,10 @@
 		4240619C19A25AA20073279F /* SidePageTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidePageTableView.m; sourceTree = "<group>"; };
 		4240619E19A25ABC0073279F /* SidePageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidePageTableViewCell.h; sourceTree = "<group>"; };
 		4240619F19A25ABC0073279F /* SidePageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidePageTableViewCell.m; sourceTree = "<group>"; };
+		424061A119A38C400073279F /* PopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopViewController.h; sourceTree = "<group>"; };
+		424061A219A38C400073279F /* PopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopViewController.m; sourceTree = "<group>"; };
+		424061A419A38C8F0073279F /* TimeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeModel.h; sourceTree = "<group>"; };
+		424061A519A38C8F0073279F /* TimeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeModel.m; sourceTree = "<group>"; };
 		4286984219852A83005A137C /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		4286984419852C47005A137C /* Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Profile.h; sourceTree = "<group>"; };
 		4286984519852C47005A137C /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Profile.m; sourceTree = "<group>"; };
@@ -165,6 +171,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		42448A6819AB201D00B41CD3 /* PopView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = PopView;
+			sourceTree = "<group>";
+		};
 		4286984019852A4E005A137C /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
@@ -338,6 +351,8 @@
 				42D0D4DC198277CC00462C63 /* BasicModel.m */,
 				42C4E21F1994BAB400D9FA02 /* UploadOrderModel.h */,
 				42C4E2201994BAB400D9FA02 /* UploadOrderModel.m */,
+				424061A419A38C8F0073279F /* TimeModel.h */,
+				424061A519A38C8F0073279F /* TimeModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -345,6 +360,7 @@
 		42D0D4B619812F8600462C63 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				42448A6819AB201D00B41CD3 /* PopView */,
 				4293AE72199B73F1004C2912 /* SIdePage */,
 				42D0D4CF19816C2100462C63 /* LoginPage */,
 				42D0D4BC1981326700462C63 /* MainPage */,
@@ -384,6 +400,8 @@
 			children = (
 				42D0D4C619816BB500462C63 /* MainViewController.m */,
 				42D0D4C519816B9300462C63 /* MainViewController.h */,
+				424061A119A38C400073279F /* PopViewController.h */,
+				424061A219A38C400073279F /* PopViewController.m */,
 			);
 			path = MainPage;
 			sourceTree = "<group>";
@@ -559,6 +577,8 @@
 				4240619D19A25AA20073279F /* SidePageTableView.m in Sources */,
 				42D0D48D1981240E00462C63 /* main.m in Sources */,
 				42C4E2211994BAB400D9FA02 /* UploadOrderModel.m in Sources */,
+				424061A319A38C400073279F /* PopViewController.m in Sources */,
+				424061A619A38C8F0073279F /* TimeModel.m in Sources */,
 				4293AE7B199B773C004C2912 /* BuyPageViewController.m in Sources */,
 				421485F3198904CD009E6E35 /* Reward.m in Sources */,
 				42B90BF71987C2F3009147F4 /* RewardModel.m in Sources */,

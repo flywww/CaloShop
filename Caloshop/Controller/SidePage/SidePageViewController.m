@@ -61,7 +61,21 @@
     [self.avatarLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.avatarImg withOffset:15];
     [self.avatarLabel autoAlignAxis:ALAxisVertical toSameAxisOfView:self.avatarImg];
     
+    
+    
     [self.menuTableView autoSetDimensionsToSize:CGSizeMake(235, 400)];
+    
+//    NSDictionary* viewDictionary = @{@"menuTableView": self.menuTableView.viewForBaselineLayout};
+//    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[menuTableView(235)]"
+//                                                                      options:0
+//                                                                      metrics:nil
+//                                                                        views:viewDictionary]];
+//     
+//     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[menuTableView(400)]"
+//                                                                       options:0
+//                                                                       metrics:nil
+//                                                                         views:viewDictionary]];
+    
     [self.menuTableView autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeading ofView:self.view];
     [self.menuTableView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.avatarLabel withOffset:15];
 }
@@ -197,6 +211,7 @@
         _menuTableView.delegate = self;
         _menuTableView.dataSource = self;
         _menuTableView.backgroundColor = [UIColor clearColor];
+       
     }
     return _menuTableView;
 }

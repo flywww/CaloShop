@@ -69,7 +69,7 @@
     if (!_caloLebel)
     {
         _caloLebel = [[UILabel alloc]initForAutoLayout];
-        _caloLebel.font = [UIFont fontWithName:@"Apple LiGothic" size:18];
+        _caloLebel.font = [UIFont fontWithName:@"vi" size:18];
         _caloLebel.textAlignment=NSTextAlignmentRight;
         _caloLebel.textColor = [UIColor whiteColor];
         _caloLebel.text = @"卡";

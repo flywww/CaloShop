@@ -10,4 +10,7 @@
 #import "ViewController.h"
 
 @interface ProductPageViewController :ViewController
+
+@property (nonatomic) NSDictionary* productDictionary;
+
 @end

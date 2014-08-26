@@ -25,7 +25,8 @@
         //self.backgroundColor = [UIColor redColor];
         self.backgroundColor = [UIColor colorWithHexString:@"#c0e2d7"];
         self.textLabel.textAlignment = NSTextAlignmentCenter;
-        self.textColor = [UIColor whiteColor];
+//        self.textColor = [UIColor whiteColor];
+        self.textLabel.textColor = [UIColor whiteColor];
         self.textLabel.font = [UIFont fontWithName:@"Apple LiGothic" size:23];
         
         [self addSubview:self.seperateLine1];
@@ -44,7 +45,7 @@
     [self.seperateLine1 autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:0];
     
     [self.seperateLine2 autoSetDimensionsToSize:CGSizeMake(235, 2.5)];
-    [self.seperateLine1 autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self withOffset:70-2.5];
+    [self.seperateLine2 autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self withOffset:70-2.5];
     [self.seperateLine2 autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:0];
 
 }

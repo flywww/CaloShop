@@ -21,6 +21,8 @@
 @property (nonatomic) WaterProgressView* waterProgressView;
 @property (nonatomic) CaloAndStepShowView* caloAndStepsDisplay;
 
+
+
 @property (nonatomic) UILabel* titleLabel;
 
 @end
@@ -35,8 +37,25 @@
 
 
     
-    //[self.rewardModel fetchReward:[HelpTool getLocalDateWithOutTime]];
-    //[self profileDataShow];
+    
+
+    // if out of date reload viewController
+    if (self.productDictionary == nil)
+    {
+        [self.rewardModel fetchReward:[HelpTool getLocalDateWithOutTime]];
+    }
+    else
+    {
+        if ([HelpTool getLocalDateWithOutTime:self.rewardDictionary[@"rewardDate"]] != [HelpTool getLocalDateWithOutTime])
+        {
+            [self.rewardModel fetchReward:[HelpTool getLocalDateWithOutTime]];
+//            NSLog(@"444%@",self.productDictionary);
+//            NSLog(@"555%@",[HelpTool getLocalDateWithOutTime:self.rewardDictionary[@"rewardDate"]]);
+//            NSLog(@"666%@",[HelpTool getLocalDateWithOutTime]);
+        }
+        
+    }
+    
     [self.view addSubview:self.waterProgressView];
     [self.waterProgressView setProgress:0.73];
     
@@ -77,15 +96,23 @@
 
 -(void)didTapAction
 {
-    [self performSegueWithIdentifier:@"MainToProductSeg" sender:nil];
+    [self performSegueWithIdentifier:@"MainToProductSeg" sender:self.productDictionary];
 }
 
-
-
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    ProductPageViewController* productPageViewController = (ProductPageViewController*)[segue destinationViewController];
+    productPageViewController.productDictionary = (NSDictionary*)sender;
+}
 
 
 -(void)didFetchReward:(NSDictionary *)rewardDetail andProductDetail:(NSDictionary *)productDetail
 {
+    
+    self.productDictionary = productDetail;
+    self.rewardDictionary = rewardDetail;
+    
+    
     NSLog(@"!!!!!!!!!!!!!!!!!!!!!!!!!%@ anddddd %@",rewardDetail,productDetail);
     NSLog(@"uuuuuuuuuuuuurl%@",[productDetail[@"pureImage"] url]);
 }
@@ -95,15 +122,6 @@
     
     
 }
-
--(void)profileDataShow
-{
-    Profile* profile =[Profile MR_findFirst];
-    NSLog(@"show the profile data  %@",profile);
-    NSLog(@"TTTTTTTTTTTTTTT%@",[Reward MR_findAll]);
-    
-}
-
 
 - (void)didReceiveMemoryWarning
 {

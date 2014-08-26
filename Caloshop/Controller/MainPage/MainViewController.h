@@ -11,4 +11,7 @@
 
 @interface MainViewController :ViewController
 
+@property (nonatomic) NSDictionary* productDictionary;
+@property (nonatomic) NSDictionary* rewardDictionary;
+
 @end
