@@ -29,21 +29,23 @@
     
     //Navigation Bar
     self.navigationController.navigationBar.translucent=NO;
-    self.navigationController.navigationBar.barTintColor=[UIColor colorWithHexString:@"#c0e2d7"];
+    self.navigationController.navigationBar.barTintColor=[UIColor whiteColor];
+    
+    //colorWithHexString:@"#c0e2d7"
 
     [self.navigationController.navigationBar setTitleTextAttributes:@{
                                                                       NSForegroundColorAttributeName : [UIColor whiteColor],
-                                                                      NSFontAttributeName: [UIFont fontWithName:@"Arial" size:24.0f] 
+                                                                      NSFontAttributeName: [UIFont fontWithName:fMyriadPro_Bold_It size:24.0f]
                                                                       }];
+    [self.navigationController.navigationBar setBackgroundImage: [UIImage imageNamed:@"NavibarBack"] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    
     
     self.navigationController.navigationBar.topItem.title=@"CaloShop";
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-
-    UIView *overlayView = [[UIView alloc] initWithFrame:CGRectMake(0, 44, self.view.frame.size.width, 1)];
-    [overlayView setBackgroundColor:[UIColor colorWithHexString:@"#c0e2d7"]];
-    [self.navigationController.navigationBar addSubview:overlayView];
-    
     self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
+    
+
     
 }
 

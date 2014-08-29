@@ -29,5 +29,6 @@
     #import <UIColor+EDHexColor.h>
     #import <NSString+EDStringHelper.h>
     #import <SDWebImage/UIImageView+WebCache.h>
+    #import "settingList.h"
 
 #endif

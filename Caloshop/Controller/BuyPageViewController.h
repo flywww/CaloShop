@@ -11,4 +11,6 @@
 
 @interface BuyPageViewController : ViewController
 
+@property (nonatomic) NSDictionary* productDictionary;
+
 @end

@@ -38,13 +38,13 @@
     //SideView Setting
     self.dynamicsDrawerViewController = (MSDynamicsDrawerViewController*) self.window.rootViewController;
     self.dynamicsDrawerViewController.view.backgroundColor = [UIColor colorWithHexString:@"#c0e2d7"];
+    self.dynamicsDrawerViewController.delegate = self;
+    
     //Add style
     [self.dynamicsDrawerViewController addStylersFromArray:@[[MSDynamicsDrawerScaleStyler styler], [MSDynamicsDrawerFadeStyler styler]] forDirection:MSDynamicsDrawerDirectionLeft];
     
     SidePageViewController* SidePageViewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"Side"];
-    
     MainViewController* MainViewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"MainNav"];
-    
     LoginViewController* LoginViewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"LoginNav"];
     
     SidePageViewController.dynamicsDrawerViewController = self.dynamicsDrawerViewController;

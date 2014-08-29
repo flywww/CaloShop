@@ -155,10 +155,10 @@
             </objects>
             <point key="canvasLocation" x="-1176" y="1296"/>
         </scene>
-        <!--View Controller-->
+        <!--Pop View Controller-->
         <scene sceneID="wpi-Af-UmQ">
             <objects>
-                <viewController id="w07-t3-8bZ" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Pop" id="w07-t3-8bZ" customClass="PopViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="6HC-I7-YHJ"/>
                         <viewControllerLayoutGuide type="bottom" id="I7y-4r-WSS"/>

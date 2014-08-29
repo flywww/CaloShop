@@ -7,13 +7,20 @@
 //
 
 #import "MainViewController.h"
+
+#import "SidePageViewController.h"
+
 #import <UIImageView+WebCache.h>
 #import "RewardModel.h"
 #import "WaterProgressView.h"
 #import "ProductPageViewController.h"
 #import "CaloAndStepShowView.h"
 
-@interface MainViewController ()<RewardModelDelegate,WaterViewDelegate>
+#import "PopViewController.h"
+
+#import <MZFormSheetController.h>
+
+@interface MainViewController ()<RewardModelDelegate,WaterViewDelegate,MZFormSheetBackgroundWindowDelegate>
 //Side page setting
 @property (nonatomic, weak) MSDynamicsDrawerViewController *dynamicsDrawerViewController;
 //Reward Model
@@ -21,9 +28,15 @@
 @property (nonatomic) WaterProgressView* waterProgressView;
 @property (nonatomic) CaloAndStepShowView* caloAndStepsDisplay;
 
-
+@property (nonatomic) UIImageView* backgroundImg;
 
 @property (nonatomic) UILabel* titleLabel;
+@property (nonatomic, strong) UIBarButtonItem *paneRevealLeftBarButtonItem;
+
+
+//PopView
+@property (nonatomic) PopViewController* popView;
+@property (nonatomic) MZFormSheetController* popSheet;
 
 @end
 
@@ -33,10 +46,15 @@
 {
     [super viewDidLoad];
 
-    self.view.backgroundColor = [UIColor colorWithHexString:@"#c0e2d7"];
-
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.paneRevealLeftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"MainPage_Gear"] style:UIBarButtonItemStyleBordered
+                                                                       target:self action:@selector(dynamicsDrawerRevealLeftBarButtonItemTapped:)];
+    self.navigationItem.leftBarButtonItem = self.paneRevealLeftBarButtonItem;
 
     
+    [self mz_presentFormSheetController:self.popSheet animated:YES completionHandler:^(MZFormSheetController *formSheetController) {
+        
+    }];
     
 
     // if out of date reload viewController
@@ -55,7 +73,7 @@
         }
         
     }
-    
+    [self.view addSubview:self.backgroundImg];
     [self.view addSubview:self.waterProgressView];
     [self.waterProgressView setProgress:0.73];
     
@@ -66,9 +84,22 @@
 
 }
 
+- (void)dynamicsDrawerRevealLeftBarButtonItemTapped:(id)sender
+{
+    NSLog(@"dynamicsDrawerRevealLeftBarButtonItemTapped:");
+    
+    SidePageViewController* sidePageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Side"];
+    [sidePageViewController.dynamicsDrawerViewController setPaneState:MSDynamicsDrawerPaneStateOpen inDirection:MSDynamicsDrawerDirectionLeft animated:YES allowUserInterruption:YES completion:nil];
+    
+    
+}
 -(void)updateViewConstraints
 {
     [super updateViewConstraints];
+    
+    [self.backgroundImg autoAlignAxis:ALAxisVertical toSameAxisOfView:self.view];
+    [self.backgroundImg autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.view];
+    
     [self.waterProgressView autoSetDimensionsToSize:CGSizeMake(250, 250)];
     [self.waterProgressView autoAlignAxis:ALAxisVertical toSameAxisOfView:self.view];
     [self.waterProgressView autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.view withOffset:100];
@@ -123,11 +154,19 @@
     
 }
 
-- (void)didReceiveMemoryWarning
+
+
+-(UIImageView *)backgroundImg
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    if (!_backgroundImg)
+    {
+        _backgroundImg = [[UIImageView alloc]initForAutoLayout];
+        _backgroundImg.image = [UIImage imageNamed:@"MainPage_BC"];
+    }
+    
+    return _backgroundImg;
 }
+
 
 -(RewardModel *)rewardModel
 {
@@ -160,5 +199,48 @@
     }
     return _titleLabel;
 }
+
+-(PopViewController *)popView
+{
+    if (!_popView)
+    {
+        _popView = [[PopViewController alloc]initWithCategory:@"succeed"];
+    }
+    return  _popView;
+}
+
+-(MZFormSheetController *)popSheet
+{
+    if (!_popSheet)
+    {
+        _popSheet = [[MZFormSheetController alloc]initWithViewController:self.popView];
+        _popSheet.transitionStyle = MZFormSheetTransitionStyleBounce;
+        _popSheet.cornerRadius = 0;
+        _popSheet.presentedFormSheetSize = CGSizeMake(270, 414);
+        _popSheet.didTapOnBackgroundViewCompletionHandler = ^(CGPoint location)
+        {
+            
+        };
+        
+        _popSheet.shouldCenterVertically = YES;
+        _popSheet.shouldDismissOnBackgroundViewTap = YES;
+        
+        _popSheet.didPresentCompletionHandler = ^(UIViewController *presentedFSViewController)
+        {
+            
+        };
+        
+        
+        
+        [[MZFormSheetBackgroundWindow appearance] setBackgroundBlurEffect:YES];
+        [[MZFormSheetBackgroundWindow appearance] setBlurRadius:5.0];
+        [[MZFormSheetBackgroundWindow appearance] setBackgroundColor:[UIColor clearColor]];
+        
+
+    }
+    
+    return _popSheet;
+}
+
 
 @end

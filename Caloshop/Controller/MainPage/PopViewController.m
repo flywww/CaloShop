@@ -9,41 +9,65 @@
 #import "PopViewController.h"
 
 @interface PopViewController ()
+{
+    NSString* whichView;
+    
+    
+}
+
+@property (nonatomic) UIImageView* popViewBackGround;
+@property (nonatomic) UIButton* 
 
 @end
 
 @implementation PopViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+-(id)initWithCategory:(NSString*)category
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+    self = [self init];
+    if (self)
+    {
+        whichView = category;
     }
     return self;
 }
 
+
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self.view addSubview:self.popViewBackGround];
 }
 
-- (void)didReceiveMemoryWarning
+-(void)updateViewConstraints
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [self.popViewBackGround autoSetDimensionsToSize:CGSizeMake(270, 414)];
+    [self.popViewBackGround autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.view];
+    [self.popViewBackGround autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeading ofView:self.view];
+    [self.popViewBackGround autoPinEdge:ALEdgeTrailing toEdge:ALEdgeTrailing ofView:self.view];
+    [self.popViewBackGround autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:self.view];
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+-(UIImageView *)popViewBackGround
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if (!_popViewBackGround)
+    {
+        if ([whichView  isEqual:@"succeed"])
+        {
+            _popViewBackGround = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"11_material_popup_succeed"]];
+        }
+        else if ([whichView isEqual:@"fail"])
+        {
+            _popViewBackGround = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"11_material_popup_failed"]];
+        }
+        else if ([whichView isEqual:@"check"])
+        {
+            _popViewBackGround = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"11_material_popup_recheck"]];
+        }
+    }
+    return _popViewBackGround;
 }
-*/
+
+
 
 @end

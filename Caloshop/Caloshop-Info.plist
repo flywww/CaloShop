@@ -4,6 +4,8 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
+		<string>MyriadPro-BoldIt.otf</string>
+		<string>DFPHeiLight-B5.TTF</string>
 		<string>MyriadPro-It.otf</string>
 		<string>Apple LiGothic Medium.ttf</string>
 	</array>

@@ -10,4 +10,6 @@
 
 @interface PopViewController : UIViewController
 
+-(id)initWithCategory:(NSString*)category;
+
 @end
