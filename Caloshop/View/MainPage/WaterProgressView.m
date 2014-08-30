@@ -45,10 +45,10 @@
     if (self)
     {
         
-        [self setBackgroundColor:[UIColor whiteColor]];
+        [self setBackgroundColor:[UIColor clearColor]];
         //Water view Setting
         
-        waterViewDiameter = 250;
+        waterViewDiameter = 232.5;
         
         a = 1.5;
         b = 0;
@@ -60,13 +60,11 @@
 
         self.clipsToBounds=YES;
         self.layer.cornerRadius = waterViewDiameter/2;
-        self.currentWaterColor = [UIColor colorWithHexString:@"#6bc2af"];
-
         
         [NSTimer scheduledTimerWithTimeInterval:0.03 target:self selector:@selector(animateWave) userInfo:nil repeats:YES];
         
         [self addSubview:self.productImg];
-        [self addSubview:self.progressLebel];
+//        [self addSubview:self.progressLebel];
         [self addGestureRecognizer:self.waterViewTap];
         
     }
@@ -79,8 +77,8 @@
     [self.productImg autoSetDimensionsToSize:CGSizeMake(waterViewDiameter, waterViewDiameter)];
     [self.productImg autoCenterInSuperview];
     
-    [self.progressLebel autoSetDimensionsToSize:CGSizeMake(waterViewDiameter, waterViewDiameter)];
-    [self.progressLebel autoCenterInSuperview];
+//    [self.progressLebel autoSetDimensionsToSize:CGSizeMake(waterViewDiameter, waterViewDiameter)];
+//    [self.progressLebel autoCenterInSuperview];
     
 }
 
@@ -243,17 +241,17 @@
     CGContextDrawPath(context, kCGPathStroke);
     CGPathRelease(path);
     
-    //Draw white circle
-    CGContextSetStrokeColorWithColor(context, [UIColor whiteColor].CGColor);
-    CGContextSetLineWidth(context, 17);
-    CGContextAddArc(context, waterViewDiameter/2, waterViewDiameter/2, waterViewDiameter/2, 0, 2*M_PI, 0);
-    CGContextDrawPath(context, kCGPathStroke);
-    
-    //Draw green circle
-    CGContextSetStrokeColorWithColor(context, self.currentWaterColor.CGColor);
-    CGContextSetLineWidth(context, 1.5);
-    CGContextAddArc(context, waterViewDiameter/2, waterViewDiameter/2, waterViewDiameter/2 - 5, 0, 2*M_PI, 0);
-    CGContextDrawPath(context, kCGPathStroke);
+//    //Draw white circle
+//    CGContextSetStrokeColorWithColor(context, [UIColor whiteColor].CGColor);
+//    CGContextSetLineWidth(context, 17);
+//    CGContextAddArc(context, waterViewDiameter/2, waterViewDiameter/2, waterViewDiameter/2, 0, 2*M_PI, 0);
+//    CGContextDrawPath(context, kCGPathStroke);
+//    
+//    //Draw green circle
+//    CGContextSetStrokeColorWithColor(context, [UIColor clearColor].CGColor);
+//    CGContextSetLineWidth(context, 1.5);
+//    CGContextAddArc(context, waterViewDiameter/2, waterViewDiameter/2, waterViewDiameter/2 - 5, 0, 2*M_PI, 0);
+//    CGContextDrawPath(context, kCGPathStroke);
 }
 
 @end

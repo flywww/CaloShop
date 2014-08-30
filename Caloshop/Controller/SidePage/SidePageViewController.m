@@ -10,6 +10,7 @@
 #import "SidePageTableView.h"
 #import "SidePageTableViewCell.h"
 
+#import "LoginViewController.h"
 #import "MainViewController.h"
 #import "ProfilePageViewController.h"
 #import "ContactUsPageViewController.h"
@@ -22,6 +23,7 @@
 @property (nonatomic) SidePageTableView* menuTableView;
 @property (nonatomic) UIImageView* avatarImg;
 @property (nonatomic) UILabel* avatarLabel;
+@property (nonatomic) UIImageView* sideViewBackgroundImage;
 
 @end
 
@@ -40,9 +42,11 @@
 {
     [super viewDidLoad];
     
+    [self.view addSubview:self.sideViewBackgroundImage];
     [self.view addSubview:self.avatarImg];
     [self.view addSubview:self.avatarLabel];
     [self.view addSubview:self.menuTableView];
+    
     
     NSString* fbURL = @"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1";
     NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:fbURL,[PFUser currentUser][@"fbID"]]];
@@ -50,38 +54,23 @@
     
 }
 
-
-
-
-
 -(void)updateViewConstraints
 {
     [super updateViewConstraints];
     
+    [self.sideViewBackgroundImage autoSetDimensionsToSize:CGSizeMake(320, 568)];
+    [self.sideViewBackgroundImage autoCenterInSuperview];
+    
     [self.avatarImg autoSetDimensionsToSize:CGSizeMake(160, 160)];
     [self.avatarImg autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.view withOffset:75];
-    [self.avatarImg autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeading ofView:self.view withOffset:40];
+    [self.avatarImg autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeading ofView:self.view withOffset:36];
     
-    [self.avatarLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.avatarImg withOffset:15];
+    [self.avatarLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.avatarImg withOffset:10];
     [self.avatarLabel autoAlignAxis:ALAxisVertical toSameAxisOfView:self.avatarImg];
     
-    
-    
-    [self.menuTableView autoSetDimensionsToSize:CGSizeMake(235, 400)];
-    
-//    NSDictionary* viewDictionary = @{@"menuTableView": self.menuTableView.viewForBaselineLayout};
-//    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[menuTableView(235)]"
-//                                                                      options:0
-//                                                                      metrics:nil
-//                                                                        views:viewDictionary]];
-//     
-//     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[menuTableView(400)]"
-//                                                                       options:0
-//                                                                       metrics:nil
-//                                                                         views:viewDictionary]];
-    
+    [self.menuTableView autoSetDimensionsToSize:CGSizeMake(320, 360)];
     [self.menuTableView autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeading ofView:self.view];
-    [self.menuTableView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.avatarLabel withOffset:15];
+    [self.menuTableView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.avatarLabel withOffset:35];
 }
 
 - (void)didReceiveMemoryWarning
@@ -92,13 +81,14 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return 4;
 }
 
 -(SidePageTableViewCell *)tableView:(SidePageTableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString* cellID =@"menuCell";
     SidePageTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+   
     if (!cell)
     {
         cell = [[SidePageTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
@@ -107,13 +97,16 @@
     switch (indexPath.row)
     {
         case 0:
-            cell.textLabel.text=@"卡路主頁";
+            //cell.textLabel.text=@"卡路主頁";
             break;
         case 1:
-            cell.textLabel.text=@"個人資料";
+            //cell.textLabel.text=@"個人資料";
             break;
         case 2:
-            cell.textLabel.text=@"關於我們";
+            //cell.textLabel.text=@"關於我們";
+            break;
+        case 3:
+            //cell.textLabel.text=@"關於我們";
             break;
     }
     return cell;
@@ -125,7 +118,8 @@
     {
         case 0:
         {
-            
+         
+            NSLog(@"aaaaa");
             MainViewController* MainViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"MainNav"];
             [self.dynamicsDrawerViewController setPaneViewController:MainViewController animated:YES completion:nil];
             break;
@@ -133,14 +127,14 @@
             break;
         case 1:
         {
-            
+            NSLog(@"bbbbb");
             ProfilePageViewController* ProfileViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ProfileNav"];
             [self.dynamicsDrawerViewController setPaneViewController:ProfileViewController animated:YES completion:nil];
             break;
         }
             
         case 2:
-        {
+        {NSLog(@"ccccc");
 //            ContactUsPageViewController* ContactUsViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ContactUsNav"];
 //            [self.dynamicsDrawerViewController setPaneViewController:ContactUsViewController animated:YES completion:nil];
             //
@@ -174,6 +168,12 @@
                                                       cancelButtonTitle:@"OK"
                                                       otherButtonTitles:nil];
                 [alert show];
+            }
+            case 3:
+            {
+                LoginViewController* LoginViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginNav"];
+                [self.dynamicsDrawerViewController setPaneViewController:LoginViewController animated:YES completion:nil];
+                break;
             }
  
             break;
@@ -228,7 +228,6 @@
         _avatarImg.clipsToBounds = YES;
         _avatarImg.backgroundColor = [UIColor clearColor];
         _avatarImg.layer.cornerRadius = 160/2;
-        _avatarImg.backgroundColor = [UIColor redColor];
     }
     return _avatarImg;
 }
@@ -240,11 +239,21 @@
         _avatarLabel = [[UILabel alloc]initForAutoLayout];
         _avatarLabel.text = @"林盈志";
         _avatarLabel.backgroundColor=[UIColor clearColor];
-        _avatarLabel.textColor = [UIColor colorWithHexString:@"#595757"];
-        _avatarLabel.font = [UIFont fontWithName:@"Apple LiGothic" size:22];
+        _avatarLabel.font = [UIFont fontWithName:fApple_LiGothic size:18];
+        _avatarLabel.textColor = [UIColor whiteColor];
         _avatarLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _avatarLabel;
+}
+
+-(UIImageView *)sideViewBackgroundImage
+{
+    if (!_sideViewBackgroundImage)
+    {
+        _sideViewBackgroundImage = [[UIImageView alloc]initForAutoLayout];
+        _sideViewBackgroundImage.image = [UIImage imageNamed:@"12_Sidebar_v4"];
+    }
+    return _sideViewBackgroundImage;
 }
 
 //- (IBAction)test:(id)sender

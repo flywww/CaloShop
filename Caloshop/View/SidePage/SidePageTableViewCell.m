@@ -23,14 +23,14 @@
     {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         //self.backgroundColor = [UIColor redColor];
-        self.backgroundColor = [UIColor colorWithHexString:@"#c0e2d7"];
-        self.textLabel.textAlignment = NSTextAlignmentCenter;
+        self.backgroundColor = [UIColor clearColor];
+//        self.textLabel.textAlignment = NSTextAlignmentCenter;
 //        self.textColor = [UIColor whiteColor];
-        self.textLabel.textColor = [UIColor whiteColor];
-        self.textLabel.font = [UIFont fontWithName:@"Apple LiGothic" size:23];
+//        self.textLabel.textColor = [UIColor whiteColor];
+//        self.textLabel.font = [UIFont fontWithName:@"Apple LiGothic" size:23];
         
-        [self addSubview:self.seperateLine1];
-        [self addSubview:self.seperateLine2];
+//        [self addSubview:self.seperateLine1];
+//        [self addSubview:self.seperateLine2];
     }
     return self;
 }
@@ -40,13 +40,13 @@
 {
     [super updateConstraints];
     
-    [self.seperateLine1 autoSetDimensionsToSize:CGSizeMake(235, 2.5)];
-    [self.seperateLine1 autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:0];
-    [self.seperateLine1 autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:0];
-    
-    [self.seperateLine2 autoSetDimensionsToSize:CGSizeMake(235, 2.5)];
-    [self.seperateLine2 autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self withOffset:70-2.5];
-    [self.seperateLine2 autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:0];
+//    [self.seperateLine1 autoSetDimensionsToSize:CGSizeMake(235, 2.5)];
+//    [self.seperateLine1 autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:0];
+//    [self.seperateLine1 autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:0];
+//    
+//    [self.seperateLine2 autoSetDimensionsToSize:CGSizeMake(235, 2.5)];
+//    [self.seperateLine2 autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self withOffset:70-2.5];
+//    [self.seperateLine2 autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:0];
 
 }
 

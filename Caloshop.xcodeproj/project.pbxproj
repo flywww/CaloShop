@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4211D83819B1E3EB00001745 /* WaterCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4211D83719B1E3EB00001745 /* WaterCircleView.m */; };
+		4211D83A19B211B500001745 /* DFYuanMedium-B5.TTC in Resources */ = {isa = PBXBuildFile; fileRef = 4211D83919B211B500001745 /* DFYuanMedium-B5.TTC */; };
 		421485F01988EBF3009E6E35 /* HelpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 421485EF1988EBF3009E6E35 /* HelpTool.m */; };
 		421485F3198904CD009E6E35 /* Reward.m in Sources */ = {isa = PBXBuildFile; fileRef = 421485F2198904CD009E6E35 /* Reward.m */; };
 		421485F6198904CE009E6E35 /* UserLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 421485F5198904CE009E6E35 /* UserLog.m */; };
@@ -61,6 +63,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4211D83619B1E3EB00001745 /* WaterCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaterCircleView.h; sourceTree = "<group>"; };
+		4211D83719B1E3EB00001745 /* WaterCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaterCircleView.m; sourceTree = "<group>"; };
+		4211D83919B211B500001745 /* DFYuanMedium-B5.TTC */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DFYuanMedium-B5.TTC"; sourceTree = "<group>"; };
 		421485EE1988EBF3009E6E35 /* HelpTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpTool.h; sourceTree = "<group>"; };
 		421485EF1988EBF3009E6E35 /* HelpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpTool.m; sourceTree = "<group>"; };
 		421485F1198904CD009E6E35 /* Reward.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reward.h; sourceTree = "<group>"; };
@@ -290,6 +295,7 @@
 			isa = PBXGroup;
 			children = (
 				42EAC2F919ACB160008DE4BC /* DFPHeiLight-B5.TTF */,
+				4211D83919B211B500001745 /* DFYuanMedium-B5.TTC */,
 				4240619619A236460073279F /* Apple LiGothic Medium.ttf */,
 				42EAC2FB19ADCB53008DE4BC /* MyriadPro-BoldIt.otf */,
 				4240618819A232740073279F /* MyriadPro-It.otf */,
@@ -370,6 +376,8 @@
 				4293AE88199CDDA9004C2912 /* WaterProgressView.m */,
 				4240617C19A201F00073279F /* CaloAndStepShowView.h */,
 				4240617D19A201F00073279F /* CaloAndStepShowView.m */,
+				4211D83619B1E3EB00001745 /* WaterCircleView.h */,
+				4211D83719B1E3EB00001745 /* WaterCircleView.m */,
 			);
 			path = MainPage;
 			sourceTree = "<group>";
@@ -479,6 +487,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4211D83A19B211B500001745 /* DFYuanMedium-B5.TTC in Resources */,
 				42EAC2FA19ACB160008DE4BC /* DFPHeiLight-B5.TTF in Resources */,
 				42D0D4991981240E00462C63 /* Images.xcassets in Resources */,
 				42D0D48B1981240E00462C63 /* InfoPlist.strings in Resources */,
@@ -559,6 +568,7 @@
 				4286984619852C47005A137C /* Profile.m in Sources */,
 				4293AE86199B7891004C2912 /* ProfilePageViewController.m in Sources */,
 				4293AE89199CDDA9004C2912 /* WaterProgressView.m in Sources */,
+				4211D83819B1E3EB00001745 /* WaterCircleView.m in Sources */,
 				42D0D4C719816BB500462C63 /* MainViewController.m in Sources */,
 				42D0D4DA1982395200462C63 /* FBLoginModel.m in Sources */,
 				424061A019A25ABC0073279F /* SidePageTableViewCell.m in Sources */,

@@ -8,8 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface PopViewController : UIViewController
 
--(id)initWithCategory:(NSString*)category;
+-(id)initWithCategory:(NSString*)category andTitle:(NSString*)title;
+
+@property (nonatomic) UIButton* leftBtn;
+@property (nonatomic) UIButton* rightBtn;
+@property (nonatomic) UIButton* middleBtn;
 
 @end

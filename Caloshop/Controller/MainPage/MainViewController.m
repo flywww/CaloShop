@@ -12,12 +12,14 @@
 
 #import <UIImageView+WebCache.h>
 #import "RewardModel.h"
+
 #import "WaterProgressView.h"
+#import "WaterCircleView.h"
+
 #import "ProductPageViewController.h"
 #import "CaloAndStepShowView.h"
 
 #import "PopViewController.h"
-
 #import <MZFormSheetController.h>
 
 @interface MainViewController ()<RewardModelDelegate,WaterViewDelegate,MZFormSheetBackgroundWindowDelegate>
@@ -33,10 +35,13 @@
 @property (nonatomic) UILabel* titleLabel;
 @property (nonatomic, strong) UIBarButtonItem *paneRevealLeftBarButtonItem;
 
+@property (nonatomic) WaterCircleView* waterCircle;
+
 
 //PopView
 @property (nonatomic) PopViewController* popView;
 @property (nonatomic) MZFormSheetController* popSheet;
+
 
 @end
 
@@ -50,13 +55,23 @@
     self.paneRevealLeftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"MainPage_Gear"] style:UIBarButtonItemStyleBordered
                                                                        target:self action:@selector(dynamicsDrawerRevealLeftBarButtonItemTapped:)];
     self.navigationItem.leftBarButtonItem = self.paneRevealLeftBarButtonItem;
-
     
-    [self mz_presentFormSheetController:self.popSheet animated:YES completionHandler:^(MZFormSheetController *formSheetController) {
-        
-    }];
+//    
+//    [self mz_presentFormSheetController:self.popSheet animated:YES completionHandler:^(MZFormSheetController *formSheetController) {
+//        
+//    }];
     
-
+    [self.view addSubview:self.backgroundImg];
+    [self.view addSubview:self.waterCircle];
+    [self.view addSubview:self.waterProgressView];
+    [self.waterProgressView setProgress:0.73];
+    
+    [self.view addSubview:self.caloAndStepsDisplay];
+    [self.caloAndStepsDisplay showViewWithNewCalo:1333 andOldCalo:60 andNewSteps:80313 andOldSteps:700];
+    
+    [self.view addSubview:self.titleLabel];
+    
+    
     // if out of date reload viewController
     if (self.productDictionary == nil)
     {
@@ -67,20 +82,14 @@
         if ([HelpTool getLocalDateWithOutTime:self.rewardDictionary[@"rewardDate"]] != [HelpTool getLocalDateWithOutTime])
         {
             [self.rewardModel fetchReward:[HelpTool getLocalDateWithOutTime]];
-//            NSLog(@"444%@",self.productDictionary);
-//            NSLog(@"555%@",[HelpTool getLocalDateWithOutTime:self.rewardDictionary[@"rewardDate"]]);
-//            NSLog(@"666%@",[HelpTool getLocalDateWithOutTime]);
+            //            NSLog(@"444%@",self.productDictionary);
+            //            NSLog(@"555%@",[HelpTool getLocalDateWithOutTime:self.rewardDictionary[@"rewardDate"]]);
+            //            NSLog(@"666%@",[HelpTool getLocalDateWithOutTime]);
         }
         
     }
-    [self.view addSubview:self.backgroundImg];
-    [self.view addSubview:self.waterProgressView];
-    [self.waterProgressView setProgress:0.73];
     
-    [self.view addSubview:self.caloAndStepsDisplay];
-    [self.caloAndStepsDisplay showViewWithNewCalo:1333 andOldCalo:60 andNewSteps:80313 andOldSteps:700];
     
-    [self.view addSubview:self.titleLabel];
 
 }
 
@@ -98,19 +107,24 @@
     [super updateViewConstraints];
     
     [self.backgroundImg autoAlignAxis:ALAxisVertical toSameAxisOfView:self.view];
-    [self.backgroundImg autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.view];
+    [self.backgroundImg autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.view withOffset:-64];
     
-    [self.waterProgressView autoSetDimensionsToSize:CGSizeMake(250, 250)];
+    [self.waterProgressView autoSetDimensionsToSize:CGSizeMake(232.5, 232.5)];
     [self.waterProgressView autoAlignAxis:ALAxisVertical toSameAxisOfView:self.view];
     [self.waterProgressView autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.view withOffset:100];
     
+    [self.waterCircle autoSetDimensionsToSize:CGSizeMake(250, 250)];
+    [self.waterCircle autoAlignAxis:ALAxisHorizontal toSameAxisOfView:self.waterProgressView];
+    [self.waterCircle autoAlignAxis:ALAxisVertical toSameAxisOfView:self.waterProgressView];
+    
     [self.caloAndStepsDisplay autoSetDimensionsToSize:CGSizeMake(200, 50)];
     [self.caloAndStepsDisplay autoAlignAxis:ALAxisVertical toSameAxisOfView:self.waterProgressView];
-    [self.caloAndStepsDisplay autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.waterProgressView withOffset:17];
+    [self.caloAndStepsDisplay autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.waterProgressView withOffset:34];
+    
 
     [self.titleLabel autoSetDimensionsToSize:CGSizeMake(320, 30)];
     [self.titleLabel autoAlignAxis:ALAxisVertical toSameAxisOfView:self.waterProgressView];
-    [self.titleLabel autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop ofView:self.waterProgressView withOffset:-15];
+    [self.titleLabel autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop ofView:self.waterProgressView withOffset:-24];
 }
 
 -(WaterProgressView *)waterProgressView
@@ -118,12 +132,23 @@
     if (!_waterProgressView)
     {
         _waterProgressView=[[WaterProgressView alloc]initForAutoLayout];
-        _waterProgressView.currentWaterColor=[UIColor colorWithHexString:@"#6bc2af"];
+        _waterProgressView.currentWaterColor=[UIColor whiteColor];
         _waterProgressView.productImg.image = [UIImage imageNamed:@"ProductPureImg"];
         _waterProgressView.delegate= self;
     }
     return _waterProgressView;
 }
+
+-(WaterCircleView *)waterCircle
+{
+    if (!_waterCircle)
+    {
+        _waterCircle = [[WaterCircleView alloc]initForAutoLayout];
+
+    }
+    return _waterCircle;
+}
+
 
 -(void)didTapAction
 {
@@ -192,7 +217,7 @@
     if (!_titleLabel)
     {
         _titleLabel=[[UILabel alloc]initForAutoLayout];
-        _titleLabel.font = [UIFont fontWithName:@"Apple LiGothic" size:22];
+        _titleLabel.font = [UIFont fontWithName:fDFYuanMedium_B5 size:18];
         _titleLabel.textAlignment=NSTextAlignmentCenter;
         _titleLabel.textColor = [UIColor whiteColor];
         _titleLabel.text = @"今日商品優惠75折";
@@ -204,7 +229,8 @@
 {
     if (!_popView)
     {
-        _popView = [[PopViewController alloc]initWithCategory:@"succeed"];
+        _popView = [[PopViewController alloc]initWithCategory:PopViewCallSucceed andTitle:self.productDictionary[@"name"]];
+        //[_popView.middleBtn addTarget:<#(id)#> action:<#(SEL)#> forControlEvents:<#(UIControlEvents)#>
     }
     return  _popView;
 }
@@ -216,7 +242,7 @@
         _popSheet = [[MZFormSheetController alloc]initWithViewController:self.popView];
         _popSheet.transitionStyle = MZFormSheetTransitionStyleBounce;
         _popSheet.cornerRadius = 0;
-        _popSheet.presentedFormSheetSize = CGSizeMake(270, 414);
+        _popSheet.presentedFormSheetSize = CGSizeMake(270, 464);
         _popSheet.didTapOnBackgroundViewCompletionHandler = ^(CGPoint location)
         {
             
@@ -230,13 +256,11 @@
             
         };
         
-        
-        
         [[MZFormSheetBackgroundWindow appearance] setBackgroundBlurEffect:YES];
         [[MZFormSheetBackgroundWindow appearance] setBlurRadius:5.0];
         [[MZFormSheetBackgroundWindow appearance] setBackgroundColor:[UIColor clearColor]];
         
-
+        
     }
     
     return _popSheet;

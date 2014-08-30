@@ -38,7 +38,7 @@
 -(void)updateConstraints
 {
     [super updateConstraints];
-    [self.seperateLine autoSetDimensionsToSize:CGSizeMake(2, 50)];
+    [self.seperateLine autoSetDimensionsToSize:CGSizeMake(1, 50)];
     [self.seperateLine autoCenterInSuperview];
     
     [self.caloValue autoSetDimensionsToSize:CGSizeMake(100, 28)];
@@ -69,7 +69,7 @@
     if (!_caloLebel)
     {
         _caloLebel = [[UILabel alloc]initForAutoLayout];
-        _caloLebel.font = [UIFont fontWithName:@"vi" size:18];
+        _caloLebel.font = [UIFont fontWithName:fDFYuanMedium_B5 size:18];
         _caloLebel.textAlignment=NSTextAlignmentRight;
         _caloLebel.textColor = [UIColor whiteColor];
         _caloLebel.text = @"卡";
@@ -82,7 +82,7 @@
     if (!_stepLebel)
     {
         _stepLebel = [[UILabel alloc]initForAutoLayout];
-        _stepLebel.font = [UIFont fontWithName:@"Apple LiGothic" size:18];
+        _stepLebel.font = [UIFont fontWithName:fDFYuanMedium_B5 size:18];
         _stepLebel.textAlignment=NSTextAlignmentLeft;
         _stepLebel.textColor = [UIColor whiteColor];
         _stepLebel.text = @"步";
@@ -95,7 +95,7 @@
     if (!_caloValue)
     {
         _caloValue = [[UICountingLabel alloc]initForAutoLayout];
-        _caloValue.font = [UIFont fontWithName:@"MyriadPro-It" size:28];
+        _caloValue.font = [UIFont fontWithName:fMyriadPro_It size:30];
         _caloValue.textAlignment=NSTextAlignmentRight;
         _caloValue.textColor = [UIColor whiteColor];
         _caloValue.text = @"0";
@@ -110,7 +110,7 @@
     if (!_stepValue)
     {
         _stepValue = [[UICountingLabel alloc]initForAutoLayout];
-        _stepValue.font = [UIFont fontWithName:@"MyriadPro-It" size:28];
+        _stepValue.font = [UIFont fontWithName:fMyriadPro_It size:30];
         _stepValue.textAlignment=NSTextAlignmentLeft;
         _stepValue.textColor = [UIColor whiteColor];
         _stepValue.text = @"0";

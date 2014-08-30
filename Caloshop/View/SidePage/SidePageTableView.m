@@ -18,7 +18,7 @@
         self.separatorInset = UIEdgeInsetsZero;
         self.separatorColor = [UIColor clearColor];
         self.scrollEnabled = NO;
-        self.rowHeight = 70;
+        self.rowHeight = 60;
     }
     return self;
 }
