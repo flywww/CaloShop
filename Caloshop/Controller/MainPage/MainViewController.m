@@ -7,8 +7,8 @@
 //
 
 #import "MainViewController.h"
-
 #import "SidePageViewController.h"
+#import "ProductPageViewController.h"
 
 #import <UIImageView+WebCache.h>
 #import "RewardModel.h"
@@ -16,7 +16,6 @@
 #import "WaterProgressView.h"
 #import "WaterCircleView.h"
 
-#import "ProductPageViewController.h"
 #import "CaloAndStepShowView.h"
 
 #import "PopViewController.h"
@@ -30,19 +29,15 @@
 @property (nonatomic) WaterProgressView* waterProgressView;
 @property (nonatomic) CaloAndStepShowView* caloAndStepsDisplay;
 
+//Main Controller View
 @property (nonatomic) UIImageView* backgroundImg;
-
 @property (nonatomic) UILabel* titleLabel;
 @property (nonatomic, strong) UIBarButtonItem *paneRevealLeftBarButtonItem;
-
 @property (nonatomic) WaterCircleView* waterCircle;
-
 
 //PopView
 @property (nonatomic) PopViewController* popView;
 @property (nonatomic) MZFormSheetController* popSheet;
-
-
 @end
 
 @implementation MainViewController
@@ -82,15 +77,8 @@
         if ([HelpTool getLocalDateWithOutTime:self.rewardDictionary[@"rewardDate"]] != [HelpTool getLocalDateWithOutTime])
         {
             [self.rewardModel fetchReward:[HelpTool getLocalDateWithOutTime]];
-            //            NSLog(@"444%@",self.productDictionary);
-            //            NSLog(@"555%@",[HelpTool getLocalDateWithOutTime:self.rewardDictionary[@"rewardDate"]]);
-            //            NSLog(@"666%@",[HelpTool getLocalDateWithOutTime]);
         }
-        
     }
-    
-    
-
 }
 
 - (void)dynamicsDrawerRevealLeftBarButtonItemTapped:(id)sender
@@ -99,9 +87,8 @@
     
     SidePageViewController* sidePageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Side"];
     [sidePageViewController.dynamicsDrawerViewController setPaneState:MSDynamicsDrawerPaneStateOpen inDirection:MSDynamicsDrawerDirectionLeft animated:YES allowUserInterruption:YES completion:nil];
-    
-    
 }
+
 -(void)updateViewConstraints
 {
     [super updateViewConstraints];
@@ -118,39 +105,16 @@
     [self.waterCircle autoAlignAxis:ALAxisVertical toSameAxisOfView:self.waterProgressView];
     
     [self.caloAndStepsDisplay autoSetDimensionsToSize:CGSizeMake(200, 50)];
-    [self.caloAndStepsDisplay autoAlignAxis:ALAxisVertical toSameAxisOfView:self.waterProgressView];
+    [self.caloAndStepsDisplay autoAlignAxis:ALAxisVertical toSameAxisOfView:self.view];
     [self.caloAndStepsDisplay autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.waterProgressView withOffset:34];
     
-
     [self.titleLabel autoSetDimensionsToSize:CGSizeMake(320, 30)];
-    [self.titleLabel autoAlignAxis:ALAxisVertical toSameAxisOfView:self.waterProgressView];
+    [self.titleLabel autoAlignAxis:ALAxisVertical toSameAxisOfView:self.view];
     [self.titleLabel autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop ofView:self.waterProgressView withOffset:-24];
 }
 
--(WaterProgressView *)waterProgressView
-{
-    if (!_waterProgressView)
-    {
-        _waterProgressView=[[WaterProgressView alloc]initForAutoLayout];
-        _waterProgressView.currentWaterColor=[UIColor whiteColor];
-        _waterProgressView.productImg.image = [UIImage imageNamed:@"ProductPureImg"];
-        _waterProgressView.delegate= self;
-    }
-    return _waterProgressView;
-}
 
--(WaterCircleView *)waterCircle
-{
-    if (!_waterCircle)
-    {
-        _waterCircle = [[WaterCircleView alloc]initForAutoLayout];
-
-    }
-    return _waterCircle;
-}
-
-
--(void)didTapAction
+-(void)waterViewDidTapAction
 {
     [self performSegueWithIdentifier:@"MainToProductSeg" sender:self.productDictionary];
 }
@@ -169,8 +133,15 @@
     self.rewardDictionary = rewardDetail;
     
     
-    NSLog(@"!!!!!!!!!!!!!!!!!!!!!!!!!%@ anddddd %@",rewardDetail,productDetail);
-    NSLog(@"uuuuuuuuuuuuurl%@",[productDetail[@"pureImage"] url]);
+    [self.waterProgressView.productImg
+     sd_setImageWithURL:[self.productDictionary[@"pureImage"] url]
+     placeholderImage:[UIImage imageNamed:@"EmptyImage"]
+     options:0
+     completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL)
+     {
+         
+     }];
+    
 }
 
 -(void)failToFetchReward:(NSError *)error
@@ -181,18 +152,32 @@
 
 
 
--(UIImageView *)backgroundImg
+
+#pragma mark - property initialize
+
+-(WaterProgressView *)waterProgressView
 {
-    if (!_backgroundImg)
+    if (!_waterProgressView)
     {
-        _backgroundImg = [[UIImageView alloc]initForAutoLayout];
-        _backgroundImg.image = [UIImage imageNamed:@"MainPage_BC"];
+        _waterProgressView=[[WaterProgressView alloc]initForAutoLayout];
+        _waterProgressView.currentWaterColor=[UIColor whiteColor];
+        //_waterProgressView.productImg.image = [UIImage imageNamed:@"ProductPureImg"];
+
+        
+        _waterProgressView.delegate= self;
     }
-    
-    return _backgroundImg;
+    return _waterProgressView;
 }
 
+-(WaterCircleView *)waterCircle
+{
+    if (!_waterCircle)
+    {
+        _waterCircle = [[WaterCircleView alloc]initForAutoLayout];
 
+    }
+    return _waterCircle;
+}
 -(RewardModel *)rewardModel
 {
     if (!_rewardModel)
@@ -259,12 +244,22 @@
         [[MZFormSheetBackgroundWindow appearance] setBackgroundBlurEffect:YES];
         [[MZFormSheetBackgroundWindow appearance] setBlurRadius:5.0];
         [[MZFormSheetBackgroundWindow appearance] setBackgroundColor:[UIColor clearColor]];
-        
-        
     }
-    
     return _popSheet;
 }
+
+-(UIImageView *)backgroundImg
+{
+    if (!_backgroundImg)
+    {
+        _backgroundImg = [[UIImageView alloc]initForAutoLayout];
+        _backgroundImg.image = [UIImage imageNamed:@"MainPage_BC"];
+    }
+    
+    return _backgroundImg;
+}
+
+
 
 
 @end

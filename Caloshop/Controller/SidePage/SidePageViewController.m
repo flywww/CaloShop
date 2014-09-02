@@ -118,8 +118,6 @@
     {
         case 0:
         {
-         
-            NSLog(@"aaaaa");
             MainViewController* MainViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"MainNav"];
             [self.dynamicsDrawerViewController setPaneViewController:MainViewController animated:YES completion:nil];
             break;
@@ -127,14 +125,13 @@
             break;
         case 1:
         {
-            NSLog(@"bbbbb");
             ProfilePageViewController* ProfileViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ProfileNav"];
             [self.dynamicsDrawerViewController setPaneViewController:ProfileViewController animated:YES completion:nil];
             break;
         }
             
         case 2:
-        {NSLog(@"ccccc");
+        {
 //            ContactUsPageViewController* ContactUsViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ContactUsNav"];
 //            [self.dynamicsDrawerViewController setPaneViewController:ContactUsViewController animated:YES completion:nil];
             //
@@ -169,16 +166,14 @@
                                                       otherButtonTitles:nil];
                 [alert show];
             }
-            case 3:
-            {
-                LoginViewController* LoginViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginNav"];
-                [self.dynamicsDrawerViewController setPaneViewController:LoginViewController animated:YES completion:nil];
-                break;
-            }
- 
             break;
         }
+        case 3:
+        {
+            LoginViewController* LoginViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginNav"];
+            [self.dynamicsDrawerViewController setPaneViewController:LoginViewController animated:YES completion:nil];
             break;
+        }
     }
 }
 

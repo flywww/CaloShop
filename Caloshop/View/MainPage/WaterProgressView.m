@@ -8,6 +8,7 @@
 
 #import "WaterProgressView.h"
 #import "UICountingLabel.h"
+#import <UIImageView+WebCache.h>
 
 
 
@@ -74,7 +75,7 @@
 -(void)updateConstraints
 {
     [super updateConstraints];
-    [self.productImg autoSetDimensionsToSize:CGSizeMake(waterViewDiameter, waterViewDiameter)];
+    [self.productImg autoSetDimensionsToSize:CGSizeMake(182.5,182.5)];
     [self.productImg autoCenterInSuperview];
     
 //    [self.progressLebel autoSetDimensionsToSize:CGSizeMake(waterViewDiameter, waterViewDiameter)];
@@ -96,9 +97,9 @@
 
 -(void)TapAction
 {
-    if ([self.delegate respondsToSelector:@selector(didTapAction)])
+    if ([self.delegate respondsToSelector:@selector(waterViewDidTapAction)])
     {
-        [self.delegate didTapAction];
+        [self.delegate waterViewDidTapAction];
     }
     else
     {
@@ -112,6 +113,8 @@
     if (!_productImg)
     {
         _productImg = [[UIImageView alloc]initForAutoLayout];
+        _productImg.clipsToBounds = YES;
+        //_productImg.layer.cornerRadius = 182.5/2;
     
     }
     

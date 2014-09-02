@@ -11,7 +11,7 @@
 
 @protocol WaterViewDelegate <NSObject>
 @optional
--(void)didTapAction;
+-(void)waterViewDidTapAction;
 
 @end
 

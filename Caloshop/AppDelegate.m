@@ -11,6 +11,7 @@
 #import "SidePageViewController.h"
 #import "MainViewController.h"
 #import "LoginViewController.h"
+#import "ProfilePageViewController.h"
 
 #import "MSDynamicsDrawerViewController.h"
 #import "MSDynamicsDrawerStyler.h"
@@ -45,7 +46,8 @@
     
     SidePageViewController* SidePageViewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"Side"];
     MainViewController* MainViewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"MainNav"];
-    LoginViewController* LoginViewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"LoginNav"];
+//    LoginViewController* LoginViewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"LoginNav"];
+    ProfilePageViewController* ProfilePageViewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"ProfileNav"];
     
     SidePageViewController.dynamicsDrawerViewController = self.dynamicsDrawerViewController;
     
@@ -59,7 +61,7 @@
     }
     else
     {
-        [self.dynamicsDrawerViewController setPaneViewController:LoginViewController animated:self.dynamicsDrawerViewController.paneViewController!=nil completion:nil];
+        [self.dynamicsDrawerViewController setPaneViewController:ProfilePageViewController animated:self.dynamicsDrawerViewController.paneViewController!=nil completion:nil];
     }
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

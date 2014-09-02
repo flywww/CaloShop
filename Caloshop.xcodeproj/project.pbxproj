@@ -12,6 +12,7 @@
 		421485F01988EBF3009E6E35 /* HelpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 421485EF1988EBF3009E6E35 /* HelpTool.m */; };
 		421485F3198904CD009E6E35 /* Reward.m in Sources */ = {isa = PBXBuildFile; fileRef = 421485F2198904CD009E6E35 /* Reward.m */; };
 		421485F6198904CE009E6E35 /* UserLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 421485F5198904CE009E6E35 /* UserLog.m */; };
+		42347E1219B4172A00EACFBC /* TutorialView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42347E1119B4172A00EACFBC /* TutorialView.m */; };
 		4240617B19A1E7040073279F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4240617A19A1E7040073279F /* ViewController.m */; };
 		4240617E19A201F00073279F /* CaloAndStepShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4240617D19A201F00073279F /* CaloAndStepShowView.m */; };
 		4240619219A232740073279F /* MyriadPro-It.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4240618819A232740073279F /* MyriadPro-It.otf */; };
@@ -72,6 +73,8 @@
 		421485F2198904CD009E6E35 /* Reward.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reward.m; sourceTree = "<group>"; };
 		421485F4198904CE009E6E35 /* UserLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLog.h; sourceTree = "<group>"; };
 		421485F5198904CE009E6E35 /* UserLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLog.m; sourceTree = "<group>"; };
+		42347E1019B4172A00EACFBC /* TutorialView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialView.h; sourceTree = "<group>"; };
+		42347E1119B4172A00EACFBC /* TutorialView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialView.m; sourceTree = "<group>"; };
 		4240617919A1E7040073279F /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		4240617A19A1E7040073279F /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		4240617C19A201F00073279F /* CaloAndStepShowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaloAndStepShowView.h; sourceTree = "<group>"; };
@@ -396,6 +399,8 @@
 		42D0D4CF19816C2100462C63 /* LoginPage */ = {
 			isa = PBXGroup;
 			children = (
+				42347E1019B4172A00EACFBC /* TutorialView.h */,
+				42347E1119B4172A00EACFBC /* TutorialView.m */,
 			);
 			path = LoginPage;
 			sourceTree = "<group>";
@@ -549,6 +554,7 @@
 				421485F01988EBF3009E6E35 /* HelpTool.m in Sources */,
 				421485F6198904CE009E6E35 /* UserLog.m in Sources */,
 				42D0D4D7198237DA00462C63 /* LoginViewController.m in Sources */,
+				42347E1219B4172A00EACFBC /* TutorialView.m in Sources */,
 				4293AE7E199B774C004C2912 /* ProductPageViewController.m in Sources */,
 				4293AE83199B7851004C2912 /* ContactUsPageViewController.m in Sources */,
 				42D0D4911981240E00462C63 /* AppDelegate.m in Sources */,

@@ -10,16 +10,29 @@
 #import "FBLoginModel.h"
 #import "MainViewController.h"
 
+#import "TutorialView.h"
+
 #import "EAIntroView.h"
 
 #import "RewardModel.h"
 
-@interface LoginViewController ()<FBLoginModelDelegate,RewardModelDelegate,EAIntroDelegate>
-- (IBAction)loginButton:(id)sender;
+@interface LoginViewController ()<FBLoginModelDelegate,RewardModelDelegate,EAIntroDelegate,TutorialViewDelegate>
+{
+    EAIntroPage* tutorialPage1;
+    EAIntroPage* tutorialPage2;
+    EAIntroPage* tutorialPage3;
+    EAIntroPage* tutorialPage4;
+    
+    TutorialView* tutorialPage1View;
+    TutorialView* tutorialPage2View;
+    TutorialView* tutorialPage3View;
+    TutorialView* tutorialPage4View;
+}
+
 
 @property (nonatomic) FBLoginModel* fbLoginModel;
 @property (nonatomic) MBProgressHUD* fbLoginHUD;
-
+@property (nonatomic) EAIntroView* tutorialView;
 
 @end
 
@@ -38,63 +51,60 @@
 {
     [super viewDidLoad];
     
-    MSDynamicsDrawerViewController *dynamicsDrawerViewController = (MSDynamicsDrawerViewController *)self.navigationController.parentViewController;
-    [dynamicsDrawerViewController setPaneDragRevealEnabled:NO forDirection:MSDynamicsDrawerDirectionLeft];
-
-    //[rewardModel saveNewRewardWithData:@{@"rewardDate":[NSDate date]}];
-    //[rewardModel saveNewRewardWithData:@{@"rewardDate":[[NSDate alloc]initWithTimeIntervalSinceNow:-24*60*60]}];
-    //[rewardModel saveNewRewardWithData:@{@"rewardDate":[[NSDate alloc]initWithTimeIntervalSinceNow:-48*60*60]}];
-    
-    //NSLog(@"Reward Entity %@ ,Entities count: %lu",[Reward MR_findAll],[Reward MR_countOfEntities]);
-    
-    // basic
-    EAIntroPage *page1 = [EAIntroPage page];
-    page1.title = @"Hello world";
-    page1.desc = @"lalalalalalalalal";
-    // custom
-    EAIntroPage *page2 = [EAIntroPage page];
-    page2.title = @"This is page 2";
-    page2.titleFont = [UIFont fontWithName:@"Georgia-BoldItalic" size:20];
-    page2.titlePositionY = 220;
-    page2.desc = @"heheheheheheheheh";
-    page2.descFont = [UIFont fontWithName:@"Georgia-Italic" size:18];
-    page2.descPositionY = 200;
-    page2.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"title2"]];
-    page2.titleIconPositionY = 100;
-    // custom view from nib
-    EAIntroPage *page3 = [EAIntroPage pageWithCustomView:[[UIView alloc]init]];
-//    page3.bgImage = [UIImage imageNamed:@"bg2"];
-    
-    
-    EAIntroView *intro = [[EAIntroView alloc] initWithFrame:self.view.bounds andPages:@[page1,page2,page3]];
-    
-    [intro setDelegate:self];
-    [intro showInView:self.view animateDuration:0.0];
+//    MSDynamicsDrawerViewController *dynamicsDrawerViewController = (MSDynamicsDrawerViewController *)self.navigationController.parentViewController;
+//    [dynamicsDrawerViewController setPaneDragRevealEnabled:NO forDirection:MSDynamicsDrawerDirectionLeft];
+//
+//
+//    [self.tutorialView showInView:self.navigationController.view animateDuration:0.3];
     
 }
 
--(void)didSavedRewardData
+
+
+-(EAIntroView *)tutorialView
 {
-    
-    
+    if (!_tutorialView)
+    {
+        tutorialPage1View = [[TutorialView alloc]initWithPage:@"page1"];
+        tutorialPage1View.delegate = self;
+        tutorialPage1 = [EAIntroPage pageWithCustomView:tutorialPage1View];
+
+        tutorialPage2View = [[TutorialView alloc]initWithPage:@"page2"];
+        tutorialPage2View.delegate = self;
+        tutorialPage2 = [EAIntroPage pageWithCustomView:tutorialPage2View];
+        
+        tutorialPage3View = [[TutorialView alloc]initWithPage:@"page3"];
+        tutorialPage3 = [EAIntroPage pageWithCustomView:tutorialPage3View];
+        tutorialPage3View.delegate = self;
+        
+        tutorialPage4View = [[TutorialView alloc]initWithPage:@"page4"];
+        tutorialPage4 = [EAIntroPage pageWithCustomView:tutorialPage4View];
+        tutorialPage4View.delegate = self;
+        
+        _tutorialView =  [[EAIntroView alloc] initWithFrame:self.view.bounds
+                                                   andPages:@[tutorialPage1,
+                                                              tutorialPage2,
+                                                              tutorialPage3,
+                                                              tutorialPage4]];
+        _tutorialView.pageControlY = 210.0f;
+        _tutorialView.skipButton = nil;
+        _tutorialView.swipeToExit = NO;
+        _tutorialView.backgroundColor = [UIColor whiteColor];
+        _tutorialView.bgImage = [UIImage imageNamed:@"01_TutorialPage_backonly"];
+        _tutorialView.delegate = self;
+        
+    }
+    return _tutorialView;
 }
 
-
-
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
-- (IBAction)loginButton:(id)sender
+-(void)buttomClickAction
 {
     [self.fbLoginModel FBLogin];
     [self.fbLoginHUD show:YES];
-
+    
 }
+
+
 
 #pragma mark- property initialization
 -(FBLoginModel *)fbLoginModel
@@ -125,7 +135,8 @@
 -(void)didFetchProfile:(id)FBprofile
 {
     [self.fbLoginHUD hide:YES];
-    //NSLog(@"did Fetch profile : %@",FBprofile);
+    
+    [self.tutorialView hideWithFadeOutDuration:1.0f];
     
     //send data to main view controller and go to the main viewController
     [self performSegueWithIdentifier:@"toMainSeque" sender:nil];
@@ -141,7 +152,7 @@
 {
     if (!_fbLoginHUD)
     {
-        _fbLoginHUD=[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        _fbLoginHUD=[MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
         _fbLoginHUD.mode=MBProgressHUDModeIndeterminate;
         _fbLoginHUD.labelText=@"登入中";
     }
