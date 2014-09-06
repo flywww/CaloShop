@@ -7,8 +7,11 @@
 //
 
 #import "BuyPageViewController.h"
+#import <DAKeyboardControl.h>
 
 @interface BuyPageViewController ()
+
+@property (nonatomic) UIView* containerView;
 
 @property (nonatomic) UIImageView* mainImage;
 @property (nonatomic) UILabel* productName;
@@ -16,6 +19,8 @@
 @property (nonatomic) UITextField* addressField;
 @property (nonatomic) UITextField* phoneField;
 @property (nonatomic) UIButton* buyButtom;
+@property (nonatomic) UIImageView* cloudImage;
+@property(nonatomic,strong) UITapGestureRecognizer* tap;
 
 @end
 
@@ -25,46 +30,108 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.title = @"CaloShop";
    
-    [self.view addSubview:self.mainImage];
-    [self.view addSubview:self.productName];
-    [self.view addSubview:self.nameField];
-    [self.view addSubview:self.addressField];
-    [self.view addSubview:self.phoneField];
-    [self.view addSubview:self.buyButtom];
+    [self.view addSubview:self.containerView];
+    [self.containerView addSubview:self.mainImage];
+    [self.containerView addSubview:self.productName];
+    [self.containerView addSubview:self.nameField];
+    [self.containerView addSubview:self.addressField];
+    [self.containerView addSubview:self.phoneField];
+    [self.containerView addSubview:self.buyButtom];
+    [self.containerView addSubview:self.cloudImage];
+    //gesture
+    [self.view addGestureRecognizer:self.tap];
 
-
+    [self keyboardControl];
+    
 }
 
 -(void)updateViewConstraints
 {
     [super updateViewConstraints];
     
-    [self.mainImage autoSetDimensionsToSize:CGSizeMake(175, 175)];
-    [self.mainImage autoAlignAxis:ALAxisVertical toSameAxisOfView:self.view];
-    [self.mainImage autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.view withOffset:22];
+    [self.containerView autoSetDimensionsToSize:CGSizeMake(320, 504)];
+    [self.containerView autoCenterInSuperview];
     
-    [self.productName autoAlignAxis:ALAxisVertical toSameAxisOfView:self.view];
+    [self.mainImage autoSetDimensionsToSize:CGSizeMake(175, 175)];
+    [self.mainImage autoAlignAxis:ALAxisVertical toSameAxisOfView:self.containerView];
+    [self.mainImage autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.containerView withOffset:22];
+    
+    [self.productName autoAlignAxis:ALAxisVertical toSameAxisOfView:self.containerView];
     [self.productName autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.mainImage withOffset:8];
     
     [self.nameField autoSetDimensionsToSize:CGSizeMake(240, 40)];
-    [self.nameField autoAlignAxis:ALAxisVertical toSameAxisOfView:self.view];
+    [self.nameField autoAlignAxis:ALAxisVertical toSameAxisOfView:self.containerView];
     [self.nameField autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.productName withOffset:15];
     
     [self.addressField autoSetDimensionsToSize:CGSizeMake(240, 40)];
-    [self.addressField autoAlignAxis:ALAxisVertical toSameAxisOfView:self.view];
+    [self.addressField autoAlignAxis:ALAxisVertical toSameAxisOfView:self.containerView];
     [self.addressField autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.nameField withOffset:10];
     
     [self.phoneField autoSetDimensionsToSize:CGSizeMake(240, 40)];
-    [self.phoneField autoAlignAxis:ALAxisVertical toSameAxisOfView:self.view];
+    [self.phoneField autoAlignAxis:ALAxisVertical toSameAxisOfView:self.containerView];
     [self.phoneField autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.addressField withOffset:10];
     
     
     [self.buyButtom autoSetDimensionsToSize:CGSizeMake(175, 40)];
-    [self.buyButtom autoAlignAxis:ALAxisVertical toSameAxisOfView:self.view];
+    [self.buyButtom autoAlignAxis:ALAxisVertical toSameAxisOfView:self.containerView];
     [self.buyButtom autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.phoneField withOffset:20];
+    
+    [self.cloudImage autoSetDimensionsToSize:CGSizeMake(320, 126)];
+    [self.cloudImage autoAlignAxis:ALAxisVertical toSameAxisOfView:self.containerView];
+    [self.cloudImage autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:self.view];
+
+}
+
+-(void)keyboardControl
+{
+    __weak BuyPageViewController* this = self;
+    self.view.keyboardTriggerOffset = 200;
+    
+    [self.view addKeyboardNonpanningWithActionHandler:^(CGRect keyboardFrameInView, BOOL opening, BOOL closing) {
+        if (this.view.keyboardWillRecede)
+        {
+            [UIView animateWithDuration:1 animations:^
+             {
+                 CGRect newFrame = this.containerView.frame;
+                 newFrame.origin.y = -200;
+                 this.containerView.frame = newFrame;
+             }];
+        }
+        else
+        {
+            [UIView animateWithDuration:1 animations:^
+             {
+                 CGRect newFrame = this.containerView.frame;
+                 newFrame.origin.y = 0;
+                 this.containerView.frame = newFrame;
+             }];
+        }
+    }];
+}
+
+-(void)dismissKeyBoard:(id)sender
+{
+    [self.view endEditing:YES];
+}
+
+-(void)sendAction:(id)sender
+{
+    [self.view endEditing:YES];
+}
 
 
+#pragma mark - property initialize
+
+-(UIView *)containerView
+{
+    if (!_containerView)
+    {
+        _containerView = [[UIView alloc]initForAutoLayout];
+    }
+    return _containerView;
 }
 
 -(UIImageView *)mainImage
@@ -108,7 +175,7 @@
         _nameField.textColor = [UIColor colorWithHexString:@"#727171"];
         _nameField.placeholder = @"收件人姓名";
         _nameField.borderStyle = UITextBorderStyleLine;
-        _nameField.layer.borderColor = [UIColor colorWithHexString:@"#727171"].CGColor;
+        _nameField.layer.borderColor = [UIColor colorWithHexString:@"#B5B5B6"].CGColor;
         _nameField.layer.borderWidth=1.0;
     }
     return _nameField;
@@ -124,7 +191,7 @@
         _addressField.textColor = [UIColor colorWithHexString:@"#727171"];
         _addressField.placeholder = @"收件人地址";
         _addressField.borderStyle = UITextBorderStyleLine;
-        _addressField.layer.borderColor = [UIColor colorWithHexString:@"#727171"].CGColor;
+        _addressField.layer.borderColor = [UIColor colorWithHexString:@"#B5B5B6"].CGColor;
         _addressField.layer.borderWidth=1.0;
     }
     return _addressField;
@@ -140,7 +207,7 @@
         _phoneField.textColor = [UIColor colorWithHexString:@"#727171"];
         _phoneField.placeholder = @"聯絡電話";
         _phoneField.borderStyle = UITextBorderStyleLine;
-        _phoneField.layer.borderColor = [UIColor colorWithHexString:@"#727171"].CGColor;
+        _phoneField.layer.borderColor = [UIColor colorWithHexString:@"#B5B5B6"].CGColor;
         _phoneField.layer.borderWidth=1.0;
     }
     return _phoneField;
@@ -152,10 +219,29 @@
     {
         _buyButtom=[[UIButton alloc]initForAutoLayout];
         [_buyButtom setImage:[UIImage imageNamed:@"material_btn_buynow"] forState:UIControlStateNormal];
-        [_buyButtom addTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
+        [_buyButtom addTarget:self action:@selector(sendAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _buyButtom;
 }
 
+-(UIImageView *)cloudImage
+{
+    if (!_cloudImage)
+    {
+        _cloudImage = [[UIImageView alloc]initForAutoLayout];
+        _cloudImage.image = [UIImage imageNamed:@"05_material_bg_cloud"];
+    }
+    
+    return _cloudImage;
+}
+
+-(UITapGestureRecognizer *)tap
+{
+    if(!_tap)
+    {
+        _tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dismissKeyBoard:)];
+    }
+    return _tap;
+}
 
 @end

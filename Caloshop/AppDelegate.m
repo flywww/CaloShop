@@ -10,7 +10,6 @@
 
 #import "SidePageViewController.h"
 #import "MainViewController.h"
-#import "LoginViewController.h"
 #import "ProfilePageViewController.h"
 
 #import "MSDynamicsDrawerViewController.h"
@@ -46,7 +45,6 @@
     
     SidePageViewController* SidePageViewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"Side"];
     MainViewController* MainViewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"MainNav"];
-//    LoginViewController* LoginViewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"LoginNav"];
     ProfilePageViewController* ProfilePageViewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"ProfileNav"];
     
     SidePageViewController.dynamicsDrawerViewController = self.dynamicsDrawerViewController;

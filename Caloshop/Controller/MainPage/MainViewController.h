@@ -14,4 +14,7 @@
 @property (nonatomic) NSDictionary* productDictionary;
 @property (nonatomic) NSDictionary* rewardDictionary;
 
+//Side page setting
+@property (nonatomic, weak) MSDynamicsDrawerViewController *dynamicsDrawerViewController;
+
 @end

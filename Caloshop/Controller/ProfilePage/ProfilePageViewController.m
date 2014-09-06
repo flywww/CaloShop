@@ -15,13 +15,13 @@
 #import "FBLoginModel.h"
 
 NSString* birthday = @"1985年09月10日";
-NSString* height = @"174公分";
-NSString* weight = @"63公斤";
+NSString* height = @"174.0公分";
+NSString* weight = @"63.0公斤";
 
 NSString* titleText = @"請輸入您的資料";
 NSString* describeText = @"初次使用CaloShop卡路里販賣店\n我們需要您的資料讓計算更精準\n請放心我們不會將此資訊用於其它用途";
 
-@interface ProfilePageViewController ()<FBLoginModelDelegate,EAIntroDelegate,TutorialViewDelegate>
+@interface ProfilePageViewController ()<FBLoginModelDelegate,EAIntroDelegate,TutorialViewDelegate,UITextFieldDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
 {
     EAIntroPage* tutorialPage1;
     EAIntroPage* tutorialPage2;
@@ -34,17 +34,22 @@ NSString* describeText = @"初次使用CaloShop卡路里販賣店\n我們需要�
     TutorialView* tutorialPage4View;
 }
 
-//Side page setting
-@property (nonatomic, weak) MSDynamicsDrawerViewController *dynamicsDrawerViewController;
 //Tutorial property
 @property (nonatomic) FBLoginModel* fbLoginModel;
 @property (nonatomic) MBProgressHUD* fbLoginHUD;
 @property (nonatomic) EAIntroView* tutorialView;
 //Profile property
+@property (nonatomic) NSString* gender;
+@property (nonatomic) NSDate* birthday;
+@property (nonatomic) NSString* weight;
+@property (nonatomic) NSString* height;
+
 @property (nonatomic) UISegmentedControl* sexSelector;
 @property (nonatomic) UIDatePicker* birthdaySelector;
 @property (nonatomic) UIPickerView* weightSelector;
 @property (nonatomic) UIPickerView* heightSelector;
+
+@property (nonatomic) UIToolbar *toolBar;
 
 @property (nonatomic) UITextField* birthdayField;
 @property (nonatomic) UITextField* weightField;
@@ -52,6 +57,14 @@ NSString* describeText = @"初次使用CaloShop卡路里販賣店\n我們需要�
 
 @property (nonatomic) UILabel* profileTitle;
 @property (nonatomic) UILabel* profileDescribe;
+//Picker data
+@property (nonatomic) NSMutableArray* weightIntArray;
+@property (nonatomic) NSMutableArray* weightDecimalArray;
+@property (nonatomic) NSMutableArray* weightUnitArray;
+@property (nonatomic) NSMutableArray* heightIntArray;
+@property (nonatomic) NSMutableArray* heightDecimalArray;
+@property (nonatomic) NSMutableArray* heightUnitArray;
+
 //Other
 @property (nonatomic, strong) UIBarButtonItem *rightBarButtonItem;
 
@@ -72,23 +85,18 @@ NSString* describeText = @"初次使用CaloShop卡路里販賣店\n我們需要�
 {
     [super viewDidLoad];
     
-    
+    [self PickerDataInit];
     
     self.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStyleDone
                                                                        target:self action:@selector(completeTapAction)];
     NSDictionary* attr = @{NSFontAttributeName:[UIFont fontWithName:fApple_LiGothic size:20]};
     [self.rightBarButtonItem setTitleTextAttributes:attr forState:UIControlStateNormal];
-    
-    
     self.navigationItem.rightBarButtonItem = self.rightBarButtonItem;
     
     
     [self.view addSubview:self.profileTitle];
     [self.view addSubview:self.profileDescribe];
     [self.view addSubview:self.sexSelector];
-//    [self.view addSubview:self.birthdaySelector];
-//    [self.view addSubview:self.heightSelector];
-//    [self.view addSubview:self.weightSelector];
     
     [self.view addSubview:self.birthdayField];
     [self.view addSubview:self.weightField];
@@ -129,6 +137,103 @@ NSString* describeText = @"初次使用CaloShop卡路里販賣店\n我們需要�
     [self.heightField autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.weightField withOffset:-1];
 }
 
+-(void)PickerDataInit
+{
+    //Weight Data
+    self.weightIntArray = [[NSMutableArray alloc]init];
+    for (int i = 10; i<=300; i++)
+    {
+        [self.weightIntArray addObject:[NSString stringWithFormat:@"%d",i]];
+    }
+    self.weightDecimalArray = [[NSMutableArray alloc]init];
+    for (int i = 0; i<=9; i++)
+    {
+        [self.weightDecimalArray addObject:[NSString stringWithFormat:@".%d",i]];
+    }
+    self.weightUnitArray = [[NSMutableArray alloc]initWithObjects:@"公斤", nil];
+    
+    //height Data
+    self.heightIntArray = [[NSMutableArray alloc]init];
+    for (int i = 80; i<=240; i++)
+    {
+        [self.heightIntArray addObject:[NSString stringWithFormat:@"%d",i]];
+    }
+    self.heightDecimalArray = [[NSMutableArray alloc]init];
+    for (int i = 0; i<=9; i++)
+    {
+        [self.heightDecimalArray addObject:[NSString stringWithFormat:@".%d",i]];
+    }
+    self.heightUnitArray = [[NSMutableArray alloc]initWithObjects:@"公分", nil];
+}
+
+#pragma mark - button action
+//Setting Complete
+-(void)completeTapAction
+{
+    NSLog(@"setting done");
+    MainViewController* MainViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"MainNav"];
+    [self.dynamicsDrawerViewController setPaneViewController:MainViewController animated:YES completion:nil];
+    
+    [PFUser currentUser][@"birthdayReal"] = self.birthday;
+    [PFUser currentUser][@"genderReal"] = self.gender;
+    [PFUser currentUser][@"weight"] = self.weight;
+    [PFUser currentUser][@"height"] = self.height;
+    [[PFUser currentUser] saveEventually];
+}
+
+-(void)pickerDone:(id)selector
+{
+    [self.weightField resignFirstResponder];
+    self.weightSelector.hidden = YES;
+    
+    [self.heightField resignFirstResponder];
+    self.heightSelector.hidden =YES;
+    
+    [self.birthdayField resignFirstResponder];
+    self.birthdaySelector.hidden = YES;
+}
+
+-(void)buttomClickAction
+{
+    [self.fbLoginModel FBLogin];
+    [self.fbLoginHUD show:YES];
+}
+
+
+-(void)didFetchProfile:(id)FBprofile
+{
+    [self.fbLoginHUD hide:YES];
+    [self.tutorialView hideWithFadeOutDuration:1.0f];
+}
+
+//Sex selected!!
+-(void)whichSex:(UISegmentedControl *)paramSender
+{
+    if ([paramSender isEqual:self.sexSelector])
+    {
+        if ((long)[paramSender selectedSegmentIndex] == 1)
+        {
+            self.gender =@"male";
+        }
+        else if ((long)[paramSender selectedSegmentIndex] == 2)
+        {
+            self.gender =@"women";
+        }
+    }
+}
+
+#pragma mark - error handler
+-(void)failToFetchProfile:(NSError *)error
+{
+    
+}
+
+-(void)failToLoginFB:(NSError *)error
+{
+    
+}
+
+#pragma mark - tutorial
 -(EAIntroView *)tutorialView
 {
     if (!_tutorialView)
@@ -164,59 +269,6 @@ NSString* describeText = @"初次使用CaloShop卡路里販賣店\n我們需要�
     return _tutorialView;
 }
 
-//Setting Complete
--(void)completeTapAction
-{
-    NSLog(@"setting done");
-    MainViewController* MainViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"MainNav"];
-    [self.dynamicsDrawerViewController setPaneViewController:MainViewController animated:YES completion:nil];
-    
-}
--(void)buttomClickAction
-{
-    [self.fbLoginModel FBLogin];
-    [self.fbLoginHUD show:YES];
-}
-
-
--(void)didFetchProfile:(id)FBprofile
-{
-    [self.fbLoginHUD hide:YES];
-    [self.tutorialView hideWithFadeOutDuration:1.0f];
-}
-
-//Sex selected!!
--(void)whichSex:(UISegmentedControl *)paramSender
-{
-    if ([paramSender isEqual:self.sexSelector])
-    {
-        NSLog(@"sex = %ld", (long)[paramSender selectedSegmentIndex]);
-        if ((long)[paramSender selectedSegmentIndex] == 1)
-        {
-            
-        }
-        else if ((long)[paramSender selectedSegmentIndex] == 2)
-        {
-            
-        }
-    }
-}
-
-
-
-#pragma mark - error handler
--(void)failToFetchProfile:(NSError *)error
-{
-    
-    
-}
-
--(void)failToLoginFB:(NSError *)error
-{
-    
-    
-}
-
 #pragma mark - property initialization
 -(FBLoginModel *)fbLoginModel
 {
@@ -238,6 +290,41 @@ NSString* describeText = @"初次使用CaloShop卡路里販賣店\n我們需要�
     return _fbLoginHUD;
 }
 
+-(NSString *)gender
+{
+    if (!_gender)
+    {
+        _gender = [[NSString alloc]init];
+    }
+    return _gender;
+}
+
+-(NSDate *)birthday
+{
+    if (!_birthday)
+    {
+        _birthday = [[NSDate  alloc]init];
+    }
+    return _birthday;
+}
+
+-(NSString *)weight
+{
+    if (!_weight)
+    {
+        _weight = [[NSString alloc]init];
+    }
+    return _weight;
+}
+
+-(NSString *)height
+{
+    if (!_height)
+    {
+        _height = [[NSString alloc]init];
+    }
+    return _height;
+}
 
 -(UILabel*)profileTitle
 {
@@ -315,23 +402,9 @@ NSString* describeText = @"初次使用CaloShop卡路里販賣店\n我們需要�
         _birthdayField.borderStyle = UITextBorderStyleLine;
         _birthdayField.layer.borderColor = [UIColor colorWithHexString:@"#727171"].CGColor;
         _birthdayField.layer.borderWidth=1.0;
-        
-//        NSMutableAttributedString* String = [[NSMutableAttributedString alloc]initWithString:@"1985年09月10日"];
-//        
-//        NSDictionary *attrs = @{NSFontAttributeName : [UIFont fontWithName:fApple_LiGothic size:20],
-//                    NSForegroundColorAttributeName : [UIColor colorWithHexString:@"#898989"]};
-//        
-//        [String addAttributes:attrs range:NSMakeRange(0, 4)];
-//        [String addAttributes:attrs range:NSMakeRange(5, 2)];
-//        [String addAttributes:attrs range:NSMakeRange(8, 2)];
-//        
-//        attrs = @{NSFontAttributeName : [UIFont fontWithName:fApple_LiGothic size:20],
-//                  NSForegroundColorAttributeName : [UIColor colorWithHexString:@"#727171"]};
-//    
-//        [String addAttributes:attrs range:NSMakeRange(4, 1)];
-//        [String addAttributes:attrs range:NSMakeRange(7, 1)];
-//        [String addAttributes:attrs range:NSMakeRange(10,1)];
-//        _birthdayField.attributedText = String;
+        _birthdayField.delegate = self;
+        _birthdayField.inputView = self.birthdaySelector;
+        _birthdayField.inputAccessoryView = self.toolBar;
     }
     return _birthdayField;
 }
@@ -348,6 +421,9 @@ NSString* describeText = @"初次使用CaloShop卡路里販賣店\n我們需要�
         _weightField.borderStyle = UITextBorderStyleLine;
         _weightField.layer.borderColor = [UIColor colorWithHexString:@"#727171"].CGColor;
         _weightField.layer.borderWidth=1.0;
+        _weightField.delegate =self;
+        _weightField.inputView = self.weightSelector;
+        _weightField.inputAccessoryView = self.toolBar;
     }
     return _weightField;
 }
@@ -364,6 +440,9 @@ NSString* describeText = @"初次使用CaloShop卡路里販賣店\n我們需要�
         _heightField.borderStyle = UITextBorderStyleLine;
         _heightField.layer.borderColor = [UIColor colorWithHexString:@"#727171"].CGColor;
         _heightField.layer.borderWidth=1.0;
+        _heightField.delegate=self;
+        _heightField.inputView = self.heightSelector;
+        _heightField.inputAccessoryView = self.toolBar;
     }
     return _heightField;
 }
@@ -372,17 +451,36 @@ NSString* describeText = @"初次使用CaloShop卡路里販賣店\n我們需要�
 {
     if (!_birthdaySelector)
     {
-        _birthdaySelector = [[UIDatePicker alloc]initForAutoLayout];
+        NSDate* minDate = [[NSDate alloc]initWithTimeIntervalSinceNow:80*365*24*60*60];
+        NSDate* maxDate =[[NSDate alloc]initWithTimeIntervalSinceNow:2*365*24*60*60];
+        _birthdaySelector = [[UIDatePicker alloc]init];
+        _birthdaySelector.datePickerMode = UIDatePickerModeDate;
+        _birthdaySelector.minimumDate = minDate;
+        _birthdaySelector.maximumDate = maxDate;
+        [_birthdaySelector addTarget:self action:@selector(birthdaySelectorValueChanged:) forControlEvents:UIControlEventValueChanged];
     }
     return _birthdaySelector;
 }
+
+- ( void )birthdaySelectorValueChanged:(UIDatePicker *)sender
+{
+    self.birthday =  [sender date]; // 獲取被選中的時間
+    NSDateFormatter *selectDateFormatter = [[ NSDateFormatter alloc ] init ];
+    selectDateFormatter. dateFormat = @"yyyy年MM月dd日"; // 設置時間和日期的格式
+    NSString *date = [selectDateFormatter stringFromDate :[sender date]]; // 把date 類型轉為設置好格式的string 類型
+    self.birthdayField.text = date;
+}
+
 -(UIPickerView *)heightSelector
 {
     if (!_heightSelector)
     {
-        _heightSelector = [[UIPickerView alloc]initForAutoLayout];
+        _heightSelector = [[UIPickerView alloc]init];
+        _heightSelector.delegate = self;
+        _heightSelector.dataSource = self;
+        _heightSelector.showsSelectionIndicator = YES;
+        _heightSelector.hidden = YES;
     }
-    
     return _heightSelector;
 }
 
@@ -390,10 +488,206 @@ NSString* describeText = @"初次使用CaloShop卡路里販賣店\n我們需要�
 {
     if (!_weightSelector)
     {
-        _weightSelector = [[UIPickerView alloc]initForAutoLayout];
+        _weightSelector = [[UIPickerView alloc]init];
+        _weightSelector.delegate = self;
+        _weightSelector.dataSource = self;
+        _weightSelector.showsSelectionIndicator = YES;
+        _weightSelector.hidden = YES;
     }
     return _weightSelector;
 }
+
+-(UIToolbar *)toolBar
+{
+    if (!_toolBar)
+    {
+        _toolBar = [[UIToolbar alloc]initWithFrame:
+                    CGRectMake(0, self.view.frame.size.height-
+                               _weightSelector.frame.size.height-50, 320, 50)];
+        UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]
+                                       initWithTitle:@"Done" style:UIBarButtonItemStyleDone
+                                       target:self action:@selector(pickerDone:)];
+        
+        [_toolBar setBarStyle:UIBarStyleBlackOpaque];
+        NSArray *toolbarItems = [NSArray arrayWithObjects:doneButton, nil];
+        [_toolBar setItems:toolbarItems animated:YES];
+    }
+    return _toolBar;
+}
+
+#pragma mark - Text field delegates
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if ([textField isEqual:self.birthdayField])
+    {
+        self.birthdaySelector.hidden = NO;
+    }
+    else if ([textField isEqual:self.weightField])
+    {
+        self.weightSelector.hidden = NO;
+    }
+    else if([textField isEqual:self.heightField])
+    {
+        self.heightSelector.hidden = NO;
+    }
+}
+#pragma mark - Picker View Data source
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    if ([pickerView isEqual:self.birthdaySelector])
+    {
+        return 1;
+    }
+    else if ([pickerView isEqual:self.weightSelector])
+    {
+        return 3;
+    }
+    else if([pickerView isEqual:self.heightSelector])
+    {
+        return 3;
+    }
+    else
+    {
+        return 0;
+    }
+}
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    if ([pickerView isEqual:self.weightSelector])
+    {
+        switch (component)
+        {
+            case 0:
+                return [self.weightIntArray count];
+                break;
+            case 1:
+                return [self.weightDecimalArray count];
+                break;
+            case 2:
+                return [self.weightUnitArray count];
+            default:
+                return 0;
+                break;
+        }
+    }
+    else if([pickerView isEqual:self.heightSelector])
+    {
+        switch (component)
+        {
+            case 0:
+                return [self.heightIntArray count];
+                break;
+            case 1:
+                return [self.heightDecimalArray count];
+                break;
+            case 2:
+                return [self.heightUnitArray count];
+            default:
+                return 0;
+                break;
+        }
+    }
+    else
+    {
+        return 0;
+    }
+
+}
+
+#pragma mark- Picker View Delegate
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    if ([pickerView isEqual:self.weightSelector])
+    {
+        static long rowInt = 0;
+        static long rowDec = 0;
+        static long rowUnit = 0;
+        switch (component)
+        {
+            case 0:
+                rowInt = row;
+                break;
+            case 1:
+                rowDec = row;
+                break;
+            case 2:
+                rowUnit = row;
+                break;
+            default:
+                break;
+        }
+        self.weightField.text = [NSString stringWithFormat:@"%@%@%@",[self.weightIntArray objectAtIndex:rowInt],[self.weightDecimalArray objectAtIndex:rowDec],[self.weightUnitArray objectAtIndex:rowUnit]];
+        self.weight = [NSString stringWithFormat:@"%@%@",[self.weightIntArray objectAtIndex:rowInt],[self.weightDecimalArray objectAtIndex:rowDec]];
+    }
+    else if([pickerView isEqual:self.heightSelector])
+    {
+        static long rowInt = 0;
+        static long rowDec = 0;
+        static long rowUnit = 0;
+        switch (component)
+        {
+            case 0:
+                rowInt = row;
+                break;
+            case 1:
+                rowDec = row;
+                break;
+            case 2:
+                rowUnit = row;
+                break;
+            default:
+                break;
+        }
+        self.heightField.text = [NSString stringWithFormat:@"%@%@%@",[self.heightIntArray objectAtIndex:rowInt],[self.heightDecimalArray objectAtIndex:rowDec],[self.heightUnitArray objectAtIndex:rowUnit]];
+        self.height = [NSString stringWithFormat:@"%@%@",[self.heightIntArray objectAtIndex:rowInt],[self.heightDecimalArray objectAtIndex:rowDec]];
+    }
+    else
+    {
+    }
+}
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    if ([pickerView isEqual:self.weightSelector])
+    {
+        switch (component)
+        {
+            case 0:
+                return [self.weightIntArray objectAtIndex:row];
+                break;
+            case 1:
+                return [self.weightDecimalArray objectAtIndex:row];
+                break;
+            case 2:
+                return [self.weightUnitArray objectAtIndex:row];
+            default:
+                return 0;
+                break;
+        }
+    }
+    else if([pickerView isEqual:self.heightSelector])
+    {
+        switch (component)
+        {
+            case 0:
+                return [self.heightIntArray objectAtIndex:row];
+                break;
+            case 1:
+                return [self.heightDecimalArray objectAtIndex:row];
+                break;
+            case 2:
+                return [self.heightUnitArray objectAtIndex:row];
+            default:
+                return 0;
+                break;
+        }
+    }
+    else
+    {
+        return nil;
+    }
+}
+
 
 
 @end

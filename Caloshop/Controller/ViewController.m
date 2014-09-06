@@ -45,7 +45,7 @@
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
     
-
+    self.navigationController.navigationItem.leftBarButtonItem.style = UIBarButtonItemStylePlain;
     
 }
 

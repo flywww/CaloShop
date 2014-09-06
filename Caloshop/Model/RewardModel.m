@@ -16,13 +16,15 @@
 {
     [self checkNetworkAndDoNext:^
     {
-        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
             //Find today's reward
             PFQuery* rewardQuery = [PFQuery queryWithClassName:@"Reward"];
             [rewardQuery whereKey:@"rewardDate" greaterThanOrEqualTo:date];
             [rewardQuery whereKey:@"rewardDate" lessThan:[[NSDate alloc] initWithTimeInterval:24*60*60 sinceDate:date]];
-            NSMutableDictionary* rewardResult = [rewardQuery findObjects][0];
-            
+        
+        
+        NSMutableDictionary* rewardResult = [rewardQuery findObjects][0];
+        
             //Find reward's product today
             PFQuery* productQuery = [PFQuery queryWithClassName:@"Product"];
             [productQuery whereKey:@"productID" equalTo:[rewardResult[@"productID"] stringValue]];
@@ -36,7 +38,7 @@
             {
                 NSLog(@"Sucseed fetch today's reward : %@ and product : %@", rewardResult, productResult);
             }
-    
+        });
     }
     andFail:^
     {

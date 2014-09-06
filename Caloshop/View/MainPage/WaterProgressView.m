@@ -83,6 +83,7 @@
     
 }
 
+
 -(UITapGestureRecognizer *)waterViewTap
 {
     if (!_waterViewTap)

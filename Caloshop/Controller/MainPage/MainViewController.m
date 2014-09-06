@@ -19,11 +19,10 @@
 #import "CaloAndStepShowView.h"
 
 #import "PopViewController.h"
-#import <MZFormSheetController.h>
 
-@interface MainViewController ()<RewardModelDelegate,WaterViewDelegate,MZFormSheetBackgroundWindowDelegate>
-//Side page setting
-@property (nonatomic, weak) MSDynamicsDrawerViewController *dynamicsDrawerViewController;
+
+@interface MainViewController ()<RewardModelDelegate,WaterViewDelegate>
+
 //Reward Model
 @property (nonatomic) RewardModel* rewardModel;
 @property (nonatomic) WaterProgressView* waterProgressView;
@@ -37,7 +36,7 @@
 
 //PopView
 @property (nonatomic) PopViewController* popView;
-@property (nonatomic) MZFormSheetController* popSheet;
+
 @end
 
 @implementation MainViewController
@@ -51,34 +50,18 @@
                                                                        target:self action:@selector(dynamicsDrawerRevealLeftBarButtonItemTapped:)];
     self.navigationItem.leftBarButtonItem = self.paneRevealLeftBarButtonItem;
     
-//    
-//    [self mz_presentFormSheetController:self.popSheet animated:YES completionHandler:^(MZFormSheetController *formSheetController) {
-//        
-//    }];
+    [self.popView pop];
     
     [self.view addSubview:self.backgroundImg];
     [self.view addSubview:self.waterCircle];
     [self.view addSubview:self.waterProgressView];
-    [self.waterProgressView setProgress:0.73];
-    
     [self.view addSubview:self.caloAndStepsDisplay];
-    [self.caloAndStepsDisplay showViewWithNewCalo:1333 andOldCalo:60 andNewSteps:80313 andOldSteps:700];
-    
     [self.view addSubview:self.titleLabel];
     
+    [self.waterProgressView setProgress:0.73];
+    [self.caloAndStepsDisplay showViewWithNewCalo:1333 andOldCalo:60 andNewSteps:80313 andOldSteps:700];
     
-    // if out of date reload viewController
-    if (self.productDictionary == nil)
-    {
-        [self.rewardModel fetchReward:[HelpTool getLocalDateWithOutTime]];
-    }
-    else
-    {
-        if ([HelpTool getLocalDateWithOutTime:self.rewardDictionary[@"rewardDate"]] != [HelpTool getLocalDateWithOutTime])
-        {
-            [self.rewardModel fetchReward:[HelpTool getLocalDateWithOutTime]];
-        }
-    }
+    [self rewardAndProductFetch];
 }
 
 - (void)dynamicsDrawerRevealLeftBarButtonItemTapped:(id)sender
@@ -125,7 +108,24 @@
     productPageViewController.productDictionary = (NSDictionary*)sender;
 }
 
+#pragma mark - reward fetch
 
+-(void)rewardAndProductFetch
+{
+    
+    // if out of date reload viewController
+    if (self.productDictionary == nil)
+    {
+        [self.rewardModel fetchReward:[HelpTool getLocalDateWithOutTime]];
+    }
+    else
+    {
+        if ([HelpTool getLocalDateWithOutTime:self.rewardDictionary[@"rewardDate"]] != [HelpTool getLocalDateWithOutTime])
+        {
+            [self.rewardModel fetchReward:[HelpTool getLocalDateWithOutTime]];
+        }
+    }
+}
 -(void)didFetchReward:(NSDictionary *)rewardDetail andProductDetail:(NSDictionary *)productDetail
 {
     
@@ -147,11 +147,7 @@
 -(void)failToFetchReward:(NSError *)error
 {
     
-    
 }
-
-
-
 
 #pragma mark - property initialize
 
@@ -161,9 +157,7 @@
     {
         _waterProgressView=[[WaterProgressView alloc]initForAutoLayout];
         _waterProgressView.currentWaterColor=[UIColor whiteColor];
-        //_waterProgressView.productImg.image = [UIImage imageNamed:@"ProductPureImg"];
-
-        
+        _waterProgressView.productImg.image = [UIImage imageNamed:@"EmptyImage"];
         _waterProgressView.delegate= self;
     }
     return _waterProgressView;
@@ -220,33 +214,6 @@
     return  _popView;
 }
 
--(MZFormSheetController *)popSheet
-{
-    if (!_popSheet)
-    {
-        _popSheet = [[MZFormSheetController alloc]initWithViewController:self.popView];
-        _popSheet.transitionStyle = MZFormSheetTransitionStyleBounce;
-        _popSheet.cornerRadius = 0;
-        _popSheet.presentedFormSheetSize = CGSizeMake(270, 464);
-        _popSheet.didTapOnBackgroundViewCompletionHandler = ^(CGPoint location)
-        {
-            
-        };
-        
-        _popSheet.shouldCenterVertically = YES;
-        _popSheet.shouldDismissOnBackgroundViewTap = YES;
-        
-        _popSheet.didPresentCompletionHandler = ^(UIViewController *presentedFSViewController)
-        {
-            
-        };
-        
-        [[MZFormSheetBackgroundWindow appearance] setBackgroundBlurEffect:YES];
-        [[MZFormSheetBackgroundWindow appearance] setBlurRadius:5.0];
-        [[MZFormSheetBackgroundWindow appearance] setBackgroundColor:[UIColor clearColor]];
-    }
-    return _popSheet;
-}
 
 -(UIImageView *)backgroundImg
 {

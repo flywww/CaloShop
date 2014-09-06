@@ -40,10 +40,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self viewLayout];
     
-    NSLog(@"PriductPageView - %@", self.productDictionary);
-    NSLog(@"?????? - %@", self.productDictionary[@"image3"]);
+    self.title = @"CaloShop";
+    
+    [self viewLayout];
 }
 
 #pragma mark - Buttom action

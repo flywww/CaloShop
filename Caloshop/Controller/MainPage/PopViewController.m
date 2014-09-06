@@ -7,10 +7,10 @@
 //
 
 #import "PopViewController.h"
+#import <MZFormSheetController.h>
 
 
-
-@interface PopViewController ()
+@interface PopViewController ()<MZFormSheetBackgroundWindowDelegate>
 {
     NSString* whichView;
     NSString* viewTitle;
@@ -19,7 +19,7 @@
 @property (nonatomic) UIImageView* popViewContent;
 @property (nonatomic) UIImageView* popViewTitleView;
 @property (nonatomic) UILabel* popViewTitle;
-
+@property (nonatomic) MZFormSheetController* popSheet;
 
 @end
 
@@ -46,6 +46,44 @@
     [self.view addSubview:self.leftBtn];
     [self.view addSubview:self.rightBtn];
 }
+
+-(void)pop
+{
+    
+        [self mz_presentFormSheetController:self.popSheet animated:YES completionHandler:^(MZFormSheetController *formSheetController) {
+    
+        }];
+}
+
+
+-(MZFormSheetController *)popSheet
+{
+    if (!_popSheet)
+    {
+        _popSheet = [[MZFormSheetController alloc]initWithViewController:self];
+        _popSheet.transitionStyle = MZFormSheetTransitionStyleBounce;
+        _popSheet.cornerRadius = 0;
+        _popSheet.presentedFormSheetSize = CGSizeMake(270, 464);
+        _popSheet.didTapOnBackgroundViewCompletionHandler = ^(CGPoint location)
+        {
+            
+        };
+        
+        _popSheet.shouldCenterVertically = YES;
+        _popSheet.shouldDismissOnBackgroundViewTap = YES;
+        
+        _popSheet.didPresentCompletionHandler = ^(UIViewController *presentedFSViewController)
+        {
+            
+        };
+        
+        [[MZFormSheetBackgroundWindow appearance] setBackgroundBlurEffect:YES];
+        [[MZFormSheetBackgroundWindow appearance] setBlurRadius:5.0];
+        [[MZFormSheetBackgroundWindow appearance] setBackgroundColor:[UIColor clearColor]];
+    }
+    return _popSheet;
+}
+
 
 -(UIImageView *)popViewContent
 {

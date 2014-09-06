@@ -11,4 +11,7 @@
 
 @interface ProfilePageViewController : ViewController
 
+//Side page setting
+@property (nonatomic, weak) MSDynamicsDrawerViewController *dynamicsDrawerViewController;
+
 @end

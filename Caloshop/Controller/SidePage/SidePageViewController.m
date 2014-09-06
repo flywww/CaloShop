@@ -51,7 +51,22 @@
     NSString* fbURL = @"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1";
     NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:fbURL,[PFUser currentUser][@"fbID"]]];
     [self.avatarImg sd_setImageWithURL:pictureURL placeholderImage:[UIImage imageNamed:@"EmptyImage"]];
+    [self.avatarLabel setText:[PFUser currentUser][@"fbname"]];
     
+}
+
+- (UIImage *)imageByCroppingImage:(UIImage *)image toSize:(CGSize)size
+{
+    double x = (image.size.width - size.width) / 2.0;
+    double y = (image.size.height - size.height) / 2.0;
+    
+    CGRect cropRect = CGRectMake(x, y, size.height, size.width);
+    CGImageRef imageRef = CGImageCreateWithImageInRect([image CGImage], cropRect);
+    
+    UIImage *cropped = [UIImage imageWithCGImage:imageRef];
+    CGImageRelease(imageRef);
+    
+    return cropped;
 }
 
 -(void)updateViewConstraints
@@ -232,7 +247,7 @@
     if (!_avatarLabel)
     {
         _avatarLabel = [[UILabel alloc]initForAutoLayout];
-        _avatarLabel.text = @"林盈志";
+        _avatarLabel.text = @"???";
         _avatarLabel.backgroundColor=[UIColor clearColor];
         _avatarLabel.font = [UIFont fontWithName:fApple_LiGothic size:18];
         _avatarLabel.textColor = [UIColor whiteColor];
@@ -250,6 +265,7 @@
     }
     return _sideViewBackgroundImage;
 }
+
 
 //- (IBAction)test:(id)sender
 //{

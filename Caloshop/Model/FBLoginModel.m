@@ -34,6 +34,23 @@
 
 -(void)FBLogin
 {
+    
+    // Initialize a session object
+    FBSession *session = [[FBSession alloc] init];
+    // Set the active session
+    [FBSession setActiveSession:session];
+    // Open the session
+    [session openWithBehavior:FBSessionLoginBehaviorWithNoFallbackToWebView
+            completionHandler:^(FBSession *session,
+                                FBSessionState status,
+                                NSError *error) {
+                // Respond to session state changes,
+                // ex: updating the view
+            }];
+    
+    
+    
+    
     self.FBPermissions=@[@"publish_actions",
                          @"public_profile",
                          @"user_birthday",

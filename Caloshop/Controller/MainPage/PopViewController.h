@@ -16,5 +16,6 @@
 @property (nonatomic) UIButton* leftBtn;
 @property (nonatomic) UIButton* rightBtn;
 @property (nonatomic) UIButton* middleBtn;
+-(void)pop;
 
 @end

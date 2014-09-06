@@ -1,5 +1,7 @@
 PODS:
-  - Bolts (1.1.1)
+  - ActionSheetPicker-3.0 (1.1.9)
+  - Bolts (1.1.2)
+  - DAKeyboardControl (2.4.0)
   - EAIntroView (2.6.3)
   - EDHexColor (0.0.1)
   - EDStringHelper (0.0.1)
@@ -27,6 +29,8 @@ PODS:
   - UICountingLabel (1.1.0)
 
 DEPENDENCIES:
+  - ActionSheetPicker-3.0 (~> 1.1.9)
+  - DAKeyboardControl
   - EAIntroView
   - EDHexColor
   - EDStringHelper
@@ -42,7 +46,9 @@ DEPENDENCIES:
   - UICountingLabel
 
 SPEC CHECKSUMS:
-  Bolts: 0ca796081c3e7c139bd86d6903c27f1b83036a5d
+  ActionSheetPicker-3.0: 8c74f9f8223fb0d2c7de15db44b206274d573cf4
+  Bolts: 2635e8698a630774689441047f3465d78c48d485
+  DAKeyboardControl: 45a363c85c48a7df76f21f236d9f85800e001775
   EAIntroView: 45924b81c153d1206ee24f4fa654e9d9dae79e93
   EDHexColor: 1593003ed93fdd7680949fa6206212ce05ad58a5
   EDStringHelper: 6a4fd770608924a7ea40d150a07a663b92c533db
