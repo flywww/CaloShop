@@ -24,7 +24,5 @@
 
 
 -(void)uploadOlderWithName:(NSString *)name andPhone:(NSString *)phone andAddress:(NSString *)address andReward:(NSDictionary*)reward;
--(NSString*)checkInfoWithName:(NSString*)name andPhone:(NSString*)phone andAddress:(NSString*)address;
--(void)autoFillProfile;
 
 @end

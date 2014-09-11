@@ -22,10 +22,15 @@ static NSString * const PopViewCallStart = @"start";
 
 
 //UserDefault
-static NSString * const UD_Genser = @"gender";
+static NSString * const UD_Gender = @"gender";
 static NSString * const UD_Birthday = @"birthday";
 static NSString * const UD_Weight = @"weight";
 static NSString * const UD_Height = @"height";
+
+static NSString * const UD_Gender_init = @"female";
+static NSString * const UD_Weight_init = @"45.0";
+static NSString * const UD_Height_init = @"165.0";
+
 
 #ifndef Caloshop_settingList_h
 #define Caloshop_settingList_h

@@ -45,8 +45,10 @@
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
     
-    self.navigationController.navigationItem.leftBarButtonItem.style = UIBarButtonItemStylePlain;
+    self.navigationController.navigationItem.leftBarButtonItem.style = UIBarButtonItemStyleDone;
+    self.navigationController.navigationItem.leftBarButtonItem.title = @"";
     
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
 }
 
 - (void)didReceiveMemoryWarning

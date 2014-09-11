@@ -9,9 +9,11 @@
 /* Begin PBXBuildFile section */
 		4211D83819B1E3EB00001745 /* WaterCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4211D83719B1E3EB00001745 /* WaterCircleView.m */; };
 		4211D83A19B211B500001745 /* DFYuanMedium-B5.TTC in Resources */ = {isa = PBXBuildFile; fileRef = 4211D83919B211B500001745 /* DFYuanMedium-B5.TTC */; };
+		4212D7F619BF3272006B912E /* TextFieldChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4212D7F519BF3272006B912E /* TextFieldChecker.m */; };
 		421485F01988EBF3009E6E35 /* HelpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 421485EF1988EBF3009E6E35 /* HelpTool.m */; };
 		421485F3198904CD009E6E35 /* Reward.m in Sources */ = {isa = PBXBuildFile; fileRef = 421485F2198904CD009E6E35 /* Reward.m */; };
 		421485F6198904CE009E6E35 /* UserLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 421485F5198904CE009E6E35 /* UserLog.m */; };
+		4226DBF219C050ED0011530D /* BioCalculateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4226DBF119C050ED0011530D /* BioCalculateModel.m */; };
 		42347E1219B4172A00EACFBC /* TutorialView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42347E1119B4172A00EACFBC /* TutorialView.m */; };
 		4240617B19A1E7040073279F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4240617A19A1E7040073279F /* ViewController.m */; };
 		4240617E19A201F00073279F /* CaloAndStepShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4240617D19A201F00073279F /* CaloAndStepShowView.m */; };
@@ -21,6 +23,7 @@
 		424061A019A25ABC0073279F /* SidePageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4240619F19A25ABC0073279F /* SidePageTableViewCell.m */; };
 		424061A319A38C400073279F /* PopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 424061A219A38C400073279F /* PopViewController.m */; };
 		424061A619A38C8F0073279F /* TimeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 424061A519A38C8F0073279F /* TimeModel.m */; };
+		4257AE8619C1DA6200F1B94F /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4257AE8519C1DA6200F1B94F /* CoreMotion.framework */; };
 		4286984319852A83005A137C /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4286984119852A83005A137C /* Model.xcdatamodeld */; };
 		4286984619852C47005A137C /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4286984519852C47005A137C /* Profile.m */; };
 		4293AE76199B75C1004C2912 /* SidePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4293AE75199B75C1004C2912 /* SidePageViewController.m */; };
@@ -67,12 +70,16 @@
 		4211D83619B1E3EB00001745 /* WaterCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaterCircleView.h; sourceTree = "<group>"; };
 		4211D83719B1E3EB00001745 /* WaterCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaterCircleView.m; sourceTree = "<group>"; };
 		4211D83919B211B500001745 /* DFYuanMedium-B5.TTC */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DFYuanMedium-B5.TTC"; sourceTree = "<group>"; };
+		4212D7F419BF3272006B912E /* TextFieldChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldChecker.h; sourceTree = "<group>"; };
+		4212D7F519BF3272006B912E /* TextFieldChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldChecker.m; sourceTree = "<group>"; };
 		421485EE1988EBF3009E6E35 /* HelpTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpTool.h; sourceTree = "<group>"; };
 		421485EF1988EBF3009E6E35 /* HelpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpTool.m; sourceTree = "<group>"; };
 		421485F1198904CD009E6E35 /* Reward.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reward.h; sourceTree = "<group>"; };
 		421485F2198904CD009E6E35 /* Reward.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reward.m; sourceTree = "<group>"; };
 		421485F4198904CE009E6E35 /* UserLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLog.h; sourceTree = "<group>"; };
 		421485F5198904CE009E6E35 /* UserLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLog.m; sourceTree = "<group>"; };
+		4226DBF019C050ED0011530D /* BioCalculateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BioCalculateModel.h; sourceTree = "<group>"; };
+		4226DBF119C050ED0011530D /* BioCalculateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BioCalculateModel.m; sourceTree = "<group>"; };
 		42347E1019B4172A00EACFBC /* TutorialView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialView.h; sourceTree = "<group>"; };
 		42347E1119B4172A00EACFBC /* TutorialView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialView.m; sourceTree = "<group>"; };
 		4240617919A1E7040073279F /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -90,6 +97,7 @@
 		424061A219A38C400073279F /* PopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopViewController.m; sourceTree = "<group>"; };
 		424061A419A38C8F0073279F /* TimeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeModel.h; sourceTree = "<group>"; };
 		424061A519A38C8F0073279F /* TimeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeModel.m; sourceTree = "<group>"; };
+		4257AE8519C1DA6200F1B94F /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		4286984219852A83005A137C /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		4286984419852C47005A137C /* Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Profile.h; sourceTree = "<group>"; };
 		4286984519852C47005A137C /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Profile.m; sourceTree = "<group>"; };
@@ -145,6 +153,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4257AE8619C1DA6200F1B94F /* CoreMotion.framework in Frameworks */,
 				42D0D4831981240E00462C63 /* CoreGraphics.framework in Frameworks */,
 				42D0D4851981240E00462C63 /* UIKit.framework in Frameworks */,
 				42D0D4811981240E00462C63 /* Foundation.framework in Frameworks */,
@@ -266,6 +275,7 @@
 		42D0D47F1981240E00462C63 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4257AE8519C1DA6200F1B94F /* CoreMotion.framework */,
 				42D0D4801981240E00462C63 /* Foundation.framework */,
 				42D0D4821981240E00462C63 /* CoreGraphics.framework */,
 				42D0D4841981240E00462C63 /* UIKit.framework */,
@@ -290,6 +300,8 @@
 				421485EE1988EBF3009E6E35 /* HelpTool.h */,
 				421485EF1988EBF3009E6E35 /* HelpTool.m */,
 				4240618119A213210073279F /* settingList.h */,
+				4212D7F419BF3272006B912E /* TextFieldChecker.h */,
+				4212D7F519BF3272006B912E /* TextFieldChecker.m */,
 			);
 			path = Caloshop;
 			sourceTree = "<group>";
@@ -341,6 +353,8 @@
 				42C4E2201994BAB400D9FA02 /* UploadOrderModel.m */,
 				424061A419A38C8F0073279F /* TimeModel.h */,
 				424061A519A38C8F0073279F /* TimeModel.m */,
+				4226DBF019C050ED0011530D /* BioCalculateModel.h */,
+				4226DBF119C050ED0011530D /* BioCalculateModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -562,11 +576,13 @@
 				4286984319852A83005A137C /* Model.xcdatamodeld in Sources */,
 				4240617E19A201F00073279F /* CaloAndStepShowView.m in Sources */,
 				4240619D19A25AA20073279F /* SidePageTableView.m in Sources */,
+				4212D7F619BF3272006B912E /* TextFieldChecker.m in Sources */,
 				42D0D48D1981240E00462C63 /* main.m in Sources */,
 				42C4E2211994BAB400D9FA02 /* UploadOrderModel.m in Sources */,
 				424061A319A38C400073279F /* PopViewController.m in Sources */,
 				424061A619A38C8F0073279F /* TimeModel.m in Sources */,
 				4293AE7B199B773C004C2912 /* BuyPageViewController.m in Sources */,
+				4226DBF219C050ED0011530D /* BioCalculateModel.m in Sources */,
 				421485F3198904CD009E6E35 /* Reward.m in Sources */,
 				42B90BF71987C2F3009147F4 /* RewardModel.m in Sources */,
 				4293AE76199B75C1004C2912 /* SidePageViewController.m in Sources */,

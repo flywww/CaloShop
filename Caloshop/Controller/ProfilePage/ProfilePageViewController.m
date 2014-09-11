@@ -14,10 +14,6 @@
 #import "TutorialView.h"
 #import "FBLoginModel.h"
 
-NSString* birthday = @"1985年09月10日";
-NSString* height = @"174.0公分";
-NSString* weight = @"63.0公斤";
-
 NSString* titleText = @"請輸入您的資料";
 NSString* describeText = @"初次使用CaloShop卡路里販賣店\n我們需要您的資料讓計算更精準\n請放心我們不會將此資訊用於其它用途";
 
@@ -68,6 +64,8 @@ NSString* describeText = @"初次使用CaloShop卡路里販賣店\n我們需要�
 //Other
 @property (nonatomic, strong) UIBarButtonItem *rightBarButtonItem;
 
+@property (nonatomic) NSUserDefaults* userDefault;
+
 @end
 
 @implementation ProfilePageViewController
@@ -93,6 +91,8 @@ NSString* describeText = @"初次使用CaloShop卡路里販賣店\n我們需要�
     [self.rightBarButtonItem setTitleTextAttributes:attr forState:UIControlStateNormal];
     self.navigationItem.rightBarButtonItem = self.rightBarButtonItem;
     
+    
+    [self profileInit];
     
     [self.view addSubview:self.profileTitle];
     [self.view addSubview:self.profileDescribe];
@@ -166,6 +166,14 @@ NSString* describeText = @"初次使用CaloShop卡路里販賣店\n我們需要�
     self.heightUnitArray = [[NSMutableArray alloc]initWithObjects:@"公分", nil];
 }
 
+-(void)profileInit
+{
+    self.gender = [self.userDefault stringForKey:UD_Gender];
+    self.birthday = [self.userDefault valueForKey:UD_Birthday];
+    self.weight = [self.userDefault stringForKey:UD_Weight];
+    self.height = [self.userDefault stringForKey:UD_Height];
+}
+
 #pragma mark - button action
 //Setting Complete
 -(void)completeTapAction
@@ -179,6 +187,12 @@ NSString* describeText = @"初次使用CaloShop卡路里販賣店\n我們需要�
     [PFUser currentUser][@"weight"] = self.weight;
     [PFUser currentUser][@"height"] = self.height;
     [[PFUser currentUser] saveEventually];
+    
+    [self.userDefault setObject:self.birthday forKey:UD_Birthday];
+    [self.userDefault setObject:self.gender forKey:UD_Gender];
+    [self.userDefault setObject:self.weight forKey:UD_Weight];
+    [self.userDefault setObject:self.height forKey:UD_Height];
+    [self.userDefault synchronize];
 }
 
 -(void)pickerDone:(id)selector
@@ -217,7 +231,7 @@ NSString* describeText = @"初次使用CaloShop卡路里販賣店\n我們需要�
         }
         else if ((long)[paramSender selectedSegmentIndex] == 2)
         {
-            self.gender =@"women";
+            self.gender =@"female";
         }
     }
 }
@@ -369,7 +383,15 @@ NSString* describeText = @"初次使用CaloShop卡路里販賣店\n我們需要�
         NSArray *mySegments = [[NSArray alloc] initWithObjects: @"",@"男",@"女",@"",nil];
         _sexSelector = [[UISegmentedControl alloc]initWithItems:mySegments];
         _sexSelector.layer.cornerRadius = 0.0f;
-        _sexSelector.selectedSegmentIndex = 1;
+        
+        if ([[self.userDefault stringForKey:UD_Gender] isEqualToString:@"male"])
+        {
+            _sexSelector.selectedSegmentIndex = 1;
+        }
+        else if ([[self.userDefault stringForKey:UD_Gender] isEqualToString:@"female"])
+        {
+            _sexSelector.selectedSegmentIndex = 2;
+        }
         _sexSelector.tintColor = [UIColor colorWithHexString:@"#727171"];
         
         NSDictionary *deselectedAttrs = @{NSFontAttributeName : [UIFont fontWithName:fApple_LiGothic size:20]};
@@ -398,7 +420,7 @@ NSString* describeText = @"初次使用CaloShop卡路里販賣店\n我們需要�
         _birthdayField.textAlignment = NSTextAlignmentCenter;
         _birthdayField.font = [UIFont fontWithName:fApple_LiGothic size:20];
         _birthdayField.textColor = [UIColor colorWithHexString:@"#727171"];
-        _birthdayField.text = birthday;
+        _birthdayField.text = [HelpTool transDateToStringWithDate:[self.userDefault valueForKey:UD_Birthday] andFormate:@"yyyy年MM月dd日"];
         _birthdayField.borderStyle = UITextBorderStyleLine;
         _birthdayField.layer.borderColor = [UIColor colorWithHexString:@"#727171"].CGColor;
         _birthdayField.layer.borderWidth=1.0;
@@ -417,7 +439,7 @@ NSString* describeText = @"初次使用CaloShop卡路里販賣店\n我們需要�
         _weightField.textAlignment = NSTextAlignmentCenter;
         _weightField.font = [UIFont fontWithName:fApple_LiGothic size:20];
         _weightField.textColor = [UIColor colorWithHexString:@"#727171"];
-        _weightField.text = weight;
+        _weightField.text = [NSString stringWithFormat:@"%@ 公斤",[self.userDefault stringForKey:UD_Weight]];
         _weightField.borderStyle = UITextBorderStyleLine;
         _weightField.layer.borderColor = [UIColor colorWithHexString:@"#727171"].CGColor;
         _weightField.layer.borderWidth=1.0;
@@ -436,7 +458,7 @@ NSString* describeText = @"初次使用CaloShop卡路里販賣店\n我們需要�
         _heightField.textAlignment = NSTextAlignmentCenter;
         _heightField.font = [UIFont fontWithName:fApple_LiGothic size:20];
         _heightField.textColor = [UIColor colorWithHexString:@"#727171"];
-        _heightField.text = height;
+        _heightField.text = [NSString stringWithFormat:@"%@ 公分",[self.userDefault stringForKey:UD_Height]];
         _heightField.borderStyle = UITextBorderStyleLine;
         _heightField.layer.borderColor = [UIColor colorWithHexString:@"#727171"].CGColor;
         _heightField.layer.borderWidth=1.0;
@@ -452,21 +474,22 @@ NSString* describeText = @"初次使用CaloShop卡路里販賣店\n我們需要�
     if (!_birthdaySelector)
     {
         NSDate* minDate = [[NSDate alloc]initWithTimeIntervalSinceNow:80*365*24*60*60];
-        NSDate* maxDate =[[NSDate alloc]initWithTimeIntervalSinceNow:2*365*24*60*60];
+        NSDate* maxDate =[[NSDate alloc]initWithTimeIntervalSinceNow:8*365*24*60*60];
         _birthdaySelector = [[UIDatePicker alloc]init];
         _birthdaySelector.datePickerMode = UIDatePickerModeDate;
         _birthdaySelector.minimumDate = minDate;
         _birthdaySelector.maximumDate = maxDate;
+        
         [_birthdaySelector addTarget:self action:@selector(birthdaySelectorValueChanged:) forControlEvents:UIControlEventValueChanged];
     }
     return _birthdaySelector;
 }
 
-- ( void )birthdaySelectorValueChanged:(UIDatePicker *)sender
+- (void)birthdaySelectorValueChanged:(UIDatePicker *)sender
 {
     self.birthday =  [sender date]; // 獲取被選中的時間
     NSDateFormatter *selectDateFormatter = [[ NSDateFormatter alloc ] init ];
-    selectDateFormatter. dateFormat = @"yyyy年MM月dd日"; // 設置時間和日期的格式
+    selectDateFormatter.dateFormat = @"yyyy年MM月dd日"; // 設置時間和日期的格式
     NSString *date = [selectDateFormatter stringFromDate :[sender date]]; // 把date 類型轉為設置好格式的string 類型
     self.birthdayField.text = date;
 }
@@ -504,15 +527,28 @@ NSString* describeText = @"初次使用CaloShop卡路里販賣店\n我們需要�
         _toolBar = [[UIToolbar alloc]initWithFrame:
                     CGRectMake(0, self.view.frame.size.height-
                                _weightSelector.frame.size.height-50, 320, 50)];
+        UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithTitle:@"                                                  "
+                                                                    style:UIBarButtonItemStyleBordered
+                                                                   target:self
+                                                                   action:nil];
         UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]
                                        initWithTitle:@"Done" style:UIBarButtonItemStyleDone
                                        target:self action:@selector(pickerDone:)];
         
-        [_toolBar setBarStyle:UIBarStyleBlackOpaque];
-        NSArray *toolbarItems = [NSArray arrayWithObjects:doneButton, nil];
+        [_toolBar setBarStyle:UIBarStyleBlack];
+        NSArray *toolbarItems = [NSArray arrayWithObjects:button,doneButton, nil];
         [_toolBar setItems:toolbarItems animated:YES];
     }
     return _toolBar;
+}
+
+-(NSUserDefaults *)userDefault
+{
+    if (!_userDefault)
+    {
+        _userDefault = [[NSUserDefaults alloc]init];
+    }
+    return _userDefault;
 }
 
 #pragma mark - Text field delegates

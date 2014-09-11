@@ -7,6 +7,7 @@
 //
 
 #import "BuyPageViewController.h"
+#import "UploadOrderModel.h"
 #import <DAKeyboardControl.h>
 
 @interface BuyPageViewController ()
@@ -32,7 +33,7 @@
     [super viewDidLoad];
     
     self.title = @"CaloShop";
-   
+    
     [self.view addSubview:self.containerView];
     [self.containerView addSubview:self.mainImage];
     [self.containerView addSubview:self.productName];
@@ -53,7 +54,9 @@
     [super updateViewConstraints];
     
     [self.containerView autoSetDimensionsToSize:CGSizeMake(320, 504)];
-    [self.containerView autoCenterInSuperview];
+    [self.containerView autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.view];
+    [self.containerView autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeading ofView:self.view];
+    [self.containerView autoPinEdge:ALEdgeTrailing toEdge:ALEdgeTrailing ofView:self.view];
     
     [self.mainImage autoSetDimensionsToSize:CGSizeMake(175, 175)];
     [self.mainImage autoAlignAxis:ALAxisVertical toSameAxisOfView:self.containerView];
@@ -120,6 +123,25 @@
 -(void)sendAction:(id)sender
 {
     [self.view endEditing:YES];
+    
+    //check text is correct
+    if([TextFieldChecker isEmpty:self.nameField]||[TextFieldChecker isEmpty:self.addressField]||[TextFieldChecker isEmpty:self.phoneField])
+    {
+        NSLog(@"errrrrrror");
+    }
+    else
+    {
+        //save default info
+        
+        //send to parse server
+        UploadOrderModel* orderModel = [[UploadOrderModel alloc]init];
+        [orderModel uploadOlderWithName:self.nameField.text andPhone:self.phoneField.text andAddress:self.addressField.text andReward:self.productDictionary];
+    }
+    
+    
+    //mark today's reward get
+    
+    //go to main page when it done
 }
 
 
@@ -209,6 +231,7 @@
         _phoneField.borderStyle = UITextBorderStyleLine;
         _phoneField.layer.borderColor = [UIColor colorWithHexString:@"#B5B5B6"].CGColor;
         _phoneField.layer.borderWidth=1.0;
+        _phoneField.keyboardType = UIKeyboardTypeNumberPad;
     }
     return _phoneField;
 }

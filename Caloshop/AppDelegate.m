@@ -15,6 +15,8 @@
 #import "MSDynamicsDrawerViewController.h"
 #import "MSDynamicsDrawerStyler.h"
 
+
+
 @interface AppDelegate ()<MSDynamicsDrawerViewControllerDelegate>
 
 @property (nonatomic, strong) UIImageView *windowBackground;
@@ -25,6 +27,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    //UserDefault
+    [self userDefaultSetting];
+    
     //Parse Setting
     [Parse setApplicationId:@"dJyY9ZuZ40E6dFYymTcsKOp0j4XCfJgalEXH8xmG" clientKey:@"NrN2KErDUPBhcK7p3CAdoRhhrq7IM0TB730L0Hza"];
     [PFFacebookUtils initializeFacebook];
@@ -71,6 +76,29 @@
     return YES;
 }
 
+-(void)userDefaultSetting
+{
+    NSUserDefaults* userDefault = [[NSUserDefaults alloc]init];
+
+    if (![userDefault valueForKey:UD_Birthday])
+    {
+        [userDefault setObject:[HelpTool getLocalDate] forKey:UD_Birthday];
+    }
+    if (![userDefault stringForKey:UD_Gender])
+    {
+        [userDefault setObject:UD_Gender_init forKey:UD_Gender];
+    }
+    if (![userDefault stringForKey:UD_Height])
+    {
+        [userDefault setObject:UD_Height_init forKey:UD_Height];
+    }
+    if (![userDefault stringForKey:UD_Weight])
+    {
+        [userDefault setObject:UD_Weight_init forKey:UD_Weight];
+    }
+    [userDefault synchronize];
+}
+
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
@@ -79,6 +107,8 @@
                   sourceApplication:sourceApplication
                         withSession:[PFFacebookUtils session]];
 }
+
+
 
 - (UIImageView *)windowBackground
 {

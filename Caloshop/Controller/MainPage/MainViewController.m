@@ -20,8 +20,9 @@
 
 #import "PopViewController.h"
 
+#import "BioCalculateModel.h"
 
-@interface MainViewController ()<RewardModelDelegate,WaterViewDelegate>
+@interface MainViewController ()<RewardModelDelegate,WaterViewDelegate,BioCalculateModelDelegate>
 
 //Reward Model
 @property (nonatomic) RewardModel* rewardModel;
@@ -36,6 +37,7 @@
 
 //PopView
 @property (nonatomic) PopViewController* popView;
+@property (nonatomic) BioCalculateModel* bioCalculationModel;
 
 @end
 
@@ -59,9 +61,24 @@
     [self.view addSubview:self.titleLabel];
     
     [self.waterProgressView setProgress:0.73];
-    [self.caloAndStepsDisplay showViewWithNewCalo:1333 andOldCalo:60 andNewSteps:80313 andOldSteps:700];
+    
     
     [self rewardAndProductFetch];
+    
+    [self.bioCalculationModel startStepMonitering];
+}
+
+-(void)todaysStepsUpdate:(NSInteger)steps
+{
+    static int oldSteps = 0;
+    static int oldCals = 0;
+    int cals = 0;
+
+    cals = (int)steps/10;
+    
+    [self.caloAndStepsDisplay showViewWithNewCalo:cals andOldCalo:oldCals andNewSteps:(int)steps andOldSteps:oldSteps];
+    oldSteps = (int)steps;
+    oldCals = cals;
 }
 
 - (void)dynamicsDrawerRevealLeftBarButtonItemTapped:(id)sender
@@ -214,7 +231,6 @@
     return  _popView;
 }
 
-
 -(UIImageView *)backgroundImg
 {
     if (!_backgroundImg)
@@ -225,7 +241,15 @@
     
     return _backgroundImg;
 }
-
+-(BioCalculateModel *)bioCalculationModel
+{
+    if (!_bioCalculationModel)
+    {
+        _bioCalculationModel = [[BioCalculateModel alloc]init];
+        _bioCalculationModel.delegate = self;
+    }
+    return _bioCalculationModel;
+}
 
 
 

@@ -42,10 +42,6 @@
     }
 }
 
-
-
-
-
 -(UserLog *)userLog
 {
     if (!_userLog)
