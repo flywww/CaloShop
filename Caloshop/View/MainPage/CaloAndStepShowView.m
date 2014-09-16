@@ -120,6 +120,7 @@
     return _stepValue;
 }
 
+
 -(UIView *)seperateLine
 {
     if (!_seperateLine)

@@ -98,7 +98,7 @@ static NSString * const tutorialDescription4 = @"首次使用CaloShop卡洛哩�
         _mainTitle = [[UILabel alloc]initForAutoLayout];
         _mainTitle.font = [UIFont fontWithName:fMyriadPro_Bold_It size:24];
         _mainTitle.textColor = [UIColor whiteColor];
-        _mainTitle.text = @"CaloShop";
+        _mainTitle.text = @"";
     }
     return _mainTitle;
 }
@@ -205,7 +205,7 @@ static NSString * const tutorialDescription4 = @"首次使用CaloShop卡洛哩�
     if (!_fbLoginButton)
     {
         _fbLoginButton = [[UIButton alloc]initForAutoLayout];
-        [_fbLoginButton setImage:[UIImage imageNamed:@"01_material_btn_login"] forState:UIControlStateNormal];
+        [_fbLoginButton setImage:[UIImage imageNamed:@"01_material_btn_FBlogin"] forState:UIControlStateNormal];
         [_fbLoginButton addTarget:self action:@selector(LoginAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _fbLoginButton;
@@ -219,9 +219,6 @@ static NSString * const tutorialDescription4 = @"首次使用CaloShop卡洛哩�
     {
         [self.delegate buttomClickAction];
     }
-    
-    
-    NSLog(@"x88x8 8x 8x8 x8 8sc8a88awv8awf8");
 }
 
 

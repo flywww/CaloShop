@@ -26,6 +26,7 @@ static NSString * const UD_Gender = @"gender";
 static NSString * const UD_Birthday = @"birthday";
 static NSString * const UD_Weight = @"weight";
 static NSString * const UD_Height = @"height";
+static NSString * const UD_Goal = @"goal";
 
 static NSString * const UD_Gender_init = @"female";
 static NSString * const UD_Weight_init = @"45.0";

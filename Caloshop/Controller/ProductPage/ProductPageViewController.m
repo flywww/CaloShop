@@ -254,7 +254,7 @@
     {
         _mainImage = [[UIImageView alloc]initForAutoLayout];
         [_mainImage sd_setImageWithURL:[self.productDictionary[@"mainImage"] url]
-                      placeholderImage:[UIImage imageNamed:@"EmptyImage"]
+                      placeholderImage:[UIImage imageNamed:@"04_material_bg_loadingback"]
                                options:0
                              completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL)
          {
@@ -340,7 +340,7 @@
     {
         _image1 = [[UIImageView alloc]initForAutoLayout];
         [_image1 sd_setImageWithURL:[self.productDictionary[@"image1"] url]
-                   placeholderImage:[UIImage imageNamed:@"EmptyImage"]
+                   placeholderImage:[UIImage imageNamed:@"04_material_bg_loadingback"]
                             options:0
                           completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL)
          {
@@ -375,7 +375,7 @@
     {
         _image2 = [[UIImageView alloc]initForAutoLayout];
         [_image2 sd_setImageWithURL:[self.productDictionary[@"image2"] url]
-                   placeholderImage:[UIImage imageNamed:@"EmptyImage"]
+                   placeholderImage:[UIImage imageNamed:@"04_material_bg_loadingback"]
                             options:0
                           completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL)
             {
@@ -410,7 +410,7 @@
     {
         _image3 = [[UIImageView alloc]initForAutoLayout];
         [_image3 sd_setImageWithURL:[self.productDictionary[@"image3"] url]
-                   placeholderImage:[UIImage imageNamed:@"EmptyImage"]
+                   placeholderImage:[UIImage imageNamed:@"04_material_bg_loadingback"]
                             options:0
                           completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL)
          {
@@ -445,7 +445,7 @@
     {
         _image4 = [[UIImageView alloc]initForAutoLayout];
         [_image4 sd_setImageWithURL:[self.productDictionary[@"image4"] url]
-                   placeholderImage:[UIImage imageNamed:@"EmptyImage"]
+                   placeholderImage:[UIImage imageNamed:@"04_material_bg_loadingback"]
                             options:0
                           completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL)
          {
@@ -480,7 +480,7 @@
     {
         _image5 = [[UIImageView alloc]initForAutoLayout];
         [_image5 sd_setImageWithURL:[self.productDictionary[@"image5"] url]
-                   placeholderImage:[UIImage imageNamed:@"EmptyImage"]
+                   placeholderImage:[UIImage imageNamed:@"04_material_bg_loadingback"]
                             options:0
                           completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL)
          {

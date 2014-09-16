@@ -22,6 +22,8 @@
 
 #import "BioCalculateModel.h"
 
+#import <UICountingLabel.h>
+
 @interface MainViewController ()<RewardModelDelegate,WaterViewDelegate,BioCalculateModelDelegate>
 
 //Reward Model
@@ -34,10 +36,14 @@
 @property (nonatomic) UILabel* titleLabel;
 @property (nonatomic, strong) UIBarButtonItem *paneRevealLeftBarButtonItem;
 @property (nonatomic) WaterCircleView* waterCircle;
+@property (nonatomic) UICountingLabel* percentage;
 
 //PopView
 @property (nonatomic) PopViewController* popView;
 @property (nonatomic) BioCalculateModel* bioCalculationModel;
+
+
+@property (nonatomic) UILabel* testLabel;
 
 @end
 
@@ -57,10 +63,11 @@
     [self.view addSubview:self.backgroundImg];
     [self.view addSubview:self.waterCircle];
     [self.view addSubview:self.waterProgressView];
+    [self.view addSubview:self.percentage];
     [self.view addSubview:self.caloAndStepsDisplay];
     [self.view addSubview:self.titleLabel];
     
-    [self.waterProgressView setProgress:0.73];
+    [self.view addSubview:self.testLabel];
     
     
     [self rewardAndProductFetch];
@@ -70,15 +77,53 @@
 
 -(void)todaysStepsUpdate:(NSInteger)steps
 {
+
+    NSDate *now = [NSDate date];
+    NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar];
+    NSDateComponents *components = [calendar components:NSYearCalendarUnit
+                                    | NSMonthCalendarUnit
+                                    | NSDayCalendarUnit
+                                               fromDate:now];
+    
+    NSDate *beginOfDay = [calendar dateFromComponents:components];
+    
+
+
     static int oldSteps = 0;
     static int oldCals = 0;
-    int cals = 0;
-
-    cals = (int)steps/10;
+    static float oldPercentage = 0;
+    int userWeight = (int)[[[[NSUserDefaults alloc]init] stringForKey:UD_Weight] integerValue];
+    int userGoal = (int)[[[[NSUserDefaults alloc]init] stringForKey:UD_Goal] integerValue];
+    float cals = 0;
+    float percentage = 0;
     
+    //cals = steps * 0.67/60(mins/step) * 5.5/60 (cals/mins) * userWieght
+    cals = (int)steps * userWeight * 5.5 * 0.67 / 3600;
+    percentage = cals/userGoal;
+    if (percentage>1)
+    {
+        percentage =1;
+    }
+    [self.percentage countFrom:oldPercentage*100 to:percentage*100];
+    [self.waterProgressView setProgress:percentage];
     [self.caloAndStepsDisplay showViewWithNewCalo:cals andOldCalo:oldCals andNewSteps:(int)steps andOldSteps:oldSteps];
+    
+    oldPercentage = percentage;
     oldSteps = (int)steps;
     oldCals = cals;
+    
+    self.testLabel.text = [NSString stringWithFormat:@"%@,\n%@,\n%ld,\n\n%@\n%@ \n%f",[HelpTool getLocalDateWithOutTime],[HelpTool getLocalDate],(long)steps,beginOfDay,now,percentage];
+    
+}
+
+-(UILabel *)testLabel
+{
+    if(!_testLabel)
+    {
+        _testLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 100, 320, 320)];
+        _testLabel.numberOfLines = 0;
+    }
+    return _testLabel;
 }
 
 - (void)dynamicsDrawerRevealLeftBarButtonItemTapped:(id)sender
@@ -103,6 +148,9 @@
     [self.waterCircle autoSetDimensionsToSize:CGSizeMake(250, 250)];
     [self.waterCircle autoAlignAxis:ALAxisHorizontal toSameAxisOfView:self.waterProgressView];
     [self.waterCircle autoAlignAxis:ALAxisVertical toSameAxisOfView:self.waterProgressView];
+    
+    [self.percentage autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:self.waterCircle];
+    [self.percentage autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:self.waterCircle withOffset:-40];
     
     [self.caloAndStepsDisplay autoSetDimensionsToSize:CGSizeMake(200, 50)];
     [self.caloAndStepsDisplay autoAlignAxis:ALAxisVertical toSameAxisOfView:self.view];
@@ -152,7 +200,7 @@
     
     [self.waterProgressView.productImg
      sd_setImageWithURL:[self.productDictionary[@"pureImage"] url]
-     placeholderImage:[UIImage imageNamed:@"EmptyImage"]
+     placeholderImage:[UIImage imageNamed:@"03_MainPage_LoadingBackB"]
      options:0
      completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL)
      {
@@ -174,7 +222,7 @@
     {
         _waterProgressView=[[WaterProgressView alloc]initForAutoLayout];
         _waterProgressView.currentWaterColor=[UIColor whiteColor];
-        _waterProgressView.productImg.image = [UIImage imageNamed:@"EmptyImage"];
+        _waterProgressView.productImg.image = [UIImage imageNamed:@"03_MainPage_LoadingBackB"];
         _waterProgressView.delegate= self;
     }
     return _waterProgressView;
@@ -206,6 +254,21 @@
         _caloAndStepsDisplay = [[CaloAndStepShowView alloc]initForAutoLayout];
     }
     return _caloAndStepsDisplay;
+}
+
+-(UICountingLabel *)percentage
+{
+    if (!_percentage)
+    {
+        _percentage = [[UICountingLabel alloc]initForAutoLayout];
+        _percentage.font = [UIFont fontWithName:fMyriadPro_It size:30];
+        _percentage.textAlignment=NSTextAlignmentLeft;
+        _percentage.textColor = [UIColor whiteColor];
+        _percentage.text = @"0%";
+        _percentage.format=@"%d%%";
+        _percentage.method=UILabelCountingMethodEaseInOut;
+    }
+    return _percentage;
 }
 
 -(UILabel *)titleLabel

@@ -162,7 +162,7 @@
     {
         _mainImage = [[UIImageView alloc]initForAutoLayout];
         [_mainImage sd_setImageWithURL:[self.productDictionary[@"mainImage"] url]
-                      placeholderImage:[UIImage imageNamed:@"EmptyImage"]
+                      placeholderImage:[UIImage imageNamed:@"04_material_bg_loadingback"]
                                options:0
                              completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL)
          {

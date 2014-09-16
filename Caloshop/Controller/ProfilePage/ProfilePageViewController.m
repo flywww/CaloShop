@@ -39,6 +39,7 @@ NSString* describeText = @"初次使用CaloShop卡路里販賣店\n我們需要�
 @property (nonatomic) NSDate* birthday;
 @property (nonatomic) NSString* weight;
 @property (nonatomic) NSString* height;
+@property (nonatomic) NSString* goal;
 
 @property (nonatomic) UISegmentedControl* sexSelector;
 @property (nonatomic) UIDatePicker* birthdaySelector;
@@ -172,6 +173,7 @@ NSString* describeText = @"初次使用CaloShop卡路里販賣店\n我們需要�
     self.birthday = [self.userDefault valueForKey:UD_Birthday];
     self.weight = [self.userDefault stringForKey:UD_Weight];
     self.height = [self.userDefault stringForKey:UD_Height];
+    
 }
 
 #pragma mark - button action
@@ -181,6 +183,8 @@ NSString* describeText = @"初次使用CaloShop卡路里販賣店\n我們需要�
     NSLog(@"setting done");
     MainViewController* MainViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"MainNav"];
     [self.dynamicsDrawerViewController setPaneViewController:MainViewController animated:YES completion:nil];
+    
+    self.goal = @"180";
     
     [PFUser currentUser][@"birthdayReal"] = self.birthday;
     [PFUser currentUser][@"genderReal"] = self.gender;
@@ -192,6 +196,7 @@ NSString* describeText = @"初次使用CaloShop卡路里販賣店\n我們需要�
     [self.userDefault setObject:self.gender forKey:UD_Gender];
     [self.userDefault setObject:self.weight forKey:UD_Weight];
     [self.userDefault setObject:self.height forKey:UD_Height];
+    [self.userDefault setObject:self.goal forKey:UD_Goal];
     [self.userDefault synchronize];
 }
 
@@ -273,7 +278,7 @@ NSString* describeText = @"初次使用CaloShop卡路里販賣店\n我們需要�
                                                               tutorialPage2,
                                                               tutorialPage3,
                                                               tutorialPage4]];
-        _tutorialView.pageControlY = 210.0f;
+        _tutorialView.pageControlY = 230.0f;
         _tutorialView.skipButton = nil;
         _tutorialView.swipeToExit = NO;
         _tutorialView.backgroundColor = [UIColor whiteColor];
@@ -338,6 +343,15 @@ NSString* describeText = @"初次使用CaloShop卡路里販賣店\n我們需要�
         _height = [[NSString alloc]init];
     }
     return _height;
+}
+
+-(NSString *)goal
+{
+    if (!_goal)
+    {
+        _goal = [[NSString alloc]init];
+    }
+    return _goal;
 }
 
 -(UILabel*)profileTitle

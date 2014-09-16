@@ -33,16 +33,38 @@
     //M7 Device
     if (([CMStepCounter isStepCountingAvailable] || [CMMotionActivityManager isActivityAvailable]))
     {
-        [self.stepCounter queryStepCountStartingFrom:[HelpTool getLocalDateWithOutTime]
-                                                  to:[HelpTool getLocalDate]
+         NSDate *now = [NSDate date];
+         NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar];
+        NSDateComponents *components = [calendar components:NSYearCalendarUnit
+                                        | NSMonthCalendarUnit
+                                        | NSDayCalendarUnit
+                                                   fromDate:now];
+        
+        NSDate *beginOfDay = [calendar dateFromComponents:components];
+        
+        
+        
+        
+        [self.stepCounter queryStepCountStartingFrom:beginOfDay   //[HelpTool getLocalDateWithOutTime]
+                                                  to:now   //[HelpTool getLocalDate]
                                              toQueue:[[NSOperationQueue alloc] init]
                                          withHandler:^(NSInteger numberOfSteps, NSError *error)
         {
             steps = numberOfSteps;
-            if ([self.delegate respondsToSelector:@selector(todaysStepsUpdate:)])
+            
+            if (error)
             {
-                [self.delegate todaysStepsUpdate:steps];
+                SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"%ld, error %@",(long)numberOfSteps,error] andMessage:nil];
+                
+                [alertView addButtonWithTitle:@"OK"
+                                         type:SIAlertViewButtonTypeDefault
+                                      handler:^(SIAlertView *alert) {}];
+                [alertView show];
             }
+                if ([self.delegate respondsToSelector:@selector(todaysStepsUpdate:)])
+                {
+                    [self.delegate todaysStepsUpdate:numberOfSteps];
+                }
         }];
     }
     return steps;
